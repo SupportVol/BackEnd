@@ -1,6 +1,6 @@
 import { Router } from "express";
 import PFP from "../../models/profile/pfp.js";
-import { writeFile } from "fs";
+
 
 const pfpRouter = Router();
 pfpRouter
@@ -12,18 +12,8 @@ pfpRouter
     console.log(pHres);
   })
   .put((req, res) => {
-    console.log(req);
-    const { uid, newByte8Array } = req.headers;
-    const filePath = `../../local/${uid}.png`;
-    const imageData = new Uint8Array(newByte8Array);
-    writeFile(filePath, Buffer.from(imageData), (err) => {
-      if (err) {
-        console.error("Error saving PNG file:", err);
-      } else {
-        console.log("PNG file saved successfully.");
-      }
-    });
+    const { uid, newByte8Array } = req.body;
     const pH = new PFP(uid);
-    pH.update(filePath);
+    pH.update(newByte8Array);
   });
 export default pfpRouter;

@@ -1,20 +1,31 @@
-// import { getStorage } from "firebase-admin/storage";
-import { getStorage } from "firebase/storage";
-import app from "../../config/firebase.js";
+import {
+  getStorage,
+  ref,
+  uploadString,
+  getDownloadURL,
+} from "firebase/storage";
+import auth from "../../config/firebase.js";
 
 export default class PFP {
   constructor(uid) {
     this.uid = uid;
-    this.storage = getStorage(app);
+    this.storage = getStorage();
   }
-  async update(localFilePath) {
-    const storageRef = this.storage.ref();
-    const fileRef = storageRef.child(`pfp/${this.uid}.png`);
-    await fileRef.put(localFilePath);
-    return true, userRecord.toJSON().phoneNumber;
+
+  async update(imageBase64) {
+    const storageRef = ref(this.storage, `pfp/${this.uid}.png`);
+    await uploadString(storageRef, imageBase64, "base64");
+    const pUrl = await this.get();
+    console.log(pUrl);
+    const userRecord = await auth.auth.updateUser(this.uid, {
+      photoURL: pUrl,
+    });
+    console.log(userRecord.toJSON());
+    return true, userRecord.toJSON();
   }
+
   async get() {
-    const fileRef = this.storage.bucket("pfp").file(`${this.uid}.png`);
+    const fileRef = ref(this.storage, `pfp/${this.uid}.png`);
     const downloadURL = await getDownloadURL(fileRef);
     return downloadURL;
   }
