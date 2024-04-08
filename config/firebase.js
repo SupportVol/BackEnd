@@ -11,5 +11,5 @@ const app = admin.initializeApp({
   storageBucket: "gs://support-vol.appspot.com",
 });
 const auth = admin.auth(app);
-export default { auth, app, admin };
-
+const firestore = admin.firestore(app);
+export default { auth, app, admin, firestore };
