@@ -129,7 +129,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-./*/venv
+./functions/venv
 ./extra/
 .history/
-
+./venv
