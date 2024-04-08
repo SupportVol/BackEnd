@@ -1,6 +1,7 @@
 """
 Module docstring: This module contains a Cloud Function for Firebase that responds to HTTP requests.
 """
+
 from firebase_functions import https_fn
 from firebase_admin import initialize_app
 
