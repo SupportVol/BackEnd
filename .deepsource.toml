@@ -1,7 +1,16 @@
 version = 1
 
 [[analyzers]]
-name = "secrets"
+name = "javascript"
+
+  [analyzers.meta]
+  environment = ["nodejs"]
+
+[[analyzers]]
+name = "python"
+
+  [analyzers.meta]
+  runtime_version = "3.x.x"
 
 [[analyzers]]
 name = "test-coverage"
@@ -10,13 +19,4 @@ name = "test-coverage"
 name = "sql"
 
 [[analyzers]]
-name = "javascript"
-
-  [analyzers.meta]
-  environment = ["nodejs"]
-
-[[transformers]]
-name = "prettier"
-
-[[transformers]]
-name = "standardjs"
+name = "secrets"
