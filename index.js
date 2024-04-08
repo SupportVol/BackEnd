@@ -4,6 +4,7 @@ import authRouter from "./routes/auth.js";
 import pHRouter from "./routes/profile/phoneNumber.js";
 import pfpRouter from "./routes/profile/pfp.js";
 import bodyParser from "body-parser";
+
 // import dotenv from 'dotenv'
 
 // dotenv.config()
