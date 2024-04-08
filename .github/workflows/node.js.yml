@@ -26,8 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm i express firebase firebase-tools firebase-admin bcrypt
-    - run: npm cache clean --force
-    - run: npm ci
+    - run: npm run getDependencies --if-present
     - run: npm run start --if-present
     - run: npm test

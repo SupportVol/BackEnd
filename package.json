@@ -103,7 +103,8 @@
     "yallist": "^4.0.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "getDependencies": "npm ci",
+    "start":"node index.js",
     "devStart": "nodemon node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
