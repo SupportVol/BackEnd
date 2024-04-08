@@ -8,6 +8,8 @@ const app = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL:
     "https://support-vol-default-rtdb.asia-southeast1.firebasedatabase.app",
+  storageBucket: "gs://support-vol.appspot.com",
 });
 const auth = admin.auth(app);
-export default auth;
+export default { auth, app, admin };
+
