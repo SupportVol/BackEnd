@@ -1,12 +1,12 @@
 import bcrypt from "bcrypt";
-
+import saltRounds from "../config/cryptography.js";
 class Encryption {
   constructor(txt) {
     this.txt = txt;
   }
 
   encrypt() {
-    bcrypt.hash(plainPassword, saltRounds, (err, hash) => {
+    bcrypt.hash(this.txt, saltRounds, (err, hash) => {
       if (err) {
         return false, err;
       } else {
