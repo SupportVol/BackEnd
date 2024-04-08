@@ -1,7 +1,6 @@
 import { Router } from "express";
 import PFP from "../../models/profile/pfp.js";
 
-
 const pfpRouter = Router();
 pfpRouter
   .route("/")
@@ -9,7 +8,7 @@ pfpRouter
     const { uid } = req.headers;
     const pH = new PFP(uid);
     const pHres = await pH.get();
-    console.log(pHres);
+    res.json(pHres);
   })
   .put((req, res) => {
     const { uid, newByte8Array } = req.body;
@@ -17,3 +16,5 @@ pfpRouter
     pH.update(newByte8Array);
   });
 export default pfpRouter;
+
+// 
