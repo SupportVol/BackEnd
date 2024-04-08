@@ -14,7 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm ci
-      - run: npm run start
+      - name: Start server
+        run: |
+          npm run start --if-present &
+          pid=$!
+          sleep 10 # Wait for the server to start (adjust the time as needed)
+          if ! ps -p $pid > /dev/null; then
+            echo "Server failed to start within the timeout period."
+            kill -9 $pid # Terminate the process if it hasn't started successfully
+            exit 1
+          fi
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
