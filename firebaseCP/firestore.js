@@ -1,6 +1,6 @@
-import admin from "../../config/firebase.js";
+import "../config/firebase.js";
 
-export default class FirestoreCRUD {
+export default class Firestore {
   constructor(collectionName, uid) {
     this.collection = admin.firestore.collection(collectionName);
     this.uid = uid;
@@ -9,10 +9,9 @@ export default class FirestoreCRUD {
   async create(data) {
     try {
       const docRef = await this.collection.doc(this.uid).set(data);
-      return docRef.id;
+      return true, docRef.id;
     } catch (error) {
-      console.error("Error creating document:", error);
-      throw error;
+      return false, error.message;
     }
   }
 
@@ -20,32 +19,29 @@ export default class FirestoreCRUD {
     try {
       const docSnapshot = await this.collection.doc(this.uid).get();
       if (!docSnapshot.exists) {
-        throw new Error("Document does not exist");
+        return false, "Document does not exist";
       }
-      return docSnapshot.data();
+      return true, docSnapshot.data();
     } catch (error) {
-      console.error("Error reading document:", error);
-      throw error;
+      return false, error.message;
     }
   }
 
   async update(data) {
     try {
       await this.collection.doc(this.uid).update(data);
-      return true;
+      return true, NaN;
     } catch (error) {
-      console.error("Error updating document:", error);
-      throw error;
+      return false, error.message;
     }
   }
 
   async delete() {
     try {
       await this.collection.doc(this.uid).delete();
-      return true;
+      return true, NaN;
     } catch (error) {
-      console.error("Error deleting document:", error);
-      throw error;
+      return false, error.message;
     }
   }
 }

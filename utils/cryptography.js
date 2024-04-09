@@ -35,4 +35,4 @@ class Decryption {
   }
 }
 
-export default Encryption;
+export { Encryption, Decryption };

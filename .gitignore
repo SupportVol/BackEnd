@@ -133,3 +133,4 @@ dist
 ./extra/
 .history/
 ./venv
+/functions/venv
