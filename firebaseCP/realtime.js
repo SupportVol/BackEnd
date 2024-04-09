@@ -1,6 +1,6 @@
 import "../config/firebase";
 
-class RealTime {
+export default class RealTime {
   constructor() {
     this.database = firebase.database();
   }

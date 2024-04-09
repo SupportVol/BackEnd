@@ -9,9 +9,9 @@ export default class Firestore {
   async create(data) {
     try {
       const docRef = await this.collection.doc(this.uid).set(data);
-      return true, docRef.id;
+      return [true, docRef.id];
     } catch (error) {
-      return false, error.message;
+      return [false, error.message];
     }
   }
 
@@ -19,29 +19,29 @@ export default class Firestore {
     try {
       const docSnapshot = await this.collection.doc(this.uid).get();
       if (!docSnapshot.exists) {
-        return false, "Document does not exist";
+        return [false, "Document does not exist"];
       }
-      return true, docSnapshot.data();
+      return [true, docSnapshot.data()];
     } catch (error) {
-      return false, error.message;
+      return [false, error.message];
     }
   }
 
   async update(data) {
     try {
       await this.collection.doc(this.uid).update(data);
-      return true, NaN;
+      return [true, NaN];
     } catch (error) {
-      return false, error.message;
+      return [false, error.message];
     }
   }
 
   async delete() {
     try {
       await this.collection.doc(this.uid).delete();
-      return true, NaN;
+      return [true, NaN];
     } catch (error) {
-      return false, error.message;
+      return [false, error.message];
     }
   }
 }

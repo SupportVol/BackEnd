@@ -9,7 +9,7 @@ export default class Auth {
   }
   async createUser() {
     const authRef = new Authentication();
-    return authRef.createUser({
+    return await authRef.createUser({
       email: this.email,
       password: this.password,
     });

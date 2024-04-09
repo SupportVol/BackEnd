@@ -5,9 +5,9 @@ export class Storage {
     try {
       const storageRef = ref(storage, path);
       await uploadString(storageRef, imageBase64, "base64");
-      return true, userRecord.toJSON(), this.getDownloadURL(path);
+      return [true, userRecord.toJSON(), this.getDownloadURL(path)];
     } catch (error) {
-      return false, error.message, NaN;
+      return [false, error.message, NaN];
     }
   }
   // Upload a file to Firebase Storage
@@ -15,10 +15,10 @@ export class Storage {
     try {
       const storageRef = ref(storage, path);
       const snapshot = await storageRef.put(file);
-      return true, snapshot.ref.getDownloadURL();
+      return [true, snapshot.ref.getDownloadURL()];
     } catch (error) {
       console.error("Error uploading file:", error);
-      return false, error;
+      return [false, error];
     }
   }
 
@@ -26,10 +26,10 @@ export class Storage {
   async getDownloadURL(path) {
     try {
       const storageRef = ref(storage, path);
-      return true, storageRef.getDownloadURL();
+      return [true, storageRef.getDownloadURL()];
     } catch (error) {
       console.error("Error getting download URL:", error);
-      return false, error.message;
+      return [false, error.message];
     }
   }
 
@@ -38,10 +38,10 @@ export class Storage {
     try {
       const storageRef = ref(storage, path);
       await storageRef.delete();
-      return true, this.getDownloadURL(path);
+      return [true, this.getDownloadURL(path)];
     } catch (error) {
       console.error("Error deleting file:", error);
-      return false, error.message;
+      return [false, error.message];
     }
   }
 }
