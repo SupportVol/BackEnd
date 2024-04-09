@@ -11,7 +11,6 @@ import {
   uploadString,
   getDownloadURL,
 } from "firebase/storage";
-
 // Initialize Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAmSpGqd4qk36lj_K9sOnfRN4ZtHCK-YQM",
@@ -35,7 +34,6 @@ const app = admin.initializeApp({
 const auth = admin.auth(app);
 const firestore = admin.firestore(app);
 const storage = getStorage();
-
 export {
   auth,
   firebase,
