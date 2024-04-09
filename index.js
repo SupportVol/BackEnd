@@ -1,18 +1,15 @@
 import express from "express";
 import PORT from "./config/app.js";
 import authRouter from "./routes/auth.js";
-import pHRouter from "./routes/profile/phoneNumber.js";
-import pfpRouter from "./routes/profile/pfp.js";
 import bodyParser from "body-parser";
-import edRouter from "./routes/profile/extraDetails.js";
-// import dotenv from 'dotenv'
-
-// dotenv.config()
+import userDetailsRouter from "./routes/userDetails.js";
+import dotenv from "dotenv";
 
 const app = express();
+dotenv.config();
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send("Hello World!");
 });
 
@@ -21,6 +18,4 @@ app.listen(PORT, () => {
 });
 
 app.use("/api/auth/", authRouter);
-app.use("/api/usr/pH", pHRouter);
-app.use("/api/usr/pfp", pfpRouter);
-app.use("/api/usr/eD", edRouter);
+app.use("/api/auth/", userDetailsRouter);

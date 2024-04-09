@@ -1,17 +1,16 @@
 import { Router } from "express";
-import Auth from "../models/auth.js";
+import authInitiateObjects from "../middlewares/auth/authInitiateObjects.js";
 
 const authRouter = Router();
 
-authRouter.post("/signup", (req, res) => {
-  const { email, password, name } = req.headers;
-  const uid = new Auth(email, password).createUser();
+authRouter.post("/signup", authInitiateObjects, (req, res) => {
+  const { response, uid } = req.auth.createUser();
+  res.json({ uid: response ? uid : NaN });
 });
 
-authRouter.post("/login", (req, res) => {
-  const { email, password } = req.headers;
-  console.log(req.header("FIREBASE_AUTH_TOKEN"));
-  const uid = new Auth(email, password).loginUser();
+authRouter.post("/login", authInitiateObjects, (req, res) => {
+  const { response, uid } = req.auth.loginUser();
+  res.json({ uid: response ? uid : NaN });
 });
 
 export default authRouter;
