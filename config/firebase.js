@@ -1,19 +1,26 @@
-// Import the functions you need from the SDKs you need
+/**
+ * Import necessary modules from Firebase SDKs.
+ */
+import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import admin from "firebase-admin";
-import serviceAccount from "../path/to/serviceAccountKey.json" assert { type: "json" };
-import firebase from "firebase/compat/app";
-import "firebase/storage";
+import "firebase/compat/storage";
 import {
   getStorage,
   ref,
   uploadString,
   getDownloadURL,
 } from "firebase/storage";
-// import * as functions from "firebase-functions";
+import admin from "firebase-admin";
 
-// Initialize Firebase
+/**
+ * Path to the service account key JSON file.
+ */
+import serviceAccount from "../path/to/serviceAccountKey.json" assert { type: "json" };
+
+/**
+ * Firebase configuration object.
+ */
 const firebaseConfig = {
   apiKey: "AIzaSyAmSpGqd4qk36lj_K9sOnfRN4ZtHCK-YQM",
   authDomain: "support-vol.firebaseapp.com",
@@ -25,17 +32,40 @@ const firebaseConfig = {
   appId: "1:655861372911:web:a1d577dda3edfc3c43881a",
   measurementId: "G-3FSFLTN1WD",
 };
+
+/**
+ * Initialize Firebase with the provided configuration.
+ */
 firebase.initializeApp(firebaseConfig);
 
+/**
+ * Initialize the Firebase Admin SDK with the service account credentials.
+ */
 const app = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL:
     "https://support-vol-default-rtdb.asia-southeast1.firebasedatabase.app",
   storageBucket: "gs://support-vol.appspot.com",
 });
+
+/**
+ * Auth module from Firebase Admin SDK.
+ */
 const auth = admin.auth(app);
+
+/**
+ * Firestore module from Firebase Admin SDK.
+ */
 const firestore = admin.firestore(app);
+
+/**
+ * Storage module from Firebase SDK.
+ */
 const storage = getStorage();
+
+/**
+ * Export necessary modules and functions.
+ */
 export {
   auth,
   firebase,
@@ -46,5 +76,4 @@ export {
   ref,
   uploadString,
   getDownloadURL,
-  // functions,
 };

@@ -2,12 +2,34 @@ import { Router } from "express";
 import extractUidAndVerification from "../../middlewares/extractUidAndVerification.js";
 import messageInitiateObjects from "../../middlewares/chat/messageInitiateObjects.js";
 
+/**
+ * Express router for managing chat messages.
+ * @module routes/chat/message
+ */
+
 const msgRouter = Router();
 
-// Middleware for handling common functionality
+/**
+ * Middleware for handling common functionality.
+ * @name Middleware
+ * @function
+ * @memberof module:routes/chat/message
+ * @inner
+ * @param {object} req - Express request object
+ * @param {object} res - Express response object
+ * @param {function} next - Express next middleware function
+ */
 msgRouter.use(extractUidAndVerification, messageInitiateObjects);
 
-// Route for reading all messages
+/**
+ * Route for reading all messages.
+ * @name GET/api/chat/msg
+ * @function
+ * @memberof module:routes/chat/message
+ * @inner
+ * @param {object} req - Express request object
+ * @param {object} res - Express response object
+ */
 msgRouter.get("/", (req, res) => {
   const [response, msg] = req.msgInstance.readAllMessages();
   res.json({
@@ -16,7 +38,15 @@ msgRouter.get("/", (req, res) => {
   });
 });
 
-// Route for creating a message
+/**
+ * Route for creating a message.
+ * @name POST/api/chat/msg
+ * @function
+ * @memberof module:routes/chat/message
+ * @inner
+ * @param {object} req - Express request object
+ * @param {object} res - Express response object
+ */
 msgRouter.post("/", async (req, res) => {
   const [response, msg] = await req.msgInstance.createMessage(
     req.headers.message,
@@ -28,7 +58,15 @@ msgRouter.post("/", async (req, res) => {
   });
 });
 
-// Route for deleting a message
+/**
+ * Route for deleting a message.
+ * @name DELETE/api/chat/msg
+ * @function
+ * @memberof module:routes/chat/message
+ * @inner
+ * @param {object} req - Express request object
+ * @param {object} res - Express response object
+ */
 msgRouter.delete("/", (req, res) => {
   const [response, msg] = req.msgInstance.deleteMessage(req.headers.messageID);
   res.json({

@@ -1,44 +1,72 @@
 import "../config/firebase.js";
 
+/**
+ * Class representing Firebase Storage operations.
+ */
 export class Storage {
+  /**
+   * Uploads a base64-encoded image to Firebase Storage.
+   * @param {string} path - The path to store the image.
+   * @param {string} imageBase64 - The base64-encoded image data.
+   * @returns {Promise<[boolean, string | Error, string]>} A promise containing upload status, error message (if any), and download URL.
+   */
   async uploadByte8Array(path, imageBase64) {
     try {
       const storageRef = ref(storage, path);
       await uploadString(storageRef, imageBase64, "base64");
-      return [true, userRecord.toJSON(), this.getDownloadURL(path)];
+      const downloadURL = await this.getDownloadURL(path);
+      return [true, downloadURL];
     } catch (error) {
+      console.error("Error uploading image:", error);
       return [false, error.message, NaN];
     }
   }
-  // Upload a file to Firebase Storage
+
+  /**
+   * Uploads a file to Firebase Storage.
+   * @param {File} file - The file to upload.
+   * @param {string} path - The path to store the file.
+   * @returns {Promise<[boolean, string | Error]>} A promise containing upload status and download URL (if successful).
+   */
   async uploadFile(file, path) {
     try {
       const storageRef = ref(storage, path);
       const snapshot = await storageRef.put(file);
-      return [true, snapshot.ref.getDownloadURL()];
+      const downloadURL = await snapshot.ref.getDownloadURL();
+      return [true, downloadURL];
     } catch (error) {
       console.error("Error uploading file:", error);
       return [false, error];
     }
   }
 
-  // Get download URL of a file from Firebase Storage
+  /**
+   * Retrieves the download URL of a file from Firebase Storage.
+   * @param {string} path - The path of the file.
+   * @returns {Promise<[boolean, string | Error]>} A promise containing retrieval status and download URL (if successful).
+   */
   async getDownloadURL(path) {
     try {
       const storageRef = ref(storage, path);
-      return [true, storageRef.getDownloadURL()];
+      const downloadURL = await getDownloadURL(storageRef);
+      return [true, downloadURL];
     } catch (error) {
       console.error("Error getting download URL:", error);
       return [false, error.message];
     }
   }
 
-  // Delete a file from Firebase Storage
+  /**
+   * Deletes a file from Firebase Storage.
+   * @param {string} path - The path of the file to delete.
+   * @returns {Promise<[boolean, string | Error]>} A promise containing deletion status and download URL (if successful).
+   */
   async deleteFile(path) {
     try {
       const storageRef = ref(storage, path);
-      await storageRef.delete();
-      return [true, this.getDownloadURL(path)];
+      await deleteObject(storageRef);
+      const downloadURL = await this.getDownloadURL(path);
+      return [true, downloadURL];
     } catch (error) {
       console.error("Error deleting file:", error);
       return [false, error.message];

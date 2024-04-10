@@ -1,6 +1,14 @@
 import { auth, firebase } from "../config/firebase.js";
 
+/**
+ * Class representing authentication functionalities.
+ */
 export class Authentication {
+  /**
+   * Creates a new user with the provided user data.
+   * @param {object} userData - The user data to create the user.
+   * @returns {Promise<[boolean, string]>} - A tuple indicating success status and the user ID.
+   */
   async createUser(userData) {
     try {
       const userRecord = await auth.createUser(userData);
@@ -10,6 +18,12 @@ export class Authentication {
     }
   }
 
+  /**
+   * Logs in the user with the provided email and password.
+   * @param {string} email - The user's email.
+   * @param {string} password - The user's password.
+   * @returns {Promise<[boolean, string]>} - A tuple indicating success status and the user ID.
+   */
   async loginUser(email, password) {
     try {
       const userRecord = await firebase
@@ -21,6 +35,12 @@ export class Authentication {
     }
   }
 
+  /**
+   * Updates the user with the provided user ID and update data.
+   * @param {string} uid - The user ID to update.
+   * @param {object} updateUserData - The data to update the user with.
+   * @returns {Promise<[boolean, object]>} - A tuple indicating success status and the updated user data.
+   */
   async updateUser(uid, updateUserData) {
     try {
       const userRecord = await auth.updateUser(uid, updateUserData);
@@ -29,6 +49,12 @@ export class Authentication {
       return [false, error.message];
     }
   }
+
+  /**
+   * Retrieves the user with the provided user ID.
+   * @param {string} uid - The user ID to retrieve.
+   * @returns {Promise<[boolean, object]>} - A tuple indicating success status and the retrieved user data.
+   */
   async getUser(uid) {
     try {
       const user = await auth.getUser(uid);
@@ -37,6 +63,12 @@ export class Authentication {
       return [false, error.message];
     }
   }
+
+  /**
+   * Deletes the user with the provided user ID.
+   * @param {string} uid - The user ID to delete.
+   * @returns {Promise<[boolean, string]>} - A tuple indicating success status and the deleted user ID.
+   */
   async deleteUser(uid) {
     try {
       await auth.deleteUser(uid);

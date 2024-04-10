@@ -1,3 +1,9 @@
+/**
+ * Middleware to initialize Quick Project instance.
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @param {Function} next - Express next middleware function.
+ */
 import QuickProject from "../../models/community/quick_projects/quick_project.js";
 
 const qpInitiateObjects = (req, res, next) => {
@@ -13,7 +19,8 @@ const qpInitiateObjects = (req, res, next) => {
     term,
     members,
   } = req.headers;
-  req.qpInstance = new QuickProject(
+
+  const qpData = {
     quickProjectID,
     communityID,
     eventID,
@@ -23,8 +30,10 @@ const qpInitiateObjects = (req, res, next) => {
     start_date,
     end_date,
     term,
-    members
-  );
+    members,
+  };
+
+  req.qpInstance = new QuickProject(qpData);
   next();
 };
 
