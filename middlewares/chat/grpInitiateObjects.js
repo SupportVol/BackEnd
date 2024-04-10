@@ -1,5 +1,5 @@
 import Firestore from "../../firebaseCP/firestore.js";
-import { isAuthorized } from "../../utils/isAuthorized";
+import isAuthorized from "../../utils/isAuthorized.js";
 import Group from "../../models/chat/group.js";
 
 const grpInitiateObjects = async (req, res, next) => {
