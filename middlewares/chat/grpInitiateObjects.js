@@ -4,7 +4,6 @@ import Group from "../../models/chat/group.js";
 
 const grpInitiateObjects = async (req, res, next) => {
   try {
-    console.log(req.method);
     req.groupID = req.headers.groupid;
 
     const fs = new Firestore();
