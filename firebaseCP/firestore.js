@@ -1,5 +1,6 @@
 import "../config/firebase.js";
 import { admin } from "../config/firebase.js";
+import getDocumentIdByContent from "../utils/getDocumentIdByContent.js";
 
 export default class Firestore {
   constructor(collectionName, uid) {
@@ -9,8 +10,13 @@ export default class Firestore {
 
   async create(data) {
     try {
-      const docRef = await this.collection.doc(this.uid).set(data);
-      return [true, docRef.id];
+      if (!this.uid) {
+        await this.collection.doc().set(data);
+      } else {
+        await this.collection.doc(this.uid).set(data);
+      }
+      const docID = await getDocumentIdByContent(this.collection, data);
+      return [true, docID];
     } catch (error) {
       return [false, error.message];
     }
@@ -48,10 +54,7 @@ export default class Firestore {
 
   async readPaths() {
     try {
-      const docs = await admin
-        .firestore()
-        .collection("chatGroups")
-        .listDocuments();
+      const docs = await this.collection.listDocuments();
       const paths = [];
       docs.forEach((doc) => {
         paths.push(doc.path.split("/")[1]);

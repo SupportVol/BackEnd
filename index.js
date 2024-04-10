@@ -5,6 +5,7 @@ import PORT from "./config/app.js";
 import authRouter from "./routes/auth.js";
 import userDetailsRouter from "./routes/userDetails.js";
 import msgRouter from "./routes/chat/message.js";
+import commRouter from "./routes/community/community.js";
 
 const app = express();
 dotenv.config();
@@ -17,9 +18,9 @@ app.get("/test", (_, res) => {
 
 // Use routers
 app.use("/api/auth", authRouter);
-app.use("/api/auth", userDetailsRouter);
+app.use("/api/usr", userDetailsRouter);
 app.use("/api/chat/msg", msgRouter);
-
+app.use("/api/community", commRouter);
 // Error handling middleware
 app.use((err, _, res, __) => {
   console.error(err.stack);
