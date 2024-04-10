@@ -5,6 +5,7 @@ import PORT from "./config/app.js";
 import authRouter from "./routes/auth.js";
 import userDetailsRouter from "./routes/userDetails.js";
 import msgRouter from "./routes/chat/message.js";
+import grpRouter from "./routes/chat/group.js";
 import commRouter from "./routes/community/community.js";
 import qpRouter from "./routes/community/quick_projects/quick_project.js";
 import iRouter from "./routes/community/initiatives/initiative.js";
@@ -22,10 +23,10 @@ app.get("/test", (_, res) => {
 app.use("/api/auth", authRouter);
 app.use("/api/usr", userDetailsRouter);
 app.use("/api/chat/msg", msgRouter);
+app.use("/api/chat/grp", grpRouter);
 app.use("/api/community", commRouter);
 app.use("/api/events/quickproject", qpRouter);
 app.use("/api/events/initiative", iRouter);
-iRouter
 
 // Error handling middleware
 app.use((err, _, res, __) => {
