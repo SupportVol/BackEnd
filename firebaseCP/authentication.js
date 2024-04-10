@@ -12,14 +12,11 @@ export class Authentication {
 
   async loginUser(email, password) {
     try {
-      console.log(email, password);
       const userRecord = await firebase
         .auth()
         .signInWithEmailAndPassword(email, password);
-      console.log(userRecord);
       return [true, userRecord.uid];
     } catch (error) {
-      console.log(error);
       return [false, error.message];
     }
   }

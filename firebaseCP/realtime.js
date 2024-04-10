@@ -1,32 +1,66 @@
-import "../config/firebase";
-
+import "../config/firebase.js";
+import {
+  getDatabase,
+  ref,
+  push,
+  child,
+  set,
+  get,
+  remove,
+} from "firebase/database";
 export default class RealTime {
-  constructor() {
-    this.database = firebase.database();
+  constructor(r) {
+    this.database = getDatabase();
+    this.itemsRef = ref(this.database, r);
   }
 
   // Create operation
-  create(data, ref) {
-    const newDataRef = this.database.ref(ref).push();
-    return newDataRef.set(data);
+  async create(data) {
+    try {
+      if (Object.values(data).some((value) => value === undefined)) {
+        return [false, "Data contains undefined values"];
+      }
+      const newItemRef = push(this.itemsRef);
+      await set(newItemRef, data);
+      return [true, newItemRef.key];
+    } catch (error) {
+      return [false, error.message];
+    }
   }
 
   // Read operation
-  async read(ref, docID) {
-    const snapshot = await this.database.ref(ref).once(docID);
-    const data = snapshot.val();
-    return data
-      ? Object.entries(data).map(([key, value]) => ({ id: key, ...value }))
-      : [];
+  async read() {
+    try {
+      const snapshot = await get(this.itemsRef);
+      const items = [];
+      snapshot.forEach((childSnapshot) => {
+        items.push({ id: childSnapshot.key, ...childSnapshot.val() });
+      });
+      return [true, items];
+    } catch (error) {
+      return [false, error.message];
+    }
   }
 
   // Update operation
-  update(id, newData, ref) {
-    return this.database.ref(ref).child(id).update(newData);
+  async update(id, newData) {
+    try {
+      const itemRef = child(this.itemsRef, id);
+      await set(itemRef, newData);
+      return [true, true];
+    } catch (error) {
+      return [false, error.message];
+    }
   }
 
   // Delete operation
-  delete(id, ref) {
-    return this.database.ref(ref).child(id).remove();
+  async delete(id) {
+    try {
+      const itemRef = child(this.itemsRef, id);
+      await remove(itemRef);
+      return [true, true];
+    } catch (error) {
+      return [false, error.message];
+    }
   }
 }

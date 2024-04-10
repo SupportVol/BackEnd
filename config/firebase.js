@@ -11,6 +11,7 @@ import {
   uploadString,
   getDownloadURL,
 } from "firebase/storage";
+// import * as functions from "firebase-functions";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -35,7 +36,6 @@ const app = admin.initializeApp({
 const auth = admin.auth(app);
 const firestore = admin.firestore(app);
 const storage = getStorage();
-
 export {
   auth,
   firebase,
@@ -46,4 +46,5 @@ export {
   ref,
   uploadString,
   getDownloadURL,
+  // functions,
 };
