@@ -1,4 +1,4 @@
-import { Firestore } from "../../../firebaseCP/firestore.js";
+import Firestore from "../../../firebaseCP/firestore.js";
 export default class QuickProject {
   constructor(
     quickProjectID,

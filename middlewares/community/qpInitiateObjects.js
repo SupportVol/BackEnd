@@ -1,4 +1,4 @@
-import QuickProject from "../../models/community/quick_projects/quick_project";
+import QuickProject from "../../models/community/quick_projects/quick_project.js";
 
 const qpInitiateObjects = (req, res, next) => {
   const {

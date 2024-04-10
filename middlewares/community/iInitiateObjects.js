@@ -1,4 +1,4 @@
-import Initiative from "../../models/community/initiatives/initiative";
+import Initiative from "../../models/community/initiatives/initiative.js";
 
 const iInitiateObjects = (req, res, next) => {
   const {
