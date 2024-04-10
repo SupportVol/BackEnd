@@ -16,7 +16,7 @@ import admin from "firebase-admin";
 /**
  * Path to the service account key JSON file.
  */
-const serviceAccountKeyPath = "../path/to/serviceAccountKey.json";
+import serviceAccount from "../path/to/serviceAccountKey.json" assert { type: "json" };
 
 /**
  * Firebase configuration object.
@@ -42,7 +42,7 @@ firebase.initializeApp(firebaseConfig);
  * Initialize the Firebase Admin SDK with the service account credentials.
  */
 const app = admin.initializeApp({
-  credential: admin.credential.cert(serviceAccountKeyPath),
+  credential: admin.credential.cert(serviceAccount),
   databaseURL:
     "https://support-vol-default-rtdb.asia-southeast1.firebasedatabase.app",
   storageBucket: "gs://support-vol.appspot.com",
