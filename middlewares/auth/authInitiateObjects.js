@@ -8,6 +8,7 @@ import Auth from "../../models/auth.js";
  */
 const authInitiateObjects = (req, res, next) => {
   const { email, password, name } = req.headers;
+  console.log(email, password);
   const authParams = { email, password };
 
   // Add name parameter if URL is "/signup"
