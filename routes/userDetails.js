@@ -19,13 +19,18 @@ userDetailsRouter
    * Route to upload user profile picture.
    */
   .post(extractUidAndVerification, pfpInitiateObjects, (req, res) => {
-    const { imageBase64 } = req.headers;
-    const [response, msg, url] = req.storage.uploadByte8Array(
-      req.path,
-      imageBase64
-    );
-    req.auth.updateUser(req.uid, { photoUrl: url });
-    res.json({ status: response ? 200 : 500, return: msg });
+    const { imageBase64, reqUrl } = req.headers;
+    if (imageBase64) {
+      const [response, msg, url] = req.storage.uploadByte8Array(
+        req.path,
+        imageBase64
+      );
+      req.auth.updateUser(req.uid, { photoUrl: url });
+      res.json({ status: response ? 200 : 500, return: msg });
+    } else {
+      req.auth.updateUser(req.uid, { photoUrl: reqUrl });
+      res.json({ status: response ? 200 : 500, return: msg });
+    }
   })
   /**
    * Route to delete user profile picture.
