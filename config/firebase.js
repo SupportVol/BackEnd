@@ -11,6 +11,8 @@ import {
   uploadString,
   getDownloadURL,
 } from "firebase/storage";
+// import * as functions from "firebase-functions";
+
 // Initialize Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAmSpGqd4qk36lj_K9sOnfRN4ZtHCK-YQM",
@@ -44,4 +46,5 @@ export {
   ref,
   uploadString,
   getDownloadURL,
+  // functions,
 };

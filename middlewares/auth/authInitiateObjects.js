@@ -9,7 +9,6 @@ const authInitiateObjects = (req, res, next) => {
   } else {
     req.auth = new Auth(req.headers.email, req.headers.password);
   }
-  console.log(req.auth);
   next();
 };
 export default authInitiateObjects;

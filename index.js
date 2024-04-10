@@ -1,22 +1,34 @@
 import express from "express";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
 import PORT from "./config/app.js";
 import authRouter from "./routes/auth.js";
-import bodyParser from "body-parser";
 import userDetailsRouter from "./routes/userDetails.js";
-import dotenv from "dotenv";
 import msgRouter from "./routes/chat/message.js";
+
 const app = express();
 dotenv.config();
 app.use(bodyParser.json());
 
-app.get("/", (_, res) => {
+// Define routes
+app.get("/test", (_, res) => {
   res.send("Hello World!");
 });
 
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
+// Use routers
+app.use("/api/auth", authRouter);
+app.use("/api/auth", userDetailsRouter);
+app.use("/api/chat/msg", msgRouter);
+
+// Error handling middleware
+app.use((err, _, res, __) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
 });
 
-app.use("/api/auth/", authRouter);
-app.use("/api/auth/", userDetailsRouter);
-app.use("/api/chat/msg", msgRouter);
+// Start the server
+const server = app.listen(PORT, () => {
+  const host = server.address().address;
+  const port = server.address().port;
+  console.log(`App listening at http://${host}:${port}`);
+});

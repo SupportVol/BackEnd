@@ -1,8 +1,9 @@
 import "../config/firebase.js";
+import { admin } from "../config/firebase.js";
 
 export default class Firestore {
   constructor(collectionName, uid) {
-    this.collection = admin.firestore.collection(collectionName);
+    this.collection = admin.firestore().collection(collectionName);
     this.uid = uid;
   }
 
@@ -40,6 +41,22 @@ export default class Firestore {
     try {
       await this.collection.doc(this.uid).delete();
       return [true, NaN];
+    } catch (error) {
+      return [false, error.message];
+    }
+  }
+
+  async readPaths() {
+    try {
+      const docs = await admin
+        .firestore()
+        .collection("chatGroups")
+        .listDocuments();
+      const paths = [];
+      docs.forEach((doc) => {
+        paths.push(doc.path.split("/")[1]);
+      });
+      return [true, paths];
     } catch (error) {
       return [false, error.message];
     }

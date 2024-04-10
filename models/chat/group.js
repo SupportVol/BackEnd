@@ -1,30 +1,33 @@
-import { Firestore } from "../../firebaseCP/firestore";
+// import { Authentication } from "../../firebaseCP/authentication.js";
+import Firestore from "../../firebaseCP/firestore.js";
 
 export default class Group {
-  constructor(groupID, eventID, description, adminUID) {
+  constructor(uid, groupID) {
+    this.uid = uid;
     this.groupID = groupID;
-    this.eventID = eventID;
-    this.adminUID = adminUID;
-    this.description = description;
     this.firestore = new Firestore("chatGroups", this.groupID);
     this.eventFirestore = new Firestore("events", this.eventID);
   }
 
-  createGroup() {
+  createGroup(dataDict) {
     this.eventFirestore.read();
     return this.firestore.create({
       groupID: this.groupID,
-      eventID: this.eventID,
-      adminUID: this.adminUID,
-      description: this.description,
+      eventID: dataDict.eventID,
+      adminUID: dataDict.adminUID,
+      description: dataDict.description,
+      members: dataDict.members,
+      requestUID: this.uid,
     });
   }
-  updateGroup() {
+  updateGroup(updateDataDict) {
     return this.firestore.update({
       groupID: this.groupID,
-      eventID: this.eventID,
-      adminUID: this.adminUID,
-      description: this.description,
+      eventID: updateDataDict.eventID,
+      adminUID: updateDataDict.adminUID,
+      description: updateDataDict.description,
+      members: updateDataDict.members,
+      requestUID: this.uid,
     });
   }
 

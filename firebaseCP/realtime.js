@@ -1,4 +1,4 @@
-// import { firebase } from "../config/firebase.js";
+import "../config/firebase.js";
 import {
   getDatabase,
   ref,
@@ -8,7 +8,6 @@ import {
   get,
   remove,
 } from "firebase/database";
-
 export default class RealTime {
   constructor(r) {
     this.database = getDatabase();
@@ -18,11 +17,14 @@ export default class RealTime {
   // Create operation
   async create(data) {
     try {
+      if (Object.values(data).some((value) => value === undefined)) {
+        return [false, "Data contains undefined values"];
+      }
       const newItemRef = push(this.itemsRef);
       await set(newItemRef, data);
       return [true, newItemRef.key];
     } catch (error) {
-      [false, error.message];
+      return [false, error.message];
     }
   }
 

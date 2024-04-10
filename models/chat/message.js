@@ -1,9 +1,11 @@
 import RealTime from "../../firebaseCP/realtime.js";
+import Group from "./group.js";
 
 export default class Message {
   constructor(groupID) {
     this.groupID = groupID;
     this.realTimeDatabase = new RealTime(this.groupID);
+    this.group = new Group(this.groupID);
   }
 
   async createMessage(message, uid) {
@@ -41,6 +43,7 @@ export default class Message {
 
   async deleteMessage(messageID) {
     try {
+      const [response, msg] = this.group.read();
       const messageRef = await this.realTimeDatabase.delete(messageID);
       return [true, messageRef.id];
     } catch (error) {

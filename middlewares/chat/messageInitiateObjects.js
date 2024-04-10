@@ -1,7 +1,7 @@
 import Message from "../../models/chat/message.js";
 const messageInitiateObjects = (req, _, next) => {
-  const { groupID } = req.headers;
-  req.msgInstance = new Message(groupID);
+  const { groupid } = req.headers;
+  req.msgInstance = new Message(groupid);
   next();
 };
 export default messageInitiateObjects;
