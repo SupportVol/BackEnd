@@ -43,7 +43,7 @@ export class Authentication {
    */
   async updateUser(uid, updateUserData) {
     try {
-      const userRecord = await auth.updateUser(uid, updateUserData);
+      const userRecord = await auth.updateUser(uid, JSON.parse(updateUserData));
       return [true, userRecord.toJSON()];
     } catch (error) {
       return [false, error.message];
