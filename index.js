@@ -13,7 +13,11 @@ const app = express();
 dotenv.config();
 app.use(bodyParser.json());
 
-// Define routes
+/**
+ * A simple function that returns a greeting message.
+ * @param {Request} req - The HTTP request object.
+ * @param {Response} res - The HTTP response object.
+ */
 app.get("/test", (_, res) => {
   res.send("Hello World!");
 });
@@ -25,9 +29,15 @@ app.use("/api/chat/msg", msgRouter);
 app.use("/api/community", commRouter);
 app.use("/api/events/quickproject", qpRouter);
 app.use("/api/events/initiative", iRouter);
-iRouter
+iRouter;
 
-// Error handling middleware
+/**
+ * Error handling middleware.
+ * @param {Error} err - The error object.
+ * @param {IncomingMessage} req - The HTTP request object.
+ * @param {ServerResponse} res - The HTTP response object.
+ * @param {any} next - The next middleware function in the stack.
+ */
 app.use((err, _, res, __) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
