@@ -1,9 +1,28 @@
+/**
+ * Handles requests related to communities.
+ * @module routes/community
+ */
+
 import { Router } from "express";
 import extractUidAndVerification from "../../middlewares/extractUidAndVerification.js";
 import commInitiateObjects from "../../middlewares/community/commInitiateObjects.js";
 
+/**
+ * Express router to handle community-related routes.
+ * @type {Router}
+ * @const
+ */
 const commRouter = Router();
 
+/**
+ * Route for getting, creating, updating, and deleting communities.
+ * @name /
+ * @function
+ * @memberof module:routes/community
+ * @inner
+ * @param {string} path - Express route path
+ * @param {callback} middleware - Express middleware
+ */
 commRouter
   .route("/")
   .get(extractUidAndVerification, commInitiateObjects, async (req, res) => {
@@ -22,4 +41,5 @@ commRouter
     const [response, _] = await req.commInstance.delete();
     res.json({ status: response ? 200 : 500 });
   });
+
 export default commRouter;

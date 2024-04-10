@@ -1,6 +1,16 @@
 import Firestore from "../../firebaseCP/firestore.js";
 
+/**
+ * Represents a Community object.
+ * @class
+ */
 export default class Community {
+  /**
+   * Create a Community object.
+   * @constructor
+   * @param {string} uid - The user ID.
+   * @param {string} communityUID - The community UID.
+   */
   constructor(uid, communityUID) {
     this.uid = uid;
     this.collectionName = "communities";
@@ -8,15 +18,12 @@ export default class Community {
     this.prjFirestore = new Firestore(this.collectionName, this.communityUID);
   }
 
+  /**
+   * Creates a new document in the community collection.
+   * @param {object} userData - The user data to be stored.
+   * @returns {Promise} A promise that resolves to an array indicating success or failure.
+   */
   async create(userData) {
-    //   {
-    //     name: this.name,models/community/community.js
-    //     description: this.description,
-    //     members: this.members,
-    //     organizations: this.organizations,
-    //     quickprojects: this.quickprojects,
-    //     initiatives: this.initiatives,
-    //   }
     try {
       return await this.prjFirestore.create(userData);
     } catch (error) {
@@ -24,6 +31,10 @@ export default class Community {
     }
   }
 
+  /**
+   * Reads all documents in the community collection.
+   * @returns {Promise} A promise that resolves to an array containing the documents.
+   */
   async read() {
     try {
       let paths = await this.prjFirestore.readPaths();
@@ -40,6 +51,11 @@ export default class Community {
     }
   }
 
+  /**
+   * Updates a document in the community collection.
+   * @param {object} userData - The updated user data.
+   * @returns {Promise} A promise that resolves to an array indicating success or failure.
+   */
   async update(userData) {
     try {
       await this.prjFirestore.update(userData);
@@ -49,6 +65,10 @@ export default class Community {
     }
   }
 
+  /**
+   * Deletes a document from the community collection.
+   * @returns {Promise} A promise that resolves to an array indicating success or failure.
+   */
   async delete() {
     try {
       await this.prjFirestore.delete();
