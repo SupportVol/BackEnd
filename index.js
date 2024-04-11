@@ -9,6 +9,7 @@ import grpRouter from "./routes/chat/group.js";
 import commRouter from "./routes/community/community.js";
 import qpRouter from "./routes/community/quick_projects/quick_project.js";
 import iRouter from "./routes/community/initiatives/initiative.js";
+import commentRouter from "./routes/comment.js";
 
 const app = express();
 dotenv.config();
@@ -31,7 +32,7 @@ app.use("/api/chat/grp", grpRouter);
 app.use("/api/community", commRouter);
 app.use("/api/events/quickproject", qpRouter);
 app.use("/api/events/initiative", iRouter);
-
+app.use("/api/comments/", commentRouter);
 /**
  * Error handling middleware.
  * @param {Error} err - The error object.
