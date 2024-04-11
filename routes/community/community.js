@@ -30,11 +30,11 @@ commRouter
     res.json({ status: response ? 200 : 500, allDocs: allDocs });
   })
   .post(extractUidAndVerification, commInitiateObjects, async (req, res) => {
-    const [response, docID] = await req.commInstance.create(req.headers);
+    const [response, docID] = await req.commInstance.create(req.body);
     res.json({ status: response ? 200 : 500, docID: docID });
   })
   .put(extractUidAndVerification, commInitiateObjects, (req, res) => {
-    const [response, _] = req.commInstance.update(req.headers);
+    const [response, _] = req.commInstance.update(req.body);
     res.json({ status: response ? 200 : 500 });
   })
   .delete(extractUidAndVerification, commInitiateObjects, async (req, res) => {

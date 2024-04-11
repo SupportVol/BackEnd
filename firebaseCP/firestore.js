@@ -10,9 +10,10 @@ export default class Firestore {
    * @param {string} collectionName - The name of the Firestore collection.
    * @param {string} uid - The unique identifier for the document.
    */
-  constructor(collectionName, uid) {
+  constructor(collectionName, uid, nestedPaths = []) {
     this.collection = admin.firestore().collection(collectionName);
     this.uid = uid;
+    this.nestedPaths = nestedPaths;
   }
 
   /**
@@ -22,6 +23,11 @@ export default class Firestore {
    */
   async create(data) {
     try {
+      let collectionRef = this.collection;
+      // Traverse through nested paths and create collection references
+      for (const path of this.nestedPaths) {
+        collectionRef = collectionRef.doc(path).collection(path);
+      }
       const docRef = this.uid
         ? this.collection.doc(this.uid)
         : this.collection.doc();
@@ -39,7 +45,12 @@ export default class Firestore {
    */
   async read() {
     try {
-      const docSnapshot = await this.collection.doc(this.uid).get();
+      let collectionRef = this.collection;
+      // Traverse through nested paths and create collection references
+      for (const path of this.nestedPaths) {
+        collectionRef = collectionRef.doc(path).collection(path);
+      }
+      const docSnapshot = await collectionRef.doc(this.uid).get();
       if (!docSnapshot.exists) {
         return [false, "Document does not exist"];
       }
@@ -56,7 +67,12 @@ export default class Firestore {
    */
   async update(data) {
     try {
-      await this.collection.doc(this.uid).update(data);
+      let collectionRef = this.collection;
+      // Traverse through nested paths and create collection references
+      for (const path of this.nestedPaths) {
+        collectionRef = collectionRef.doc(path).collection(path);
+      }
+      await collectionRef.doc(this.uid).update(data);
       return [true, NaN];
     } catch (error) {
       return [false, error.message];
@@ -69,7 +85,12 @@ export default class Firestore {
    */
   async delete() {
     try {
-      await this.collection.doc(this.uid).delete();
+      let collectionRef = this.collection;
+      // Traverse through nested paths and create collection references
+      for (const path of this.nestedPaths) {
+        collectionRef = collectionRef.doc(path).collection(path);
+      }
+      await collectionRef.doc(this.uid).delete();
       return [true, NaN];
     } catch (error) {
       return [false, error.message];
@@ -82,7 +103,14 @@ export default class Firestore {
    */
   async readPaths() {
     try {
-      const docs = await this.collection.listDocuments();
+      let collectionRef = this.collection;
+
+      // Traverse through nested paths and create collection references
+      for (const path of this.nestedPaths) {
+        collectionRef = collectionRef.doc(path).collection(path);
+      }
+
+      const docs = await collectionRef.listDocuments();
       const paths = docs.map((doc) => doc.path.split("/")[1]);
       return [true, paths];
     } catch (error) {
