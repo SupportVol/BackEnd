@@ -10,8 +10,8 @@ import Group from "../../models/chat/group.js";
 
 const grpInitiateObjects = async (req, res, next) => {
   try {
-    // Extract group ID from request headers
-    req.groupID = req.headers.groupid;
+    // Extract group ID from request body
+    req.groupID = req.body.groupid;
 
     // Initialize Firestore instance
     const fs = new Firestore();

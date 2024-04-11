@@ -19,7 +19,7 @@ userDetailsRouter
    * Route to upload user profile picture.
    */
   .post(extractUidAndVerification, pfpInitiateObjects, (req, res) => {
-    const { imageBase64, reqUrl } = req.headers;
+    const { imageBase64, reqUrl } = req.body;
     if (imageBase64) {
       const [response, msg, url] = req.storage.uploadByte8Array(
         req.path,
@@ -57,7 +57,7 @@ userDetailsRouter
    * Route to update user phone number.
    */
   .post(extractUidAndVerification, pHInitiateObjects, (req, res) => {
-    const { uid, updateUserData } = req.headers;
+    const { uid, updateUserData } = req.body;
     const [response, msg] = req.auth.updateUser(uid, updateUserData);
     res.json({
       status: response ? 200 : 500,
@@ -91,7 +91,7 @@ userDetailsRouter
    * Route to create extra user details.
    */
   .post(extractUidAndVerification, extraDetailsInitiateObjects, (req, res) => {
-    const [response, msg] = req.firestore.create(JSON.parse(req.headers.data));
+    const [response, msg] = req.firestore.create(JSON.parse(req.body.data));
     res.json({
       status: response ? 200 : 500,
       return: msg,
@@ -101,7 +101,7 @@ userDetailsRouter
    * Route to update extra user details.
    */
   .put(extractUidAndVerification, extraDetailsInitiateObjects, (req, res) => {
-    const [response, msg] = req.firestore.update(JSON.parse(req.headers.data));
+    const [response, msg] = req.firestore.update(JSON.parse(req.body.data));
     res.json({
       status: response ? 200 : 500,
       return: msg,

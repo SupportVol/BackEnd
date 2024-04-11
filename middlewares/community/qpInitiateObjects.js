@@ -18,7 +18,7 @@ const qpInitiateObjects = (req, res, next) => {
     end_date,
     term,
     members,
-  } = req.headers;
+  } = req.body;
 
   const qpData = {
     quickProjectID,

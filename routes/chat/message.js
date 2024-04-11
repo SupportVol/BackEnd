@@ -49,7 +49,7 @@ msgRouter.get("/", (req, res) => {
  */
 msgRouter.post("/", async (req, res) => {
   const [response, msg] = await req.msgInstance.createMessage(
-    req.headers.message,
+    req.body.message,
     req.uid
   );
   res.json({
@@ -68,7 +68,7 @@ msgRouter.post("/", async (req, res) => {
  * @param {object} res - Express response object
  */
 msgRouter.delete("/", (req, res) => {
-  const [response, msg] = req.msgInstance.deleteMessage(req.headers.messageID);
+  const [response, msg] = req.msgInstance.deleteMessage(req.body.messageID);
   res.json({
     status: response ? 200 : 500,
     return: msg,

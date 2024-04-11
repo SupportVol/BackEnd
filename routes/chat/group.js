@@ -54,7 +54,7 @@ grpRouter.post(
   grpInitiateObjects,
   async (req, res) => {
     try {
-      const [response, msg] = await req.grpInstance.createGroup(req.headers);
+      const [response, msg] = await req.grpInstance.createGroup(req.body);
       res
         .status(response ? 200 : 500)
         .json({ status: response ? 200 : 500, return: msg });
@@ -82,7 +82,7 @@ grpRouter.put(
   grpInitiateObjects,
   async (req, res) => {
     try {
-      const [response, msg] = await req.grpInstance.updateGroup(req.headers);
+      const [response, msg] = await req.grpInstance.updateGroup(req.body);
       res
         .status(response ? 200 : 500)
         .json({ status: response ? 200 : 500, return: msg });

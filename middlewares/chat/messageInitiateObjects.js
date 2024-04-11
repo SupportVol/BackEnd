@@ -6,7 +6,7 @@ import Message from "../../models/chat/message.js";
  * @param {Function} next - The next middleware function.
  */
 const messageInitiateObjects = (req, res, next) => {
-  const { groupid } = req.headers;
+  const { groupid } = req.body;
   req.msgInstance = new Message(groupid);
   next();
 };

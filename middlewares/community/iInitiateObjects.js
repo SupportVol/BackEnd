@@ -1,13 +1,13 @@
 import Initiative from "../../models/community/initiatives/initiative.js";
 
 /**
- * Initiates the creation of an Initiative object based on request headers.
+ * Initiates the creation of an Initiative object based on request body.
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @param {Function} next - The next middleware function.
  */
 const iInitiateObjects = (req, res, next) => {
-  // Destructuring request headers
+  // Destructuring request body
   const {
     quickProjectID,
     communityID,
@@ -19,7 +19,7 @@ const iInitiateObjects = (req, res, next) => {
     end_date,
     term,
     members,
-  } = req.headers;
+  } = req.body;
 
   // Creating a new Initiative object
   req.qpInstance = new Initiative(

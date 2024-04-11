@@ -7,7 +7,7 @@ import Auth from "../../models/auth.js";
  * @param {Function} next - Express next function.
  */
 const authInitiateObjects = (req, res, next) => {
-  const { email, password, name } = req.headers;
+  const { email, password, name } = req.body;
   console.log(email, password);
   const authParams = { email, password };
 

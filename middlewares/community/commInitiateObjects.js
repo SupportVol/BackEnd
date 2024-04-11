@@ -11,7 +11,7 @@ import isAuthorized from "../../utils/isAuthorized.js";
 const initiateCommunityObjects = async (req, res, next) => {
   try {
     const allowed = await isAuthorized(req.uid);
-    req.communityUID = req.headers.communityuid;
+    req.communityUID = req.body.communityuid;
 
     if (!allowed && req.method !== "GET") {
       return res.status(404).json({
