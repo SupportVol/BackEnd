@@ -1,4 +1,4 @@
-import Firestore from "../../firebaseCP/firestore";
+import Firestore from "../../firebaseCP/firestore.js";
 
 export default class Post {
   constructor(title, description, tags, orgID, senderUID, postID) {

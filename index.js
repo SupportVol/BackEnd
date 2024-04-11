@@ -11,6 +11,7 @@ import qpRouter from "./routes/community/quick_projects/quick_project.js";
 import iRouter from "./routes/community/initiatives/initiative.js";
 import commentRouter from "./routes/comment.js";
 import projectRouter from "./routes/projects/project.js";
+import postRouter from "./routes/organizations/posts.js"
 
 const app = express();
 dotenv.config();
