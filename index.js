@@ -35,6 +35,7 @@ app.use("/api/events/quickproject", qpRouter);
 app.use("/api/events/initiative", iRouter);
 app.use("/api/comments/", commentRouter);
 app.use("/api/prj", projectRouter);
+app.use("/api/posts", postRouter);
 /**
  * Error handling middleware.
  * @param {Error} err - The error object.
