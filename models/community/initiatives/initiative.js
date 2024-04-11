@@ -2,7 +2,7 @@ import Firestore from "../../../firebaseCP/firestore.js";
 export default class Initiative {
   constructor(
     initiativeID,
-    communityID,
+    communityUID,
     eventIDs,
     orgId,
     title,
@@ -13,7 +13,7 @@ export default class Initiative {
     members
   ) {
     this.initiativeID = initiativeID;
-    this.communityID = communityID;
+    this.communityUID = communityUID;
     this.eventIDs = eventIDs ? eventIDs : [];
     this.orgId = orgId;
     this.title = title;
@@ -36,7 +36,7 @@ export default class Initiative {
       members: this.members,
       orgId: this.orgId,
       eventID: this.eventID,
-      communityID: this.communityID,
+      communityUID: this.communityUID,
     });
   }
   updateI() {
@@ -49,7 +49,7 @@ export default class Initiative {
       members: this.members,
       orgId: this.orgId,
       eventID: this.eventID,
-      communityID: this.communityID,
+      communityUID: this.communityUID,
     });
   }
   deleteI() {

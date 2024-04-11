@@ -2,7 +2,7 @@ import Firestore from "../../../firebaseCP/firestore.js";
 export default class QuickProject {
   constructor(
     quickProjectID,
-    communityID,
+    communityUID,
     eventID,
     orgId,
     title,
@@ -13,7 +13,7 @@ export default class QuickProject {
     members
   ) {
     this.quickProjectID = quickProjectID;
-    this.communityID = communityID;
+    this.communityUID = communityUID;
     this.eventID = eventID;
     this.orgId = orgId;
     this.title = title;
@@ -39,7 +39,7 @@ export default class QuickProject {
       members: this.members,
       orgId: this.orgId,
       eventID: this.eventID,
-      communityID: this.communityID,
+      communityUID: this.communityUID,
     });
   }
   updateQP() {
@@ -52,7 +52,7 @@ export default class QuickProject {
       members: this.members,
       orgId: this.orgId,
       eventID: this.eventID,
-      communityID: this.communityID,
+      communityUID: this.communityUID,
     });
   }
   deleteQP() {
