@@ -10,16 +10,17 @@ import commRouter from "./routes/community/community.js";
 import qpRouter from "./routes/community/quick_projects/quick_project.js";
 import iRouter from "./routes/community/initiatives/initiative.js";
 import commentRouter from "./routes/comment.js";
+import projectRouter from "./routes/projects/project.js";
 
 const app = express();
 dotenv.config();
 app.use(bodyParser.json());
-
 /**
  * A simple function that returns a greeting message.
  * @param {Request} req - The HTTP request object.
  * @param {Response} res - The HTTP response object.
  */
+
 app.get("/test", (_, res) => {
   res.send("Hello World!");
 });
@@ -33,6 +34,7 @@ app.use("/api/community", commRouter);
 app.use("/api/events/quickproject", qpRouter);
 app.use("/api/events/initiative", iRouter);
 app.use("/api/comments/", commentRouter);
+app.use("/api/prj", projectRouter);
 /**
  * Error handling middleware.
  * @param {Error} err - The error object.
