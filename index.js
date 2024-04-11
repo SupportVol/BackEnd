@@ -26,6 +26,7 @@ app.get("/test", (_, res) => {
 });
 
 // Use routers
+app.use(checkBanStatus);
 app.use("/api/auth", authRouter);
 app.use("/api/usr", userDetailsRouter);
 app.use("/api/chat/msg", msgRouter);
@@ -36,6 +37,7 @@ app.use("/api/events/initiative", iRouter);
 app.use("/api/comments/", commentRouter);
 app.use("/api/prj", projectRouter);
 app.use("/api/posts", postRouter);
+app.use("/api/ban", banRouter);
 /**
  * Error handling middleware.
  * @param {Error} err - The error object.
