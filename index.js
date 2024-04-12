@@ -18,6 +18,8 @@ import banRouter from "./routes/admin/ban.js";
 const app = express();
 dotenv.config();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 /**
  * A simple function that returns a greeting message.
  * @param {Request} req - The HTTP request object.
