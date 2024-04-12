@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "This repository manages data storage, authentication, and business logic for efficient volunteer coordination.",
   "main": "index.js",
+  "extends": "eslint:recommended",
   "dependencies": {
     "@google-cloud/storage": "^7.9.0",
     "abbrev": "^1.1.1",
     "accepts": "^1.3.8",
     "anymatch": "^3.1.3",
     "array-flatten": "^1.1.1",
+    "babel": "^6.23.0",
     "balanced-match": "^1.0.2",
     "bcrypt": "^5.1.1",
     "binary-extensions": "^2.3.0",
@@ -61,6 +63,7 @@
     "is-extglob": "^2.1.1",
     "is-glob": "^4.0.3",
     "is-number": "^7.0.0",
+    "lint": "^1.1.2",
     "lru-cache": "^6.0.0",
     "media-typer": "^0.3.0",
     "merge-descriptors": "^1.0.1",
@@ -108,8 +111,10 @@
   "scripts": {
     "start": "node index.js",
     "devStart": "nodemon node index.js",
-    "build": "babel src -d dist",
-    "test": "echo \"Error: no test specified\""
+    "test": "echo \"Error: no test specified\"",
+    "lint": "eslint .",
+    "deploy": "firebase deploy --only hosting",
+    "build": "echo 'Dummy build script'"
   },
   "directories": {
     "serve": "dist"
@@ -118,6 +123,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "babel-cli": "^6.26.0",
+    "eslint": "^9.0.0",
     "nodemon": "^3.1.0"
   },
   "type": "module"
