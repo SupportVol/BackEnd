@@ -13,6 +13,7 @@ import commentRouter from "./routes/comment.js";
 import projectRouter from "./routes/projects/project.js";
 import postRouter from "./routes/organizations/posts.js";
 import checkBanStatus from "./middlewares/admin/checkBanStatus.js";
+import banRouter from "./routes/admin/ban.js";
 
 const app = express();
 dotenv.config();
@@ -59,4 +60,4 @@ const server = app.listen(PORT, () => {
   console.log(`App listening at http://${host}:${port}`);
 });
 
-exports.app = functions.https.onRequest(app);
+// exports.app = functions.https.onRequest(app);

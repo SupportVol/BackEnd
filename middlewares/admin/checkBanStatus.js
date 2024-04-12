@@ -1,4 +1,4 @@
-import Ban from "../../models/admin/ban";
+import Ban from "../../models/admin/ban.js";
 
 // Example of handling banned users in a middleware function
 const checkBanStatus = async (req, res, next) => {
