@@ -1,5 +1,6 @@
 import { Authentication } from "../../firebaseCP/authentication.js";
 import { auth } from "../../config/firebase.js";
+import admin from "firebase-admin";
 
 export default class Ban extends Authentication {
   constructor(uid) {
