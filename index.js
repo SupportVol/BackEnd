@@ -14,7 +14,7 @@ import projectRouter from "./routes/projects/project.js";
 import postRouter from "./routes/organizations/posts.js";
 import checkBanStatus from "./middlewares/admin/checkBanStatus.js";
 import banRouter from "./routes/admin/ban.js";
-
+import newsRouter from "./routes/admin/news.js";
 
 const app = express();
 dotenv.config();
@@ -42,6 +42,7 @@ app.use("/api/comments/", commentRouter);
 app.use("/api/prj", projectRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/ban", banRouter);
+app.use("/api/news", newsRouter);
 /**
  * Error handling middleware.
  * @param {Error} err - The error object.
@@ -60,5 +61,3 @@ const server = app.listen(PORT, () => {
   const port = server.address().port;
   console.log(`App listening at http://${host}:${port}`);
 });
-
-
