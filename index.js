@@ -58,3 +58,5 @@ const server = app.listen(PORT, () => {
   const port = server.address().port;
   console.log(`App listening at http://${host}:${port}`);
 });
+
+exports.app = functions.https.onRequest(app);

@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "This repository manages data storage, authentication, and business logic for efficient volunteer coordination.",
   "main": "index.js",
-  "extends": "eslint:recommended",
   "dependencies": {
     "@google-cloud/storage": "^7.9.0",
     "abbrev": "^1.1.1",
@@ -111,10 +110,7 @@
   "scripts": {
     "start": "node index.js",
     "devStart": "nodemon node index.js",
-    "test": "echo \"Error: no test specified\"",
-    "lint": "eslint .",
-    "deploy": "firebase deploy --only hosting",
-    "build": "echo 'Dummy build script'"
+    "test": "echo \"Error: no test specified\""
   },
   "directories": {
     "serve": "dist"
@@ -127,7 +123,6 @@
     "@babel/core": "^7.24.4",
     "@babel/preset-env": "^7.24.4",
     "babel-cli": "^6.26.0",
-    "eslint": "^9.0.0",
     "nodemon": "^3.1.0"
   },
   "type": "module"
