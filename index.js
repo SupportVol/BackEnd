@@ -15,6 +15,7 @@ import postRouter from "./routes/organizations/posts.js";
 import checkBanStatus from "./middlewares/admin/checkBanStatus.js";
 import banRouter from "./routes/admin/ban.js";
 
+
 const app = express();
 dotenv.config();
 app.use(bodyParser.json());
@@ -62,4 +63,4 @@ const server = app.listen(PORT, () => {
   console.log(`App listening at http://${host}:${port}`);
 });
 
-// exports.app = functions.https.onRequest(app);
+

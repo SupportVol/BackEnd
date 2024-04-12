@@ -110,7 +110,8 @@
   "scripts": {
     "start": "node index.js",
     "devStart": "nodemon node index.js",
-    "test": "echo \"Error: no test specified\""
+    "test": "echo \"Error: no test specified\"",
+    "build": "echo \"build process\""
   },
   "directories": {
     "serve": "dist"
