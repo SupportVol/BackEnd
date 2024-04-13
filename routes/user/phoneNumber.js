@@ -12,17 +12,16 @@ import { Router } from "express";
  * It initializes the routes for user details.
  */
 
-const userDetailsRouter = Router();
-userDetailsRouter.use(extractUidAndVerification);
+const phoneNumberRouter = Router();
+phoneNumberRouter.use(extractUidAndVerification);
 // Use the pHInitiateObjects middleware
-userDetailsRouter.use(pHInitiateObjects);
+phoneNumberRouter.use(pHInitiateObjects);
 
 // Define the GET, POST, and DELETE methods for the "/" route
-userDetailsRouter
+phoneNumberRouter
   .route("/")
   .get(getPhoneNumber)
   .post(updatePhoneNumber)
   .delete(deletePhoneNumber);
 
-// Export the userDetailsRouter class
-export default userDetailsRouter;
+export default phoneNumberRouter;

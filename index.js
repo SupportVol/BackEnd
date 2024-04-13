@@ -14,6 +14,9 @@ import checkBanStatus from "./middlewares/admin/checkBanStatus.js";
 import banRouter from "./routes/admin/BanRoutes.js";
 import NewsRouter from "./routes/admin/NewsRoutes.js";
 import projectRouter from "./routes/community/projects/ProjectRoutes.js";
+import phoneNumberRouter from "./routes/user/phoneNumber.js";
+import extraDetailsRouter from "./routes/user/extraDetails.js";
+import profilePictureRouter from "./routes/user/profilePicture.js";
 // import createResponse from "./middlewares/createResponse.js";
 
 const app = express();
@@ -39,6 +42,9 @@ app.use("/api/prj", projectRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/ban", banRouter);
 app.use("/api/news", NewsRouter);
+app.use("/api/usr/phonenumber", phoneNumberRouter);
+app.use("/api/usr/extradetails", extraDetailsRouter);
+app.use("/api/usr/photo", profilePictureRouter);
 
 app.use((err, req, res, __) => {
   console.error(err.stack);

@@ -6,24 +6,16 @@ import {
   uploadProfilePicture,
   deleteProfilePicture,
 } from "../../handlers/user/ProfilePictureHandlers.js";
-/**
- * profilePictureRouter class
- * This class extends the BaseRouter class and initializes the routes for profile picture operations.
- */
-export default class profilePictureRouter  {
-  /**
-   * initializeRoutes method
-   * This method initializes the routes for getting, uploading, and deleting the profile picture.
-   */
-  initializeRoutes() {
-    // Use the middleware to extract UID and verification details
-    this.use(extractUidAndVerification);
-    // Use the middleware to initiate profile picture objects
-    this.use(pfpInitiateObjects);
-    // Define the routes for profile picture operations
-    this.route("/")
-      .get(getProfilePicture) // Route for getting the profile picture
-      .post(uploadProfilePicture) // Route for uploading the profile picture
-      .delete(deleteProfilePicture); // Route for deleting the profile picture
-  }
-}
+import { Router } from "express";
+
+const profilePictureRouter = Router();
+profilePictureRouter.use(extractUidAndVerification);
+// Use the middleware to initiate profile picture objects
+profilePictureRouter.use(pfpInitiateObjects);
+// Define the routes for profile picture operations
+profilePictureRouter
+  .route("/")
+  .get(getProfilePicture) // Route for getting the profile picture
+  .post(uploadProfilePicture) // Route for uploading the profile picture
+  .delete(deleteProfilePicture); // Route for deleting the profile picture
+export default profilePictureRouter;

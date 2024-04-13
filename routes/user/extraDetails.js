@@ -9,13 +9,13 @@ import {
   deleteExtraDetails,
 } from "../../handlers/user/ExtraDetailsHandlers.js";
 getExtraDetails; // userDetailsRouter class extends BaseRouter
-const userDetailsRouter = Router();
-userDetailsRouter.use(extractUidAndVerification);
+const extraDetailsRouter = Router();
+extraDetailsRouter.use(extractUidAndVerification);
 // Use middleware to initiate extra details objects
-userDetailsRouter.use(extraDetailsInitiateObjects);
+extraDetailsRouter.use(extraDetailsInitiateObjects);
 
 // Define routes for extra details
-userDetailsRouter
+extraDetailsRouter
   .route("/")
   .get(getExtraDetails) // GET request to retrieve extra details
   .post(createExtraDetails) // POST request to create extra details
@@ -23,4 +23,4 @@ userDetailsRouter
   .delete(deleteExtraDetails); // DELETE request to delete extra details
 
 // Export userDetailsRouter class
-export default userDetailsRouter;
+export default extraDetailsRouter;
