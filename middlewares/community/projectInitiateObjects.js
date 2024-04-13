@@ -1,4 +1,6 @@
 import Project from "../../models/community/ProjectModel.js";
+import isAuthorized from "../../utils/validation/isAuthorized.js";
+
 // Importing the Project model
 
 /**

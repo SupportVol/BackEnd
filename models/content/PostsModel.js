@@ -18,7 +18,7 @@ export default class Post extends Article {
    * @param {string} orgID - The ID of the organization.
 
    */
-  constructor(postID) {
+  constructor(title, description, tags, senderUID, orgID, postID) {
     // Call the parent constructor
     super(title, description, tags, senderUID, orgID);
 

@@ -2,6 +2,7 @@
 import extractUidAndVerification from "../../middlewares/extractUidAndVerification.js";
 import specificCommentInitiateObjects from "../../middlewares/comment/specificCommentInitiateObjects.js";
 import BaseRouter from "../utils/baseRouter.js";
+import { createComment, getComment, updateComment, deleteComment } from "../../handlers/comment/CommentHandlers.js";
 
 // commentRouter class extends BaseRouter
 class commentRouter extends BaseRouter {

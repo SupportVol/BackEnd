@@ -7,7 +7,12 @@ import EndeavorEntity from "./EndeavorEntity.js";
  * @param {string} description - Description of the project
  */
 export default class Project extends EndeavorEntity {
-  constructor(description) {
+  constructor(description , name,
+    organizations,
+    volunteers,
+    started_date,
+    expected_completing_date,
+    initiated_organization) {
     // Call the parent constructor with required parameters
     super(
       name,

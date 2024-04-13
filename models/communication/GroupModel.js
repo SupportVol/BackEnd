@@ -1,7 +1,7 @@
 import Firestore from "../../firebaseCP/firestore.js";
 import isArray from "../../utils/validation/isArray.js";
 import CommunicationEntity from "./CommunicationEntity.js";
-
+import getProjectMembers from "../../utils/data/getProjectMembers.js";
 /**
  * Group class extends CommunicationEntity
  * Represents a group in the communication model

@@ -16,7 +16,7 @@ export default class News extends Article {
    * @param {string} senderUID - The UID of the sender.
    * @param {string} orgID - The ID of the organization.
    */
-  constructor(newsID) {
+  constructor(newsID, title, description, tags, senderUID, orgID) {
     // Calling the parent class constructor
     super(title, description, tags, senderUID, orgID);
 

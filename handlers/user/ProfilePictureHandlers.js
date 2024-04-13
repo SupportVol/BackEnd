@@ -6,7 +6,7 @@
  */
 const getProfilePicture = (req, res) => {
   const { response, storage, uid } = req;
-  return response.respondJSON(storage.getDownloadURL, [`pfp/${uid}`]);
+  return req.response.respondJSON(storage.getDownloadURL, [`pfp/${uid}`]);
 };
 
 /**
@@ -25,10 +25,7 @@ const uploadProfilePicture = (req, res) => {
     reqUrl = response[response.length - 1];
   }
 
-  return response.respondJSON(auth.updateUser, [
-    uid,
-    { photoUrl: reqUrl },
-  ]);
+  return req.response.respondJSON(auth.updateUser, [uid, { photoUrl: reqUrl }]);
 };
 
 /**
@@ -40,10 +37,7 @@ const uploadProfilePicture = (req, res) => {
 const deleteProfilePicture = (req, res) => {
   const { storage, auth, uid } = req;
   storage.deleteFile(`pfp/${uid}`);
-  return response.respondStatus(auth.updateUser, [
-    uid,
-    { photoUrl: NaN },
-  ]);
+  return req.response.respondStatus(auth.updateUser, [uid, { photoUrl: NaN }]);
 };
 
 export { getProfilePicture, uploadProfilePicture, deleteProfilePicture };

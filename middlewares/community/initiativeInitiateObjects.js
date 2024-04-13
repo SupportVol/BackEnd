@@ -1,4 +1,6 @@
 import Initiative from "../../models/community/InitiativeModel.js";
+import isAuthorized from "../../utils/validation/isAuthorized.js";
+
 /**
  * Middleware to initiate the creation of an Initiative object based on request body.
  * @param {Object} req - The request object.

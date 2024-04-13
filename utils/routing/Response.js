@@ -48,7 +48,6 @@ export default class Response {
    * @returns {Object} The error response structure.
    */
   errorStructure(error) {
-    console.log(this.req.resStructure);
     return {
       // ...this.req.resStructure,
       successful: false,
@@ -91,6 +90,7 @@ export default class Response {
         jsonAdd: true,
       };
     } catch (error) {
+      console.log(error);
       this.req.resStructure = this.errorStructure(error);
     }
     return this.response(this.req.resStructure);

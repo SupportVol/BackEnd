@@ -1,3 +1,4 @@
+import Firestore from "../../firebaseCP/firestore.js";
 /**
  * This module exports a middleware function that attaches a Firestore instance to the request object.
  * This Firestore instance is specifically for accessing user data.

@@ -16,7 +16,19 @@ export default class Initiative extends EndeavorEntity {
    * @param {string} introductory_video_URL - The URL of the introductory video.
    * @param {Array} projects - The projects of the initiative.
    */
-  constructor(slogun, mission, objectives, introductory_video_URL, projects) {
+  constructor(
+    name,
+    organizations,
+    volunteers,
+    started_date,
+    expected_completing_date,
+    initiated_organization,
+    slogun,
+    mission,
+    objectives,
+    introductory_video_URL,
+    projects
+  ) {
     super(
       name,
       organizations,

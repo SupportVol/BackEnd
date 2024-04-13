@@ -1,8 +1,11 @@
 // Importing necessary modules
 import extractUidAndVerification from "../../middlewares/extractUidAndVerification.js";
 import pfpInitiateObjects from "../../middlewares/userDetails/profilePictureInitiateObjects.js";
-import BaseRouter from "../../utils/routing/BaseRouter.js";
-
+import {
+  getProfilePicture,
+  uploadProfilePicture,
+  deleteProfilePicture,
+} from "../../handlers/user/ProfilePictureHandlers.js";
 /**
  * profilePictureRouter class
  * This class extends the BaseRouter class and initializes the routes for profile picture operations.

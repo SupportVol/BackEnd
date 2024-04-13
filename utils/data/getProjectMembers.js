@@ -1,4 +1,4 @@
-import Firestore from "../../firebaseCP/firestore";
+import Firestore from "../../firebaseCP/firestore.js";
 
 const getProjectMembers = (projectID) => {
   const fs = Firestore("projects", projectID);
