@@ -69,23 +69,28 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import PORT from "./config/app.js";
-import authRouter from "./routes/auth.js";
-import userDetailsRouter from "./routes/userDetails.js";
-import msgRouter from "./routes/chat/message.js";
-import grpRouter from "./routes/chat/group.js";
-import commRouter from "./routes/community/community.js";
-import qpRouter from "./routes/community/quick_projects/quick_project.js";
-import iRouter from "./routes/community/initiatives/initiative.js";
-import commentRouter from "./routes/comment.js";
-import projectRouter from "./routes/projects/project.js";
-import postRouter from "./routes/organizations/posts.js";
+import authRouter from "./routes/auth/AuthRoutes.js";
+import userDetailsRouter from "./routes/user/extraDetails.js";
+import msgRouter from "./routes/chat/MessageRoutes.js";
+import grpRouter from "./routes/chat/GroupRoutes.js";
+import commRouter from "./routes/community/CommunityRoutes.js";
+import iRouter from "./routes/community/initiatives/InitiativeRoutes.js";
+import commentRouter from "./routes/community/CommunityRoutes.js";
+import postRouter from "./routes/organizations/PostsRoutes.js";
 import checkBanStatus from "./middlewares/admin/checkBanStatus.js";
-import banRouter from "./routes/admin/ban.js";
-import newsRouter from "./routes/admin/news.js";
+import banRouter from "./routes/admin/BanRoutes.js";
+import NewsRouter from "./routes/admin/NewsRoutes.js";
+import projectRouter from "./routes/community/projects/ProjectRoutes.js";
+import createResponse from "./middlewares/createResponse.js";
 
 >>>>>>> 8f857ff (Add News Articles Section)
 const app = express();
+<<<<<<< HEAD
 const firebase = require("./services/firebase.js");
+=======
+dotenv.config();
+app.use(bodyParser.json());
+>>>>>>> 857e7d2 (Completed Refactoring 3.0: Optimization and Enhancements #37)
 
 app.get("/", function (req, res) {
   res.send("Hello World!");
@@ -98,29 +103,24 @@ app.listen(3000, function () {
 });
 =======
 // Use routers
+app.use(createResponse);
 app.use(checkBanStatus);
 app.use("/api/auth", authRouter);
 app.use("/api/usr", userDetailsRouter);
 app.use("/api/chat/msg", msgRouter);
 app.use("/api/chat/grp", grpRouter);
 app.use("/api/community", commRouter);
-app.use("/api/events/quickproject", qpRouter);
 app.use("/api/events/initiative", iRouter);
 app.use("/api/comments/", commentRouter);
 app.use("/api/prj", projectRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/ban", banRouter);
-app.use("/api/news", newsRouter);
-/**
- * Error handling middleware.
- * @param {Error} err - The error object.
- * @param {IncomingMessage} req - The HTTP request object.
- * @param {ServerResponse} res - The HTTP response object.
- * @param {any} next - The next middleware function in the stack.
- */
+app.use("/api/news", NewsRouter);
+
 app.use((err, _, res, __) => {
   console.error(err.stack);
-  res.status(500).send("Something broke!");
+  req.response.respondError("Internal Server Error", 500) ??
+    res.status(500).send("Internal Server Error");
 });
 
 // Start the server
