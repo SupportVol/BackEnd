@@ -48,8 +48,9 @@ export default class Response {
    * @returns {Object} The error response structure.
    */
   errorStructure(error) {
+    console.log(this.req.resStructure);
     return {
-      ...this.req.resStructure,
+      // ...this.req.resStructure,
       successful: false,
       messageAdd: true,
       message: error.message || error,
@@ -64,10 +65,10 @@ export default class Response {
    */
   respondStatus(action, parameters = []) {
     try {
+      console.log(this.actionResponse(action, parameters));
       this.req.resStructure = {
-        ...this.req.resStructure,
+        // ...this.req.resStructure,
         successful: true,
-        ...this.actionResponse(action, parameters),
       };
     } catch (error) {
       this.req.resStructure = this.errorStructure(error);
@@ -83,9 +84,10 @@ export default class Response {
    */
   respondJSON(action, parameters = []) {
     try {
+      console.log(this.actionResponse(action, parameters));
       this.req.resStructure = {
-        ...this.req.resStructure,
-        ...this.actionResponse(action, parameters),
+        // ...this.req.resStructure,
+        // ...this.actionResponse(action, parameters),
         jsonAdd: true,
       };
     } catch (error) {
@@ -103,9 +105,10 @@ export default class Response {
    */
   respondJSONandMessage(action, message, parameters = []) {
     try {
+      console.log(this.actionResponse(action, parameters));
       this.req.resStructure = {
-        ...this.req.resStructure,
-        ...this.actionResponse(action, parameters),
+        // ...this.req.resStructure,
+        // ...this.actionResponse(action, parameters),
         messageAdd: true,
         message: message,
       };
