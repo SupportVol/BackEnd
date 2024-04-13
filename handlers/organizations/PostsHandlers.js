@@ -5,8 +5,10 @@
  * @returns {Object} - JSON response with post data.
  */
 const readPost = (req, res) => {
-  const { response, postInitialization } = req;
-  return response.respondJSON(postInitialization.read);
+  const { postInitialization } = req;
+  return res.json({
+    response: postInitialization.read(),
+  });
 };
 
 /**
@@ -16,8 +18,10 @@ const readPost = (req, res) => {
  * @returns {Object} - JSON response with post creation status.
  */
 const createPost = (req, res) => {
-  const { response, postInitialization } = req;
-  return response.respondJSON(postInitialization.create);
+  const { postInitialization } = req;
+  return res.json({
+    response: postInitialization.create(),
+  });
 };
 
 /**
@@ -27,8 +31,10 @@ const createPost = (req, res) => {
  * @returns {Object} - Response status.
  */
 const updatePost = (req, res) => {
-  const { response, postInitialization } = req;
-  return response.respondStatus(postInitialization.update);
+  const { postInitialization } = req;
+  return res.json({
+    response: postInitialization.update(),
+  });
 };
 
 /**
@@ -38,8 +44,10 @@ const updatePost = (req, res) => {
  * @returns {Object} - Response status.
  */
 const deletePost = (req, res) => {
-  const { response, postInitialization } = req;
-  return response.respondStatus(postInitialization.delete);
+  const { postInitialization } = req;
+  return res.json({
+    response: postInitialization.delete(),
+  });
 };
 
 export { readPost, createPost, updatePost, deletePost };

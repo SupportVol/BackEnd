@@ -5,8 +5,10 @@
  * @returns {Object} - JSON response with community data.
  */
 const readCommunity = (req, res) => {
-  const { response, commInstance } = req;
-  return response.respondJSON(commInstance.read);
+  const { commInstance } = req;
+  return res.json({
+    response: commInstance.read(),
+  });
 };
 
 /**
@@ -16,8 +18,10 @@ const readCommunity = (req, res) => {
  * @returns {Object} - JSON response with community creation status.
  */
 const createCommunity = (req, res) => {
-  const { response, commInstance } = req;
-  return response.respondJSON(commInstance.create);
+  const { commInstance } = req;
+  return res.json({
+    response: commInstance.create(),
+  });
 };
 
 /**
@@ -27,8 +31,10 @@ const createCommunity = (req, res) => {
  * @returns {Object} - JSON response with community update status.
  */
 const updateCommunity = (req, res) => {
-  const { response, commInstance } = req;
-  return response.respondJSON(commInstance.update);
+  const { commInstance } = req;
+  return res.json({
+    response: commInstance.update(),
+  });
 };
 
 /**
@@ -38,8 +44,10 @@ const updateCommunity = (req, res) => {
  * @returns {Object} - Response status.
  */
 const deleteCommunity = (req, res) => {
-  const { response, commInstance } = req;
-  return response.respondStatus(commInstance.delete);
+  const { commInstance } = req;
+  return res.json({
+    response: commInstance.delete(),
+  });
 };
 
 export { readCommunity, createCommunity, updateCommunity, deleteCommunity };

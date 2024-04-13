@@ -5,8 +5,10 @@
  * @returns {Object} - JSON response containing the user's ban status.
  */
 const getBanStatus = (req, res) => {
-  const { response, ban } = req;
-  return response.respondJSON(ban.isUserBanned);
+  const { ban } = req;
+  return res.json({
+    response: ban.isUserBanned(),
+  });
 };
 
 /**
@@ -16,11 +18,10 @@ const getBanStatus = (req, res) => {
  * @returns {Object} - JSON response with a ban message.
  */
 const banUser = (req, res) => {
-  const { response, ban, uid } = req;
-  return response.respondJSONandMessage(
-    ban.banUser,
-    `Banned User with Uid : ${uid}`
-  );
+  const { ban, uid } = req;
+  return res
+    .send(`Banned User with Uid : ${uid}`)
+    .json({ response: ban.banUser() });
 };
 
 /**
@@ -30,11 +31,10 @@ const banUser = (req, res) => {
  * @returns {Object} - JSON response with an unban message.
  */
 const unBanUser = (req, res) => {
-  const { response, ban, uid } = req;
-  return response.respondJSONandMessage(
-    ban.unBanUser,
-    `Unbanned User with Uid : ${uid}`
-  );
+  const { ban, uid } = req;
+  return res
+    .send(`Unbanned User with Uid : ${uid}`)
+    .json({ response: ban.unBanUser() });
 };
 
 export { getBanStatus, banUser, unBanUser };

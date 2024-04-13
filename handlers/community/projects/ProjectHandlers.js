@@ -5,8 +5,10 @@
  * @returns {Object} - JSON response with project data.
  */
 const readProject = (req, res) => {
-  const { response, projectInitialization } = req;
-  return response.respondJSON(projectInitialization.read);
+  const { projectInitialization } = req;
+  return res.json({
+    response: projectInitialization.read(),
+  });
 };
 
 /**
@@ -16,8 +18,10 @@ const readProject = (req, res) => {
  * @returns {Object} - JSON response with project creation status.
  */
 const createProject = (req, res) => {
-  const { response, projectInitialization } = req;
-  return response.respondJSON(projectInitialization.create);
+  const { projectInitialization } = req;
+  return res.json({
+    response: projectInitialization.create(),
+  });
 };
 
 /**
@@ -27,8 +31,10 @@ const createProject = (req, res) => {
  * @returns {Object} - JSON response with project update status.
  */
 const updateProject = (req, res) => {
-  const { response, projectInitialization } = req;
-  return response.respondJSON(projectInitialization.update);
+  const { projectInitialization } = req;
+  return res.json({
+    response: projectInitialization.update(),
+  });
 };
 
 /**
@@ -38,8 +44,10 @@ const updateProject = (req, res) => {
  * @returns {Object} - Response status.
  */
 const deleteProject = (req, res) => {
-  const { response, projectInitialization } = req;
-  return response.respondStatus(projectInitialization.delete);
+  const { projectInitialization } = req;
+  return res.json({
+    response: projectInitialization.delete(),
+  });
 };
 
 export { readProject, createProject, updateProject, deleteProject };

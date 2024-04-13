@@ -5,8 +5,10 @@
  * @returns {Object} - JSON response with news data.
  */
 const getNews = (req, res) => {
-  const { response, newsInitialization } = req;
-  return response.respondJSON(newsInitialization.read);
+  const { newsInitialization } = req;
+  return res.json({
+    response: newsInitialization.read(),
+  });
 };
 
 /**
@@ -16,8 +18,10 @@ const getNews = (req, res) => {
  * @returns {Object} - JSON response with news creation status.
  */
 const createNews = (req, res) => {
-  const { response, newsInitialization } = req;
-  return response.respondJSON(newsInitialization.create);
+  const { newsInitialization } = req;
+  return res.json({
+    response: newsInitialization.create(),
+  });
 };
 
 /**
@@ -27,8 +31,9 @@ const createNews = (req, res) => {
  * @returns {Object} - Response status.
  */
 const updateNews = (req, res) => {
-  const { response, newsInitialization } = req;
-  return response.respondStatus(newsInitialization.update);
+  const { newsInitialization } = req;
+  const response = newsInitialization.update();
+  return res.status(response[0] ? 200 : 500);
 };
 
 /**
@@ -38,8 +43,9 @@ const updateNews = (req, res) => {
  * @returns {Object} - Response status.
  */
 const deleteNews = (req, res) => {
-  const { response, newsInitialization } = req;
-  return response.respondStatus(newsInitialization.delete);
+  const { newsInitialization } = req;
+  const response = newsInitialization.delete();
+  return res.status(response[0] ? 200 : 500);
 };
 
 export { getNews, createNews, updateNews, deleteNews };

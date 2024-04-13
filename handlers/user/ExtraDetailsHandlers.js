@@ -16,7 +16,7 @@ const getExtraDetails = (req, res) => {
  * @returns {Object} - JSON response with extra details creation status.
  */
 const createExtraDetails = (req, res) => {
-  const { body, response, firestore } = req;
+  const { body, firestore } = req;
   const { name, role, level, communities, projects, training } = body;
   const details = {
     name,
@@ -26,7 +26,9 @@ const createExtraDetails = (req, res) => {
     projects: projects ? projects : [],
     training: training ? training : [],
   };
-  return response.respondJSON(firestore.create, [details]);
+  return res.json({
+    response: firestore.create(details),
+  });
 };
 
 /**
@@ -36,18 +38,26 @@ const createExtraDetails = (req, res) => {
  * @returns {Object} - JSON response with extra details update status.
  */
 const updateExtraDetails = (req, res) => {
-  const { body, response, firestore } = req;
+  const { body, firestore } = req;
   const currentValues = firestore.read();
   const { name, role, level, community, project, train } = body;
   const updatedDetails = {
     name: name ? name : currentValues.name,
     role: role ? role : currentValues.role,
     level: level ? level : currentValues.level,
-    communities: community ? currentValues.communities.push(community) : currentValues.communities,
-    projects: project ? currentValues.projects.push(project) : currentValues.projects,
-    training: train ? currentValues.training.push(train) : currentValues.training,
+    communities: community
+      ? currentValues.communities.push(community)
+      : currentValues.communities,
+    projects: project
+      ? currentValues.projects.push(project)
+      : currentValues.projects,
+    training: train
+      ? currentValues.training.push(train)
+      : currentValues.training,
   };
-  return response.respondJSON(firestore.update, [updatedDetails]);
+  return res.json({
+    response: firestore.update(updatedDetails),
+  });
 };
 
 /**
@@ -57,8 +67,10 @@ const updateExtraDetails = (req, res) => {
  * @returns {Object} - JSON response with extra details deletion status.
  */
 const deleteExtraDetails = (req, res) => {
-  const { response, firestore } = req;
-  return response.respondJSON(firestore.delete);
+  const { firestore } = req;
+  return res.json({
+    response: firestore.delete(),
+  });
 };
 
 export {

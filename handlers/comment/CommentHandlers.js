@@ -5,12 +5,11 @@
  * @returns {Object} - JSON response with comment creation status.
  */
 const createComment = (req, res) => {
-  const { body, response, commentInitialization } = req;
+  const { body, commentInitialization } = req;
   const { senderuid, commentTxt } = body;
-  return response.respondJSON(commentInitialization.createComment, [
-    senderuid,
-    commentTxt,
-  ]);
+  return res.json({
+    response: commentInitialization.createComment(senderuid, commentTxt),
+  });
 };
 
 /**
@@ -20,8 +19,10 @@ const createComment = (req, res) => {
  * @returns {Object} - JSON response with the comment data.
  */
 const getComment = (req, res) => {
-  const { response, commentInitialization } = req;
-  return response.respondJSON(commentInitialization.readComment);
+  const { commentInitialization } = req;
+  return res.json({
+    response: commentInitialization.readComment(),
+  });
 };
 
 /**
@@ -31,12 +32,11 @@ const getComment = (req, res) => {
  * @returns {Object} - JSON response with comment update status.
  */
 const updateComment = (req, res) => {
-  const { body, response, commentInitialization } = req;
+  const { body, commentInitialization } = req;
   const { senderuid, commentTxt } = body;
-  return response.respondJSON(commentInitialization.updateComment, [
-    senderuid,
-    commentTxt,
-  ]);
+  return res.json({
+    response: commentInitialization.updateComment(senderuid, commentTxt),
+  });
 };
 
 /**
@@ -46,8 +46,10 @@ const updateComment = (req, res) => {
  * @returns {Object} - JSON response with comment deletion status.
  */
 const deleteComment = (req, res) => {
-  const { response, commentInitialization } = req;
-  return response.respondJSON(commentInitialization.deleteComment);
+  const { commentInitialization } = req;
+  return res.json({
+    response: commentInitialization.deleteComment(),
+  });
 };
 
 export { createComment, getComment, updateComment, deleteComment };

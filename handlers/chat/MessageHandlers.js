@@ -5,8 +5,10 @@
  * @returns {Object} - JSON response with all messages.
  */
 const getAllMessages = (req, res) => {
-  const { response, msgInstance } = req;
-  return response.respondJSON(msgInstance.readAllMessages);
+  const { msgInstance } = req;
+  return res.json({
+    response: msgInstance.readAllMessages(),
+  });
 };
 
 /**
@@ -16,8 +18,10 @@ const getAllMessages = (req, res) => {
  * @returns {Object} - JSON response with message creation status.
  */
 const createMessage = (req, res) => {
-  const { response, msgInstance } = req;
-  return response.respondJSON(msgInstance.createMessage);
+  const { msgInstance } = req;
+  return res.json({
+    response: msgInstance.createMessage(),
+  });
 };
 
 /**
@@ -27,8 +31,9 @@ const createMessage = (req, res) => {
  * @returns {Object} - Response status.
  */
 const deleteMessage = (req, res) => {
-  const { response, msgInstance } = req;
-  return response.respondStatus(msgInstance.deleteMessage);
+  const { msgInstance } = req;
+  const response = msgInstance.deleteMessage();
+  return res.status(response[0] ? 200 : 500);
 };
 
 export { getAllMessages, createMessage, deleteMessage };

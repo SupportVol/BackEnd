@@ -16,8 +16,10 @@ const getGroup = (req, res) => {
  * @returns {Object} - JSON response with group creation status.
  */
 const createGroup = (req, res) => {
-  const { response, grpInstance } = req;
-  return response.respondJSON(grpInstance.create);
+  const { grpInstance } = req;
+  return res.json({
+    response: grpInstance.create(),
+  });
 };
 
 /**
@@ -27,8 +29,10 @@ const createGroup = (req, res) => {
  * @returns {Object} - Response status.
  */
 const updateGroup = (req, res) => {
-  const { response, grpInstance } = req;
-  return response.respondStatus(grpInstance.update);
+  const { grpInstance } = req;
+  return res.json({
+    response: grpInstance.update(),
+  });
 };
 
 /**
@@ -38,8 +42,10 @@ const updateGroup = (req, res) => {
  * @returns {Object} - Response status.
  */
 const deleteGroup = (req, res) => {
-  const { response, grpInstance } = req;
-  return response.respondStatus(grpInstance.deleteGroup);
+  const { grpInstance } = req;
+  return res.json({
+    response: grpInstance.deleteGroup(),
+  });
 };
 
 export { getGroup, createGroup, updateGroup, deleteGroup };

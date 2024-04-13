@@ -5,8 +5,10 @@
  * @returns {Object} - JSON response with all initiatives.
  */
 const readAllInitiatives = (req, res) => {
-  const { response, iInstance } = req;
-  return response.respondJSON(iInstance.readIAll);
+  const { iInstance } = req;
+  return res.json({
+    response: iInstance.readIAll(),
+  });
 };
 
 /**
@@ -16,8 +18,10 @@ const readAllInitiatives = (req, res) => {
  * @returns {Object} - JSON response with initiative creation status.
  */
 const createInitiative = (req, res) => {
-  const { response, iInstance } = req;
-  return response.respondJSON(iInstance.createI);
+  const { iInstance } = req;
+  return res.json({
+    response: iInstance.createI(),
+  });
 };
 
 /**
@@ -27,8 +31,10 @@ const createInitiative = (req, res) => {
  * @returns {Object} - JSON response with initiative update status.
  */
 const updateInitiative = (req, res) => {
-  const { response, iInstance } = req;
-  return response.respondJSON(iInstance.updateI);
+  const { iInstance } = req;
+  return res.json({
+    response: iInstance.updateI(),
+  });
 };
 
 /**
@@ -38,8 +44,10 @@ const updateInitiative = (req, res) => {
  * @returns {Object} - Response status.
  */
 const deleteInitiative = (req, res) => {
-  const { response, iInstance } = req;
-  return response.respondStatus(iInstance.deleteI);
+  const { iInstance } = req;
+  return res.json({
+    response: iInstance.deleteI(),
+  });
 };
 
 export {
