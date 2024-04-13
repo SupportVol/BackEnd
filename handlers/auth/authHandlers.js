@@ -5,7 +5,7 @@
  */
 export const handleSignup = async (req, res) => {
   const returnedVal = await req.auth.createUser();
-  res.json({ value: returnedVal });
+  res.json({ response: returnedVal });
 };
 
 /**
@@ -13,6 +13,8 @@ export const handleSignup = async (req, res) => {
  * @param {Object} req - Express request object.
  * @param {Object} res - Express response object.
  */
-export const handleLogin = (req, res) => {
-  return req.response.respondJSON(req.auth.loginUser());
+export const handleLogin = async (req, res) => {
+  const returnedVal = await req.auth.loginUser();
+  console.log(returnedVal);
+  res.json({ response: returnedVal });
 };

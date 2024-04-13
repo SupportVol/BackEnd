@@ -31,7 +31,7 @@ export class Authentication {
       const userRecord = await firebase
         .auth()
         .signInWithEmailAndPassword(email, password);
-      return [true, userRecord.uid];
+      return [true, userRecord.user.uid];
     } catch (error) {
       return [false, error.message];
     }

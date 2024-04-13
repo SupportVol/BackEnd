@@ -39,6 +39,6 @@ export default class Auth {
    * @returns {Promise} A promise that resolves with the logged in user.
    */
   async loginUser() {
-    return this.authRef.loginUser(this.email, this.password);
+    return await this.authRef.loginUser(this.email, this.password);
   }
 }
