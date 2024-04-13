@@ -1,0 +1,152 @@
+[debug] [2024-04-12T05:38:17.538Z] ----------------------------------------------------------------------
+[debug] [2024-04-12T05:38:17.540Z] Command:       /home/ranuga/.nvm/versions/node/v21.7.2/bin/node /home/ranuga/.nvm/versions/node/v21.7.2/bin/firebase deploy
+[debug] [2024-04-12T05:38:17.540Z] CLI Version:   13.7.2
+[debug] [2024-04-12T05:38:17.540Z] Platform:      linux
+[debug] [2024-04-12T05:38:17.540Z] Node Version:  v21.7.2
+[debug] [2024-04-12T05:38:17.541Z] Time:          Fri Apr 12 2024 11:08:17 GMT+0530 (India Standard Time)
+[debug] [2024-04-12T05:38:17.541Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-12T05:38:17.586Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"rewrites"}
+[debug] [2024-04-12T05:38:17.589Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-12T05:38:17.589Z] > authorizing via signed-in user (go2ranuga@gmail.com)
+[debug] [2024-04-12T05:38:17.589Z] [iam] checking project support-vol for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2024-04-12T05:38:17.591Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions [none]
+[debug] [2024-04-12T05:38:17.591Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions x-goog-quota-user=projects/support-vol
+[debug] [2024-04-12T05:38:17.591Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2024-04-12T05:38:19.110Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions 200
+[debug] [2024-04-12T05:38:19.110Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2024-04-12T05:38:19.111Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-04-12T05:38:19.111Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-04-12T05:38:21.534Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-04-12T05:38:21.534Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-04-12T05:38:21.534Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/support-vol [none]
+[debug] [2024-04-12T05:38:22.985Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/support-vol 200
+[debug] [2024-04-12T05:38:22.985Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/support-vol {"projectId":"support-vol","projectNumber":"655861372911","displayName":"Support Vol","name":"projects/support-vol","resources":{"hostingSite":"support-vol","realtimeDatabaseInstance":"support-vol-default-rtdb","storageBucket":"support-vol.appspot.com","locationId":"asia-southeast1"},"state":"ACTIVE","etag":"1_a33c398e-d8d1-475f-909f-3d13049740f3"}
+[debug] [2024-04-12T05:38:22.986Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/support-vol [none]
+[debug] [2024-04-12T05:38:25.050Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/support-vol 200
+[debug] [2024-04-12T05:38:25.050Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/support-vol {"projectId":"support-vol","projectNumber":"655861372911","displayName":"Support Vol","name":"projects/support-vol","resources":{"hostingSite":"support-vol","realtimeDatabaseInstance":"support-vol-default-rtdb","storageBucket":"support-vol.appspot.com","locationId":"asia-southeast1"},"state":"ACTIVE","etag":"1_a33c398e-d8d1-475f-909f-3d13049740f3"}
+[debug] [2024-04-12T05:38:26.630Z] defaultcredentials: writing to file /home/ranuga/.config/firebase/go2ranuga_gmail_com_application_default_credentials.json
+[debug] [2024-04-12T05:38:26.634Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites pageToken=&pageSize=10
+[debug] [2024-04-12T05:38:37.474Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites 200
+[debug] [2024-04-12T05:38:37.474Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites {"sites":[{"name":"projects/support-vol/sites/support-vol","defaultUrl":"https://support-vol.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-04-12T05:38:37.475Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites 
+[debug] [2024-04-12T05:38:37.981Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites 200
+[debug] [2024-04-12T05:38:37.981Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites {"sites":[{"name":"projects/support-vol/sites/support-vol","defaultUrl":"https://support-vol.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-04-12T05:38:37.981Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/support-vol/webApps/-/config [none]
+[debug] [2024-04-12T05:38:39.342Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/support-vol/webApps/-/config 200
+[debug] [2024-04-12T05:38:39.343Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/support-vol/webApps/-/config {"projectId":"support-vol","appId":"1:655861372911:web:a1d577dda3edfc3c43881a","databaseURL":"https://support-vol-default-rtdb.asia-southeast1.firebasedatabase.app","storageBucket":"support-vol.appspot.com","locationId":"asia-southeast1","apiKey":"AIzaSyAmSpGqd4qk36lj_K9sOnfRN4ZtHCK-YQM","authDomain":"support-vol.firebaseapp.com","messagingSenderId":"655861372911","measurementId":"G-3FSFLTN1WD"}
+[info] 
+   Thank you for trying our early preview of Express.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/express
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-04-12T05:38:42.325Z] Error: ENOENT: no such file or directory, lstat '/home/ranuga/Programming/Projects/All/BackEnd/dist'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2024-04-12T05:40:24.321Z] ----------------------------------------------------------------------
+[debug] [2024-04-12T05:40:24.323Z] Command:       /home/ranuga/.nvm/versions/node/v21.7.2/bin/node /home/ranuga/.nvm/versions/node/v21.7.2/bin/firebase deploy
+[debug] [2024-04-12T05:40:24.323Z] CLI Version:   13.7.2
+[debug] [2024-04-12T05:40:24.323Z] Platform:      linux
+[debug] [2024-04-12T05:40:24.324Z] Node Version:  v21.7.2
+[debug] [2024-04-12T05:40:24.324Z] Time:          Fri Apr 12 2024 11:10:24 GMT+0530 (India Standard Time)
+[debug] [2024-04-12T05:40:24.324Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-12T05:40:24.371Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"rewrites"}
+[debug] [2024-04-12T05:40:24.374Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-12T05:40:24.375Z] > authorizing via signed-in user (go2ranuga@gmail.com)
+[debug] [2024-04-12T05:40:24.375Z] [iam] checking project support-vol for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2024-04-12T05:40:24.376Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions [none]
+[debug] [2024-04-12T05:40:24.376Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions x-goog-quota-user=projects/support-vol
+[debug] [2024-04-12T05:40:24.376Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2024-04-12T05:40:30.649Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions 200
+[debug] [2024-04-12T05:40:30.649Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2024-04-12T05:40:30.650Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-04-12T05:40:30.650Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-04-12T05:40:41.564Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-04-12T05:40:41.564Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-04-12T05:40:41.566Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/support-vol [none]
+[debug] [2024-04-12T05:40:42.419Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/support-vol 200
+[debug] [2024-04-12T05:40:42.419Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/support-vol {"projectId":"support-vol","projectNumber":"655861372911","displayName":"Support Vol","name":"projects/support-vol","resources":{"hostingSite":"support-vol","realtimeDatabaseInstance":"support-vol-default-rtdb","storageBucket":"support-vol.appspot.com","locationId":"asia-southeast1"},"state":"ACTIVE","etag":"1_a33c398e-d8d1-475f-909f-3d13049740f3"}
+[debug] [2024-04-12T05:40:42.420Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/support-vol [none]
+[debug] [2024-04-12T05:40:43.292Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/support-vol 200
+[debug] [2024-04-12T05:40:43.293Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/support-vol {"projectId":"support-vol","projectNumber":"655861372911","displayName":"Support Vol","name":"projects/support-vol","resources":{"hostingSite":"support-vol","realtimeDatabaseInstance":"support-vol-default-rtdb","storageBucket":"support-vol.appspot.com","locationId":"asia-southeast1"},"state":"ACTIVE","etag":"1_a33c398e-d8d1-475f-909f-3d13049740f3"}
+[debug] [2024-04-12T05:40:44.921Z] defaultcredentials: writing to file /home/ranuga/.config/firebase/go2ranuga_gmail_com_application_default_credentials.json
+[debug] [2024-04-12T05:40:44.923Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites pageToken=&pageSize=10
+[debug] [2024-04-12T05:40:54.106Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites 200
+[debug] [2024-04-12T05:40:54.106Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites {"sites":[{"name":"projects/support-vol/sites/support-vol","defaultUrl":"https://support-vol.web.app","appId":"1:655861372911:web:a1d577dda3edfc3c43881a","type":"DEFAULT_SITE"}]}
+[debug] [2024-04-12T05:40:54.107Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:655861372911:web:a1d577dda3edfc3c43881a/config [none]
+[debug] [2024-04-12T05:41:02.790Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:655861372911:web:a1d577dda3edfc3c43881a/config 200
+[debug] [2024-04-12T05:41:02.790Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:655861372911:web:a1d577dda3edfc3c43881a/config {"projectId":"support-vol","appId":"1:655861372911:web:a1d577dda3edfc3c43881a","databaseURL":"https://support-vol-default-rtdb.asia-southeast1.firebasedatabase.app","storageBucket":"support-vol.appspot.com","locationId":"asia-southeast1","apiKey":"AIzaSyAmSpGqd4qk36lj_K9sOnfRN4ZtHCK-YQM","authDomain":"support-vol.firebaseapp.com","messagingSenderId":"655861372911","measurementId":"G-3FSFLTN1WD"}
+[info] 
+   Thank you for trying our early preview of Express.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/express
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-04-12T05:41:03.230Z] Error: ENOENT: no such file or directory, lstat '/home/ranuga/Programming/Projects/All/BackEnd/dist'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2024-04-12T05:43:19.232Z] ----------------------------------------------------------------------
+[debug] [2024-04-12T05:43:19.234Z] Command:       /home/ranuga/.nvm/versions/node/v21.7.2/bin/node /home/ranuga/.nvm/versions/node/v21.7.2/bin/firebase deploy
+[debug] [2024-04-12T05:43:19.234Z] CLI Version:   13.7.2
+[debug] [2024-04-12T05:43:19.234Z] Platform:      linux
+[debug] [2024-04-12T05:43:19.234Z] Node Version:  v21.7.2
+[debug] [2024-04-12T05:43:19.234Z] Time:          Fri Apr 12 2024 11:13:19 GMT+0530 (India Standard Time)
+[debug] [2024-04-12T05:43:19.235Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-12T05:43:19.277Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"rewrites"}
+[debug] [2024-04-12T05:43:19.281Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-12T05:43:19.281Z] > authorizing via signed-in user (go2ranuga@gmail.com)
+[debug] [2024-04-12T05:43:19.281Z] [iam] checking project support-vol for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2024-04-12T05:43:19.282Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions [none]
+[debug] [2024-04-12T05:43:19.282Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions x-goog-quota-user=projects/support-vol
+[debug] [2024-04-12T05:43:19.282Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2024-04-12T05:43:20.504Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions 200
+[debug] [2024-04-12T05:43:20.504Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/support-vol:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2024-04-12T05:43:20.505Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-04-12T05:43:20.505Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-04-12T05:43:21.967Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-04-12T05:43:21.967Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/support-vol/serviceAccounts/support-vol@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-04-12T05:43:21.967Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/support-vol [none]
+[debug] [2024-04-12T05:43:22.494Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/support-vol 200
+[debug] [2024-04-12T05:43:22.495Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/support-vol {"projectId":"support-vol","projectNumber":"655861372911","displayName":"Support Vol","name":"projects/support-vol","resources":{"hostingSite":"support-vol","realtimeDatabaseInstance":"support-vol-default-rtdb","storageBucket":"support-vol.appspot.com","locationId":"asia-southeast1"},"state":"ACTIVE","etag":"1_a33c398e-d8d1-475f-909f-3d13049740f3"}
+[debug] [2024-04-12T05:43:22.495Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/support-vol [none]
+[debug] [2024-04-12T05:43:22.830Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/support-vol 200
+[debug] [2024-04-12T05:43:22.830Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/support-vol {"projectId":"support-vol","projectNumber":"655861372911","displayName":"Support Vol","name":"projects/support-vol","resources":{"hostingSite":"support-vol","realtimeDatabaseInstance":"support-vol-default-rtdb","storageBucket":"support-vol.appspot.com","locationId":"asia-southeast1"},"state":"ACTIVE","etag":"1_a33c398e-d8d1-475f-909f-3d13049740f3"}
+[debug] [2024-04-12T05:43:24.523Z] defaultcredentials: writing to file /home/ranuga/.config/firebase/go2ranuga_gmail_com_application_default_credentials.json
+[debug] [2024-04-12T05:43:24.525Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites pageToken=&pageSize=10
+[debug] [2024-04-12T05:43:25.241Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites 200
+[debug] [2024-04-12T05:43:25.242Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/support-vol/sites {"sites":[{"name":"projects/support-vol/sites/support-vol","defaultUrl":"https://support-vol.web.app","appId":"1:655861372911:web:a1d577dda3edfc3c43881a","type":"DEFAULT_SITE"}]}
+[debug] [2024-04-12T05:43:25.242Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:655861372911:web:a1d577dda3edfc3c43881a/config [none]
+[debug] [2024-04-12T05:43:26.644Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:655861372911:web:a1d577dda3edfc3c43881a/config 200
+[debug] [2024-04-12T05:43:26.644Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:655861372911:web:a1d577dda3edfc3c43881a/config {"projectId":"support-vol","appId":"1:655861372911:web:a1d577dda3edfc3c43881a","databaseURL":"https://support-vol-default-rtdb.asia-southeast1.firebasedatabase.app","storageBucket":"support-vol.appspot.com","locationId":"asia-southeast1","apiKey":"AIzaSyAmSpGqd4qk36lj_K9sOnfRN4ZtHCK-YQM","authDomain":"support-vol.firebaseapp.com","messagingSenderId":"655861372911","measurementId":"G-3FSFLTN1WD"}
+[info] 
+   Thank you for trying our early preview of Express.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/express
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-04-12T05:43:27.386Z] Error: Command failed: npm run build
+    at genericNodeError (node:internal/errors:984:15)
+    at wrappedFn (node:internal/errors:538:14)
+    at checkExecSyncError (node:child_process:890:11)
+    at execSync (node:child_process:962:15)
+    at build (/home/ranuga/.nvm/versions/node/v21.7.2/lib/node_modules/firebase-tools/lib/frameworks/express/index.js:31:34)
+    at memoizeBuild (/home/ranuga/.nvm/versions/node/v21.7.2/lib/node_modules/firebase-tools/lib/frameworks/index.js:73:19)
+    at prepareFrameworks (/home/ranuga/.nvm/versions/node/v21.7.2/lib/node_modules/firebase-tools/lib/frameworks/index.js:224:39)
+    at async deploy (/home/ranuga/.nvm/versions/node/v21.7.2/lib/node_modules/firebase-tools/lib/deploy/index.js:55:13)
+[error] 
+[error] Error: An unexpected error has occurred.

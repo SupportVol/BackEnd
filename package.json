@@ -108,13 +108,8 @@
     "yallist": "^4.0.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "devStart": "nodemon node index.js",
     "test": "echo \"Error: no test specified\"",
-    "build": "echo \"build process\""
-  },
-  "directories": {
-    "serve": "dist"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -126,5 +121,5 @@
     "babel-cli": "^6.26.0",
     "nodemon": "^3.1.0"
   },
-  "type": "module"
+  "nodemon": "^3.1.0"
 }

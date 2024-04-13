@@ -1,4 +1,10 @@
-import "../config/firebase.js";
+import {
+  ref,
+  getDownloadURL,
+  deleteObject,
+  uploadString,
+  storage,
+} from "../config/firebase.js";
 
 /**
  * Class representing Firebase Storage operations.
@@ -65,8 +71,7 @@ export class Storage {
     try {
       const storageRef = ref(storage, path);
       await deleteObject(storageRef);
-      const downloadURL = await this.getDownloadURL(path);
-      return [true, downloadURL];
+      return [true, NaN];
     } catch (error) {
       console.error("Error deleting file:", error);
       return [false, error.message];
