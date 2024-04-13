@@ -9,14 +9,10 @@ import Ban from "../../models/authentication/BanModel.js";
  * @param {Function} next - The next middleware function.
  */
 const checkBanStatus = async (req, res, next) => {
-  // Assuming user ID is available in request
-  const { uid } = req;
-
   // Create a new instance of Ban
-  const ban = new Ban();
-
-  // Check if the user is banned
-  const isBanned = await ban.isUserBanned(uid);
+  const ban = new Ban(req.uid);
+  console.log(req.uid); // Check if the user is banned
+  const isBanned = await ban.isUserBanned();
 
   // If the user is banned, send a 403 response
   if (isBanned) {

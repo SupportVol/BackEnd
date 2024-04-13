@@ -17,6 +17,7 @@ import projectRouter from "./routes/community/projects/ProjectRoutes.js";
 import phoneNumberRouter from "./routes/user/phoneNumber.js";
 import extraDetailsRouter from "./routes/user/extraDetails.js";
 import profilePictureRouter from "./routes/user/profilePicture.js";
+import extractUidAndVerification from "./middlewares/extractUidAndVerification.js";
 // import createResponse from "./middlewares/createResponse.js";
 
 const app = express();
@@ -31,7 +32,7 @@ app.get("/", (_, res) => {
 // Use routers
 // app.use(createResponse);
 app.use("/api/auth", authRouter);
-app.use(checkBanStatus);
+app.use(extractUidAndVerification, checkBanStatus);
 app.use("/api/usr", userDetailsRouter);
 app.use("/api/chat/msg", msgRouter);
 app.use("/api/chat/grp", grpRouter);

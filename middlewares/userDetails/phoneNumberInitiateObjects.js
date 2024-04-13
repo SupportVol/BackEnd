@@ -12,11 +12,6 @@ const pfpInitiateObjects = (req, _, next) => {
   // Initialize Storage and Authentication objects
   req.storage = new Storage();
   req.auth = new Authentication();
-
-  // Set the path for profile pictures based on user ID
-  req.path = `pfp/${req.uid}`;
-
-  // Proceed to the next middleware function
   next();
 };
 

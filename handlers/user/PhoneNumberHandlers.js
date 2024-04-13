@@ -5,9 +5,9 @@
  * @returns {Object} - JSON response with the user's phone number.
  */
 const getPhoneNumber = (req, res) => {
-  const { auth, uid } = req;
+  const { auth } = req;
   return res.json({
-    response: auth.getUser(uid),
+    response: auth.getUser(req.uid),
   });
 };
 
@@ -17,11 +17,13 @@ const getPhoneNumber = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with the updated phone number status.
  */
-const updatePhoneNumber = (req, res) => {
-  const { body, auth, uid } = req;
-  const { phonenumber } = body;
+const updatePhoneNumber = async (req, res) => {
+  const { body, auth } = req;
+  const { phoneNumber } = body;
+  console.log(phoneNumber, auth);
+  const response = await auth.updateUser(req.uid, { phoneNumber: phoneNumber });
   return res.json({
-    response: auth.getUser(uid, { phoneNumber: phonenumber }),
+    response: response,
   });
 };
 
@@ -34,7 +36,7 @@ const updatePhoneNumber = (req, res) => {
 const deletePhoneNumber = (req, res) => {
   const { auth, uid } = req;
   return res.json({
-    response: auth.deleteUser(uid),
+    response: auth.deleteUser(req.uid),
   });
 };
 
