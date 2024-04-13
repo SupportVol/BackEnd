@@ -1,5 +1,6 @@
 import Auth from "../../models/authentication/AuthModel.js";
 import isValidEmail from "../../utils/validation/isValidEmail.js";
+
 /**
  * Middleware function to initiate authentication objects.
  * It extracts email and password from the request body and creates an Auth object.
@@ -19,21 +20,13 @@ const authInitiateObjects = (req, _, next) => {
     return;
   }
 
-  // Create an object with email and password
-  const authParams = { email, password };
-
   // TODO: Validate email
   // if (!isValidEmail(email)) {
   //   return req.response.responseError("Invalid email", 401);
   // }
-
-  // If the request URL is "/signup", add a name parameter
-  if (req.url === "/signup") {
-    authParams.name = req.body.name;
-  }
-
+  // console.log(email, password);
   // Create an Auth object with the parameters and attach it to the request object
-  req.auth = new Auth(authParams);
+  req.auth = new Auth(email, password);
 
   // Proceed to the next middleware function
   next();

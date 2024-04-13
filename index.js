@@ -14,19 +14,19 @@ import checkBanStatus from "./middlewares/admin/checkBanStatus.js";
 import banRouter from "./routes/admin/BanRoutes.js";
 import NewsRouter from "./routes/admin/NewsRoutes.js";
 import projectRouter from "./routes/community/projects/ProjectRoutes.js";
-import createResponse from "./middlewares/createResponse.js";
+// import createResponse from "./middlewares/createResponse.js";
 
 const app = express();
 
 dotenv.config();
 app.use(bodyParser.json());
 
-app.get("/", function (req, res) {
+app.get("/", (_, res) => {
   res.send("Hello World!");
 });
 
 // Use routers
-app.use(createResponse);
+// app.use(createResponse);
 app.use("/api/auth", authRouter);
 app.use(checkBanStatus);
 app.use("/api/usr", userDetailsRouter);
@@ -40,7 +40,7 @@ app.use("/api/posts", postRouter);
 app.use("/api/ban", banRouter);
 app.use("/api/news", NewsRouter);
 
-app.use((err, _, res, __) => {
+app.use((err, req, res, __) => {
   console.error(err.stack);
   req.response.respondError("Internal Server Error", 500) ??
     res.status(500).send("Internal Server Error");

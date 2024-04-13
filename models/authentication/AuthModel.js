@@ -12,7 +12,7 @@ export default class Auth {
    * @param {string} password - The password of the user.
    * @param {string} [name=NaN] - The name of the user.
    */
-  constructor(email, password, name = NaN) {
+  constructor(email, password) {
     this.email = email;
     this.password = password;
     this.authRef = new Authentication();
@@ -23,11 +23,15 @@ export default class Auth {
    * @returns {Promise} A promise that resolves with the created user.
    */
   async createUser() {
+    console.log(this.email, this.password);
     const user = {
       email: this.email,
       password: this.password,
     };
-    return this.authRef.createUser(user);
+    // console.log(user);
+    const response = await this.authRef.createUser(user);
+    // console.log(response);
+    return response;
   }
 
   /**

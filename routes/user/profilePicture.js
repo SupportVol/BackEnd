@@ -10,7 +10,7 @@ import {
  * profilePictureRouter class
  * This class extends the BaseRouter class and initializes the routes for profile picture operations.
  */
-export default class profilePictureRouter extends BaseRouter {
+export default class profilePictureRouter  {
   /**
    * initializeRoutes method
    * This method initializes the routes for getting, uploading, and deleting the profile picture.

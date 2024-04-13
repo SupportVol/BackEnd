@@ -1,4 +1,6 @@
 import News from "../../models/content/NewsModel.js";
+import isAuthorized from "../../utils/validation/isAuthorized.js";
+
 /**
  * Middleware to initialize news objects.
  *

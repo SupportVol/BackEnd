@@ -12,7 +12,9 @@ export class Authentication {
   async createUser(userData) {
     try {
       const userRecord = await auth.createUser(userData);
+      console.log(userRecord);
       return [true, userRecord.uid];
+      // return userRecord.uid;
     } catch (error) {
       return [false, error.message];
     }

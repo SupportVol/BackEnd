@@ -4,7 +4,8 @@
  * @param {Object} res - Express response object.
  */
 export const handleSignup = async (req, res) => {
-  return req.response.respondJSON(req, res, req.auth.createUser);
+  const returnedVal = await req.auth.createUser();
+  res.json({ value: returnedVal });
 };
 
 /**
@@ -13,5 +14,5 @@ export const handleSignup = async (req, res) => {
  * @param {Object} res - Express response object.
  */
 export const handleLogin = (req, res) => {
-  return req.response.respondJSON(req, res, req.auth.loginUser);
+  return req.response.respondJSON(req.auth.loginUser());
 };
