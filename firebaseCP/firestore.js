@@ -1,5 +1,5 @@
 import { admin } from "../config/firebase.js";
-import getDocumentIdByContent from "../utils/getDocumentIdByContent.js";
+import getDocumentIdByContent from "../utils/data/getDocumentIdByContent.js";
 
 /**
  * Firestore class for performing CRUD operations on Firestore collections.
@@ -11,6 +11,7 @@ export default class Firestore {
    * @param {string} uid - The unique identifier for the document.
    */
   constructor(collectionName, uid, nestedPaths = []) {
+    this.collectionName = collectionName;
     this.collection = admin.firestore().collection(collectionName);
     this.uid = uid;
     this.nestedPaths = nestedPaths;
@@ -113,6 +114,21 @@ export default class Firestore {
       const docs = await collectionRef.listDocuments();
       const paths = docs.map((doc) => doc.path.split("/")[1]);
       return [true, paths];
+    } catch (error) {
+      return [false, error.message];
+    }
+  }
+  async readAll() {
+    try {
+      let paths = await this.readPaths();
+      paths = paths[1];
+      let allDocs = {};
+      for (let i = 0; i < paths.length; i++) {
+        const iterFirestore = new Firestore(this.collectionName, paths[i]);
+        const docSnapshot = await iterFirestore.read();
+        allDocs[paths[i]] = docSnapshot[1];
+      }
+      return [true, allDocs];
     } catch (error) {
       return [false, error.message];
     }
