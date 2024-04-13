@@ -64,14 +64,69 @@
 import test from "config/firebase.js";
 
 import express from "express";
+<<<<<<< HEAD
+=======
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
+import PORT from "./config/app.js";
+import authRouter from "./routes/auth/AuthRoutes.js";
+import userDetailsRouter from "./routes/user/extraDetails.js";
+import msgRouter from "./routes/chat/MessageRoutes.js";
+import grpRouter from "./routes/chat/GroupRoutes.js";
+import commRouter from "./routes/community/CommunityRoutes.js";
+import iRouter from "./routes/community/initiatives/InitiativeRoutes.js";
+import commentRouter from "./routes/community/CommunityRoutes.js";
+import postRouter from "./routes/organizations/PostsRoutes.js";
+import checkBanStatus from "./middlewares/admin/checkBanStatus.js";
+import banRouter from "./routes/admin/BanRoutes.js";
+import NewsRouter from "./routes/admin/NewsRoutes.js";
+import projectRouter from "./routes/community/projects/ProjectRoutes.js";
+import createResponse from "./middlewares/createResponse.js";
+
+>>>>>>> 8f857ff (Add News Articles Section)
 const app = express();
+<<<<<<< HEAD
 const firebase = require("./services/firebase.js");
+=======
+dotenv.config();
+app.use(bodyParser.json());
+>>>>>>> 857e7d2 (Completed Refactoring 3.0: Optimization and Enhancements #37)
 
 app.get("/", function (req, res) {
   res.send("Hello World!");
 });
 
+<<<<<<< HEAD
 app.listen(3000, function () {
   console.log("Example app listening on port 3000!");
   firebase.init();
 });
+=======
+// Use routers
+app.use(createResponse);
+app.use(checkBanStatus);
+app.use("/api/auth", authRouter);
+app.use("/api/usr", userDetailsRouter);
+app.use("/api/chat/msg", msgRouter);
+app.use("/api/chat/grp", grpRouter);
+app.use("/api/community", commRouter);
+app.use("/api/events/initiative", iRouter);
+app.use("/api/comments/", commentRouter);
+app.use("/api/prj", projectRouter);
+app.use("/api/posts", postRouter);
+app.use("/api/ban", banRouter);
+app.use("/api/news", NewsRouter);
+
+app.use((err, _, res, __) => {
+  console.error(err.stack);
+  req.response.respondError("Internal Server Error", 500) ??
+    res.status(500).send("Internal Server Error");
+});
+
+// Start the server
+const server = app.listen(PORT, () => {
+  const host = server.address().address;
+  const port = server.address().port;
+  console.log(`App listening at http://${host}:${port}`);
+});
+>>>>>>> 8f857ff (Add News Articles Section)
