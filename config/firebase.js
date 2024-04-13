@@ -10,6 +10,7 @@ import {
   ref,
   uploadString,
   getDownloadURL,
+  deleteObject,
 } from "firebase/storage";
 import admin from "firebase-admin";
 
@@ -76,4 +77,5 @@ export {
   ref,
   uploadString,
   getDownloadURL,
+  deleteObject,
 };
