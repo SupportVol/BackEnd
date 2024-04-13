@@ -1,6 +1,6 @@
 // Importing Firestore and ArticleModel
 import Firestore from "../../firebaseCP/firestore.js";
-import Article from "./ArticleModel.js";
+import Article from "./ArticleEntity.js";
 
 /**
  * News class that extends Article class.
@@ -16,7 +16,7 @@ export default class News extends Article {
    * @param {string} senderUID - The UID of the sender.
    * @param {string} orgID - The ID of the organization.
    */
-  constructor(newsID, title, description, tags, senderUID, orgID) {
+  constructor(newsID) {
     // Calling the parent class constructor
     super(title, description, tags, senderUID, orgID);
 
