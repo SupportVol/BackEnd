@@ -1,4 +1,3 @@
-
 import { Authentication } from "../../firebaseCP/authentication.js";
 // Importing the Authentication class from firebaseCP
 
@@ -14,7 +13,7 @@ import { Authentication } from "../../firebaseCP/authentication.js";
 const initAuthentication = (req, _, next) => {
   // Create a new instance of Authentication and attach it to the request object
   req.auth = new Authentication();
-
+  req.storage = new Storage();
   // Call the next middleware function
   next();
 };

@@ -1,7 +1,7 @@
 import Firestore from "../../firebaseCP/firestore.js";
-import isArray from "../../utils/validation/isArray.js";
 import CommunicationEntity from "./CommunicationEntity.js";
 import getProjectMembers from "../../utils/data/getProjectMembers.js";
+import updateData from "../../utils/firestore/updateData.js";
 /**
  * Group class extends CommunicationEntity
  * Represents a group in the communication model
@@ -37,11 +37,10 @@ export default class Group extends CommunicationEntity {
     this.group = this.firestore.read();
 
     // Structure for updating a group
-    this.updateStructure = {
-      members: isArray(this.members, this.group.members),
-      name: this.name ?? this.group.name,
-      description: this.description ?? this.group.description,
-      updatedDate: Date.now(),
-    };
+    this.updateStructure = updateData(
+      ["members", "name", "description", "updateData"],
+      [this.members, this.name, this.description, Date.now()],
+      this.group
+    );
   }
 }

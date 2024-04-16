@@ -1,5 +1,6 @@
 // Importing required modules
 import Firestore from "../../firebaseCP/firestore.js";
+import updateData from "../../utils/firestore/updateData.js";
 import EndeavorEntity from "./EndeavorEntity.js";
 
 /**
@@ -7,12 +8,15 @@ import EndeavorEntity from "./EndeavorEntity.js";
  * @param {string} description - Description of the project
  */
 export default class Project extends EndeavorEntity {
-  constructor(description , name,
+  constructor(
+    description,
+    name,
     organizations,
     volunteers,
     started_date,
     expected_completing_date,
-    initiated_organization) {
+    initiated_organization
+  ) {
     // Call the parent constructor with required parameters
     super(
       name,
@@ -50,14 +54,28 @@ export default class Project extends EndeavorEntity {
    */
   async update() {
     const record = await this.read();
-    return this.fs.update({
-      name: this.name,
-      description: this.description,
-      organizations: this.organizations,
-      volunteers: this.volunteers,
-      started_date: this.started_date,
-      expected_completing_date: this.expected_completing_date,
-      initiated_organization: this.initiated_organization,
-    });
+    return this.fs.update(
+      updateData(
+        [
+          "name",
+          "description",
+          "organizations",
+          "volunteers",
+          "started_date",
+          "expected_completing_date",
+          "initiated_organization",
+        ],
+        [
+          this.name,
+          this.description,
+          this.organizations,
+          this.volunteers,
+          this.started_date,
+          this.expected_completing_date,
+          this.initiated_organization,
+        ],
+        record
+      )
+    );
   }
 }
