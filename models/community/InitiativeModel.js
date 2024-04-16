@@ -1,6 +1,6 @@
 // Importing necessary modules
 import Firestore from "../../firebaseCP/firestore.js";
-import isArray from "../../utils/validation/isArray.js";
+import updateData from "../../utils/firestore/updateData.js";
 import EndeavorEntity from "./EndeavorEntity.js";
 
 /**
@@ -74,20 +74,35 @@ export default class Initiative extends EndeavorEntity {
    */
   async update() {
     const record = this.read();
-    const updatedData = {
-      name: this.name,
-      organizations: isArray(this.organizations, record.organizations),
-      volunteers: isArray(this.volunteers, record.volunteers),
-      started_date: this.started_date,
-      expected_completing_date: this.expected_completing_date,
-      initiated_organization: this.initiated_organization,
-      slogun: this.slogun,
-      mission: this.mission,
-      objectives: this.objectives,
-      introductory_video_URL: this.introductory_video_URL,
-      projects: isArray(this.projects, record.projects),
-    };
-
+    const updatedData = updateData(
+      [
+        "name",
+        "organizations",
+        "volunteers",
+        "started_date",
+        "expected_completing_date",
+        "initiated_organization",
+        "slogun",
+        "mission",
+        "objectives",
+        "introductory_video_URL",
+        "projects",
+      ],
+      [
+        this.name,
+        this.organizations,
+        this.volunteers,
+        this.started_date,
+        this.expected_completing_date,
+        this.initiated_organization,
+        this.slogun,
+        this.mission,
+        this.objectives,
+        this.introductory_video_URL,
+        this.projects,
+      ],
+      record
+    );
     return await this.fs.update(updatedData);
   }
 }

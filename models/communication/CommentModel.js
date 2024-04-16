@@ -1,4 +1,5 @@
 import Firestore from "../../firebaseCP/firestore.js";
+import updateData from "../../utils/firestore/updateData.js";
 import CommunicationEntity from "./CommunicationEntity.js";
 
 /**
@@ -39,10 +40,10 @@ export default class Comment extends CommunicationEntity {
    * @returns {Object} The structure for updating a comment.
    */
   getUpdateStructure(senderuid, commentTxt) {
-    return {
-      comment: commentTxt ?? this.comment.comment,
-      updatedDate: new Date(),
-      senderuid: senderuid ?? this.comment.senderuid,
-    };
+    return updateData(
+      ["comment", "updateDate", "senderuid"],
+      [commentTxt, Date.now(), senderuid],
+      this.comment
+    );
   }
 }

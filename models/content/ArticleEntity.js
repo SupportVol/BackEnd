@@ -1,4 +1,5 @@
 import { Firestore } from "firebase-admin/firestore";
+import updateData from "../../utils/firestore/updateData";
 
 /**
  * Article class to handle article related operations
@@ -50,12 +51,14 @@ export default class Article {
    * @returns {Promise} - The result of the Firestore update operation
    */
   update() {
-    return this.firestore.update({
-      title: this.title,
-      description: this.description,
-      tags: this.tags,
-      senderUID: this.senderUID,
-    });
+    const record = this.read();
+    return this.firestore.update(
+      updateData(
+        ["title", "description", "tags", "senderUID"],
+        [this.title, this.description, this.tags, this.senderUID],
+        record
+      )
+    );
   }
 
   /**

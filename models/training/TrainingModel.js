@@ -1,6 +1,6 @@
 import FirestoreAbstract from "../../utils/firestore/FirestoreAbstract.js";
 import Firestore from "../../firebaseCP/firestore.js";
-import isArray from "../../utils/validation/isArray.js";
+import updateData from "../../utils/firestore/updateData.js";
 export default class Training extends FirestoreAbstract {
   constructor(
     name,
@@ -25,17 +25,29 @@ export default class Training extends FirestoreAbstract {
       creationDate: Date.now(),
     };
     const currentRecord = this.read();
-    this.updateStructure = {
-      name: name ?? currentRecord.name,
-      description: description ?? currentRecord.description,
-      location: location ?? currentRecord.location,
-      trainer: trainer ?? currentRecord.trainer,
-      participants: isArray(participants, currentRecord.participants),
-      // feedback: feedback,
-      status: status ?? currentRecord.status,
-      additional_notes: additional_notes ?? currentRecord.additional_notes,
-      creationDate: Date.now(),
-    };
+    this.updateStructure = updateData(
+      [
+        "name",
+        "description",
+        "location",
+        "trainer",
+        "participants",
+        "status",
+        "additional_notes",
+        "creationDate",
+      ],
+      [
+        name,
+        description,
+        location,
+        trainer,
+        participants,
+        status,
+        additional_notes,
+        Date.now(),
+      ],
+      currentRecord
+    );
     this.fs = new Firestore("training", false, [orgID]);
   }
 }

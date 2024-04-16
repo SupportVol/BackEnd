@@ -2,6 +2,7 @@
  * Represents a message in a group.
  */
 import RealTime from "../../firebaseCP/realtime.js";
+import updateData from "../../utils/firestore/updateData.js";
 import CommunicationEntity from "./CommunicationEntity.js";
 import Group from "./GroupModel.js";
 
@@ -37,9 +38,10 @@ export default class Message extends CommunicationEntity {
     this.message = this.realTimeDatabase.read(messageID);
 
     // Structure for updating a message
-    this.updateStructure = {
-      message: newMessage ?? this.message.message,
-      lastUpdatedTime: Date.now(),
-    };
+    this.updateStructure = updateData(
+      ["message", "lastUpdatedTime"],
+      [newMessage, Date.now()],
+      this.message
+    );
   }
 }

@@ -18,11 +18,12 @@ const getProfilePicture = (req, res) => {
  * @returns {Object} - JSON response with the updated profile picture URL status.
  */
 const uploadProfilePicture = (req, res) => {
-  const { body, storage, auth, uid } = req;
-  let { imageBase64, reqUrl } = body;
+  const { body, storage, auth, uid, path } = req;
+  let { imageBase64 } = body;
+  let reqUrl = null;
 
   if (imageBase64) {
-    const response = storage.uploadByte8Array(`pfp/${uid}`, imageBase64);
+    const response = storage.uploadByte8Array(path, imageBase64);
     reqUrl = response[response.length - 1];
   }
   return res.json({
