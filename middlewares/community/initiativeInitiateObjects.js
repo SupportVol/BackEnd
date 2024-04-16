@@ -35,10 +35,12 @@ const iInitiateObjects = async (req, res, next) => {
     objectives,
     introductory_video_URL,
     projects,
+    communityUID,
+    initiativeUID
   } = req.body;
 
   // Create a new Initiative object and attach it to the request object
-  req.iInstance = new Initiative({
+  req.iInstance = new Initiative(
     name,
     organizations,
     volunteers,
@@ -50,7 +52,9 @@ const iInitiateObjects = async (req, res, next) => {
     objectives,
     introductory_video_URL,
     projects,
-  });
+    communityUID,
+    initiativeUID
+  );
 
   // Proceed to the next middleware
   next();

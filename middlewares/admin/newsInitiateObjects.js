@@ -10,7 +10,7 @@ import isAuthorized from "../../utils/validation/isAuthorized.js";
  *
  * @returns {void}
  */
-const newsInitiateObjects = (req, _, next) => {
+const newsInitiateObjects = (req, res, next) => {
   // Check if the user is authorized
   const allowedResponse = isAuthorized(req.uid, ["Admin"], [1, 0], req);
 
@@ -20,23 +20,18 @@ const newsInitiateObjects = (req, _, next) => {
   }
 
   // Destructure the request body
-  const { title, description, tags, orgID, senderUID, newsID } = req.body;
-
+  const { newsID, title, description, tags, senderUID, communityID } = req.body;
+  // Check if all required fields are present
+  if ((!title && !description && !tags && !communityID && !senderUID) || !newsID) {
+    res.status(400);
+  }
   // Initialize the news object
   req.newsInitialization = new News(
-    title,
-    description,
-    tags,
-    senderUID,
-    orgID,
-    newsID
+    newsID, title, description, tags, senderUID, communityID
   );
 
-  // Check if all required fields are present
-  if (!title || !description || !tags || !orgID || !senderUID || !newsID) {
-    return req.responseStatus(400);
-  }
 
+  console.log("It went through")
   // Proceed to the next middleware
   next();
 };

@@ -14,10 +14,10 @@ export default class Group extends CommunicationEntity {
    * @param {string} description - Description of the group
    * @param {string} projectID - ID of the project the group is associated with
    */
-  constructor(members = [], name, description, projectID) {
+  constructor(members = [], name, description, projectID, groupID) {
     super(projectID); // Call the super class constructor and pass in the projectID
     this.projectID = projectID;
-    this.firestore = new Firestore("chatGroups", this.projectID);
+    this.db = new Firestore("chatGroups", groupID);
 
     // If members array is empty, get members from the project
     this.members =
@@ -30,16 +30,17 @@ export default class Group extends CommunicationEntity {
       members: this.members,
       name: this.name,
       description: this.description,
+      projectID:this.projectID,
       creationDate: Date.now(),
     };
 
     // Read the group from firestore
-    this.group = this.firestore.read();
+    this.group = this.db.read();
 
     // Structure for updating a group
     this.updateStructure = updateData(
-      ["members", "name", "description", "updateData"],
-      [this.members, this.name, this.description, Date.now()],
+      ["members", "name", "description", "updateData", 'projectID'],
+      [this.members, this.name, this.description, Date.now(), this.projectID],
       this.group
     );
   }

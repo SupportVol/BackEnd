@@ -31,19 +31,19 @@ const projectInitiateObjects = async (req, res, next) => {
     started_date,
     expected_completing_date,
     initiated_organization,
-    description,
+    description, communityUID, initiativeUID, projectID
   } = req.body;
 
   // Create a new project object and attach it to the request object
-  req.projectInitialization = new Project({
+  req.projectInitialization = new Project(
     name,
     organizations,
     volunteers,
     started_date,
     expected_completing_date,
     initiated_organization,
-    description,
-  });
+    description, communityUID, initiativeUID ?? false, projectID
+  );
 
   // Proceed to the next middleware
   next();

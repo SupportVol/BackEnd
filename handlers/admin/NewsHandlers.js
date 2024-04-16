@@ -4,10 +4,10 @@
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with news data.
  */
-const getNews = (req, res) => {
+const getNews = async (req, res) => {
   const { newsInitialization } = req;
   return res.json({
-    response: newsInitialization.read(),
+    response: await newsInitialization.read(),
   });
 };
 
@@ -17,10 +17,10 @@ const getNews = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with news creation status.
  */
-const createNews = (req, res) => {
+const createNews = async (req, res) => {
   const { newsInitialization } = req;
   return res.json({
-    response: newsInitialization.create(),
+    response: await newsInitialization.create(),
   });
 };
 
@@ -30,9 +30,9 @@ const createNews = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - Response status.
  */
-const updateNews = (req, res) => {
+const updateNews = async (req, res) => {
   const { newsInitialization } = req;
-  const response = newsInitialization.update();
+  const response = await newsInitialization.update();
   return res.status(response[0] ? 200 : 500);
 };
 
@@ -42,9 +42,9 @@ const updateNews = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - Response status.
  */
-const deleteNews = (req, res) => {
+const deleteNews = async (req, res) => {
   const { newsInitialization } = req;
-  const response = newsInitialization.delete();
+  const response = await newsInitialization.delete();
   return res.status(response[0] ? 200 : 500);
 };
 

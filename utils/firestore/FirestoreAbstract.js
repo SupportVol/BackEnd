@@ -7,8 +7,8 @@ export default class FirestoreAbstract {
    * Create a new document in Firestore.
    * @returns {Promise} The promise that resolves with the result of the create operation.
    */
-  create() {
-    return this.fs.create(this.createStructure);
+  async create() {
+    return await this.fs.create(this.createStructure);
   }
 
   /**

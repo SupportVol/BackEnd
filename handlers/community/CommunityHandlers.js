@@ -4,10 +4,10 @@
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with community data.
  */
-const readCommunity = (req, res) => {
+const readCommunity = async (req, res) => {
   const { commInstance } = req;
   return res.json({
-    response: commInstance.read(),
+    response: await commInstance.read(),
   });
 };
 
@@ -17,10 +17,11 @@ const readCommunity = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with community creation status.
  */
-const createCommunity = (req, res) => {
+const createCommunity = async (req, res) => {
   const { commInstance } = req;
+  const instance1 = await commInstance.create();
   return res.json({
-    response: commInstance.create(),
+    response: instance1,
   });
 };
 
@@ -30,10 +31,11 @@ const createCommunity = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with community update status.
  */
-const updateCommunity = (req, res) => {
+const updateCommunity = async (req, res) => {
   const { commInstance } = req;
+  const instance2 = await commInstance.update();
   return res.json({
-    response: commInstance.update(),
+    response: instance2,
   });
 };
 
@@ -43,10 +45,10 @@ const updateCommunity = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - Response status.
  */
-const deleteCommunity = (req, res) => {
+const deleteCommunity = async (req, res) => {
   const { commInstance } = req;
   return res.json({
-    response: commInstance.delete(),
+    response: await commInstance.delete(),
   });
 };
 

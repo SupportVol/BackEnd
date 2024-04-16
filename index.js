@@ -8,7 +8,7 @@ import msgRouter from "./routes/chat/MessageRoutes.js";
 import grpRouter from "./routes/chat/GroupRoutes.js";
 import commRouter from "./routes/community/CommunityRoutes.js";
 import iRouter from "./routes/community/initiatives/InitiativeRoutes.js";
-import commentRouter from "./routes/community/CommunityRoutes.js";
+import commentRouter from "./routes/comment/CommentRoutes.js";
 import postRouter from "./routes/organizations/PostsRoutes.js";
 import checkBanStatus from "./middlewares/admin/checkBanStatus.js";
 import banRouter from "./routes/admin/BanRoutes.js";

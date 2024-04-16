@@ -27,6 +27,6 @@ export default class Post extends Article {
     this.type = "posts";
 
     // Create a new Firestore instance
-    this.firestore = new Firestore(this.type, postID, [orgID]);
+    this.firestore = new Firestore(this.type, postID, []);
   }
 }

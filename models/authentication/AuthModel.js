@@ -28,7 +28,7 @@ export default class Auth {
       password: this.password,
     };
     const response = await this.authRef.createUser(user);
-    await this.authRef.updateUser(response[1], {photoURL:"https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png"})
+    await this.authRef.updateUser(response[1], {photoURL:randomImageGenerator()})
     return response;
   }
 

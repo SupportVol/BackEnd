@@ -17,14 +17,14 @@ export default class Message extends CommunicationEntity {
    * @param {string} uid - The user ID who sends the message.
    * @param {string} groupID - The group ID where the message is sent.
    * @param {string} messageID - The ID of the message.
-   * @param {string} newMessage - The updated message content.
    */
-  constructor(message, uid, groupID, messageID, newMessage) {
+  constructor(message, uid, groupID, messageID) {
     super(groupID);
     this.message = message;
     this.uid = uid;
     this.groupID = groupID;
-    this.realTimeDatabase = new RealTime(groupID);
+    this.id = messageID
+    this.db = new RealTime(groupID);
     this.group = new Group(groupID);
 
     // Structure for creating a new message
@@ -35,12 +35,12 @@ export default class Message extends CommunicationEntity {
     };
 
     // Read the message from the database
-    this.message = this.realTimeDatabase.read(messageID);
+    this.message = this.db.read(messageID);
 
     // Structure for updating a message
     this.updateStructure = updateData(
       ["message", "lastUpdatedTime"],
-      [newMessage, Date.now()],
+      [message, Date.now()],
       this.message
     );
   }
