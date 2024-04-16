@@ -13,6 +13,7 @@ export default class MembershipRequestModel extends FirestoreAbstract {
     password,
     description
   ) {
+    super();
     this.createStructure = {
       name: name,
       description: description,
@@ -57,7 +58,7 @@ export default class MembershipRequestModel extends FirestoreAbstract {
     this.fs.delete();
     this.fs = new Firestore("organizations", false);
     const orgID = this.fs.create(record)[1];
-    this.auth = new Authentication();
+    this.auth = Authentication();
     this.auth.createUser({ email: record.email, password: record.password });
     this.authFS = new Firestore("users", orgID);
     this.authFS.create({

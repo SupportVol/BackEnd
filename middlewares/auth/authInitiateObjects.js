@@ -1,5 +1,5 @@
 import Auth from "../../models/authentication/AuthModel.js";
-import isValidEmail from "../../utils/validation/isValidEmail.js";
+// import isValidEmail from "../../utils/validation/isValidEmail.js";
 
 /**
  * Middleware function to initiate authentication objects.

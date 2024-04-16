@@ -4,7 +4,7 @@
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with extra details.
  */
-const getExtraDetails = (req, res) => {
+const getExtraDetails = (req, _) => {
   const { response, firestore } = req;
   return response.respondJSON(firestore.read);
 };

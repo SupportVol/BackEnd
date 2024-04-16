@@ -1,6 +1,13 @@
 import { Router } from "express";
+import {
+  createTeamMember,
+  deleteTeamMember,
+  getTeamMember,
+  updateTeamMember,
+} from "../../handlers/organizations/TeamMemberHandlers";
+import teamMemberInitiateObjects from "../../middlewares/organization/teamMemberInitiateObjects";
 
-teamMemberRouter = Router();
+const teamMemberRouter = Router();
 
 teamMemberRouter.use(teamMemberInitiateObjects);
 teamMemberRouter

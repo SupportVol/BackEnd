@@ -15,7 +15,7 @@ export default class Auth {
   constructor(email, password) {
     this.email = email;
     this.password = password;
-    this.authRef = new Authentication();
+    this.authRef = Authentication();
   }
 
   /**
@@ -37,11 +37,11 @@ export default class Auth {
    * Login a user.
    * @returns {Promise} A promise that resolves with the logged in user.
    */
-  async loginUser() {
-    return await this.authRef.loginUser(this.email, this.password);
+  loginUser() {
+    return this.authRef.loginUser(this.email, this.password);
   }
 
-  async resetPassword() {
-    return await this.authRef.resetPassword(this.email);
+  resetPassword() {
+    return this.authRef.resetPassword(this.email);
   }
 }

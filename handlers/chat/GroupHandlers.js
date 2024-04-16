@@ -4,7 +4,7 @@
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with group data.
  */
-const getGroup = (req, res) => {
+const getGroup = (req, started_date) => {
   const { response, grpInstance } = req;
   return response.respondJSON(grpInstance.read);
 };
