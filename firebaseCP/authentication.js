@@ -9,7 +9,7 @@ export class Authentication {
    * @param {object} userData - The user data to create the user.
    * @returns {Promise<[boolean, string]>} - A tuple indicating success status and the user ID.
    */
-  async createUser(userData) {
+  static async createUser(userData) {
     try {
       const userRecord = await auth.createUser(userData);
       console.log(userRecord);
@@ -19,8 +19,8 @@ export class Authentication {
       return [false, error.message];
     }
   }
-  async verificationEmail(email) {
-    return await auth.generateEmailVerificationLink(email);
+  static verificationEmail(email) {
+    return auth.generateEmailVerificationLink(email);
   }
   /**
    * Logs in the user with the provided email and password.
@@ -28,7 +28,7 @@ export class Authentication {
    * @param {string} password - The user's password.
    * @returns {Promise<[boolean, string]>} - A tuple indicating success status and the user ID.
    */
-  async loginUser(email, password) {
+  static async loginUser(email, password) {
     try {
       const userRecord = await firebase
         .auth()
@@ -45,7 +45,7 @@ export class Authentication {
    * @param {object} updateUserData - The data to update the user with.
    * @returns {Promise<[boolean, object]>} - A tuple indicating success status and the updated user data.
    */
-  async updateUser(uid, updateUserData) {
+  static async updateUser(uid, updateUserData) {
     try {
       console.log(uid, updateUserData);
       const userRecord = await auth.updateUser(uid, updateUserData);
@@ -60,7 +60,7 @@ export class Authentication {
    * @param {string} uid - The user ID to retrieve.
    * @returns {Promise<[boolean, object]>} - A tuple indicating success status and the retrieved user data.
    */
-  async getUser(uid) {
+  static async getUser(uid) {
     try {
       const user = await auth.getUser(uid);
       return [true, user];
@@ -74,7 +74,7 @@ export class Authentication {
    * @param {string} uid - The user ID to delete.
    * @returns {Promise<[boolean, string]>} - A tuple indicating success status and the deleted user ID.
    */
-  async deleteUser(uid) {
+  static async deleteUser(uid) {
     try {
       await auth.deleteUser(uid);
       return [true, uid];
@@ -83,19 +83,19 @@ export class Authentication {
     }
   }
 
-  async createPhoneVerification(phoneNumber) {
+  static async createPhoneVerification(phoneNumber) {
     const request = await auth.createSessionCookie(phoneNumber, {
       expiresIn: 3600,
     });
     return request;
   }
 
-  async verityPhoneVerification(verificationId, otp) {
+  static async verityPhoneVerification(verificationId, otp) {
     const userCreds = await auth.verifySessionCookie(verificationId, otp);
     return userCreds;
   }
 
-  async resetPassword(email) {
+  static async resetPassword(email) {
     const request = await auth.sendPasswordResetEmail(email);
     return request;
   }

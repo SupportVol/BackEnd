@@ -23,7 +23,7 @@ const updatePhoneNumber = async (req, res) => {
   console.log(phoneNumber, auth);
   const response = await auth.updateUser(req.uid, { phoneNumber: phoneNumber });
   return res.json({
-    response: response,
+    response,
   });
 };
 
@@ -34,7 +34,7 @@ const updatePhoneNumber = async (req, res) => {
  * @returns {Object} - JSON response with the phone number deletion status.
  */
 const deletePhoneNumber = (req, res) => {
-  const { auth, uid } = req;
+  const { auth } = req;
   return res.json({
     response: auth.deleteUser(req.uid),
   });

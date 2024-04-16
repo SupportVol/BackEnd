@@ -1,9 +1,10 @@
 import MembershipRequestModel from "../../models/organization/MemebershipRequestModel";
+import isAuthorized from "../../utils/validation/isAuthorized";
 
 const membershipInitiateObjects = (req, res, next) => {
   const response = isAuthorized(req.uid, ["Admin"], [1, 0], req);
   if (Array.isArray(response)) {
-    res.json({ response: response });
+    res.json({ response });
   }
   const {
     registrationCertificateUrl,

@@ -8,7 +8,7 @@ const trainAuthorization = (req, res, next) => {
     req
   );
   if (Array.isArray(response)) {
-    res.json({ response: response });
+    res.json({ response });
   }
   next();
 };

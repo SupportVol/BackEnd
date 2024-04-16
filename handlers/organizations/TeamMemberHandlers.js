@@ -1,17 +1,17 @@
 const getTeamMember = async (req, res) => {
   const member = await req.teamMemberInstance.getMember();
-  res.json({ member: member });
+  res.json({ member });
 };
 const createTeamMember = async (req, res) => {
   const response = await req.teamMemberInstance.createMember();
-  res.json({ response: response });
+  res.json({ response });
 };
 const updateTeamMember = async (req, res) => {
   const response = await req.teamMemberInstance.updateMember();
-  res.json({ response: response });
+  res.json({ response });
 };
 const deleteTeamMember = async (req, res) => {
   const response = await req.teamMemberInstance.deleteMember();
-  res.json({ response: response });
+  res.json({ response });
 };
 export { getTeamMember, createTeamMember, updateTeamMember, deleteTeamMember };
