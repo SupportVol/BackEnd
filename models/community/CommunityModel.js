@@ -39,19 +39,29 @@ export default class Community extends FirestoreAbstract {
     this.theme = theme;
     this.members = members;
     this.createStructure = {
-      name: name,
-      title: title,
-      description: description,
-      photoUrl: photoUrl,
-      banner: banner,
-      theme: theme,
-      members: members
-    }
+      name,
+      title,
+      description,
+      photoUrl,
+      banner,
+      theme,
+      members,
+    };
     this.fs = new Firestore(this.collectionName, this.communityUID, []);
-    const record = this.fs.read()
-    this.updateStructure = updateData([
-      "name", "title", "description", "photoUrl", "banner", "theme", "members"
-    ], [name, title, description, photoUrl, banner, theme, members], record)
+    const record = this.fs.read();
+    this.updateStructure = updateData(
+      [
+        "name",
+        "title",
+        "description",
+        "photoUrl",
+        "banner",
+        "theme",
+        "members",
+      ],
+      [name, title, description, photoUrl, banner, theme, members],
+      record
+    );
     // Initialize Firestore with the collection name and community UID
   }
 }

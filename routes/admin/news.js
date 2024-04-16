@@ -8,11 +8,11 @@ newsRouter
   .route("/")
   .get(extractUidAndVerification, newsInitiateObjects, async (req, res) => {
     const [response, newsData] = await req.newsInitialization.read();
-    res.status(response ? 200 : 500).json({ newsData: newsData });
+    res.status(response ? 200 : 500).json({ newsData });
   })
   .post(extractUidAndVerification, newsInitiateObjects, async (req, res) => {
     const [response, docID] = await req.newsInitialization.create();
-    res.status(response ? 200 : 500).json({ docID: docID });
+    res.status(response ? 200 : 500).json({ docID });
   })
   .put(extractUidAndVerification, newsInitiateObjects, async (req, res) => {
     const [response, _] = await req.newsInitialization.update(req.body);

@@ -20,7 +20,7 @@ const getPhoneNumber = (req, res) => {
 const updatePhoneNumber = async (req, res) => {
   const { body, auth } = req;
   const { phoneNumber } = body;
-  const response = await auth.updateUser(req.uid, { phoneNumber: phoneNumber });
+  const response = await auth.updateUser(req.uid, { phoneNumber });
   return res.json({
     response,
   });
