@@ -8,7 +8,7 @@ import {
   updateExtraDetails,
   deleteExtraDetails,
 } from "../../handlers/user/ExtraDetailsHandlers.js";
-getExtraDetails; // userDetailsRouter class extends BaseRouter
+ // userDetailsRouter class extends BaseRouter
 const extraDetailsRouter = Router();
 extraDetailsRouter.use(extractUidAndVerification);
 // Use middleware to initiate extra details objects
