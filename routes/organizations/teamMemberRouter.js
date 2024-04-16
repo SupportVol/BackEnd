@@ -4,8 +4,8 @@ import {
   deleteTeamMember,
   getTeamMember,
   updateTeamMember,
-} from "../../handlers/organizations/TeamMemberHandlers";
-import teamMemberInitiateObjects from "../../middlewares/organization/teamMemberInitiateObjects";
+} from "../../handlers/organizations/TeamMemberHandlers.js";
+import teamMemberInitiateObjects from "../../middlewares/organization/teamMemberInitiateObjects.js";
 
 const teamMemberRouter = Router();
 

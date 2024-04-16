@@ -13,6 +13,8 @@ import {
   deleteObject,
 } from "firebase/storage";
 import admin from "firebase-admin";
+import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
+import { getPerformance } from "firebase/performance";
 
 /**
  * Path to the service account key JSON file.
@@ -48,6 +50,12 @@ const app = admin.initializeApp({
     "https://support-vol-default-rtdb.asia-southeast1.firebasedatabase.app",
   storageBucket: "gs://support-vol.appspot.com",
 });
+// const perf = getPerformance(app);
+
+// const appCheck = initializeAppCheck(app, {
+//   provider: new ReCaptchaV3Provider('6LcDPb0pAAAAAPTKJ7VYKGiSv7C7NJpbEosci6Yh'),
+//   isTokenAutoRefreshEnabled: true
+// });
 
 /**
  * Auth module from Firebase Admin SDK.

@@ -1,5 +1,5 @@
-import { Authentication } from "../../firebaseCP/authentication";
-import Firestore from "../../firebaseCP/firestore";
+import { Authentication } from "../../firebaseCP/authentication.js";
+import Firestore from "../../firebaseCP/firestore.js";
 
 export default class TeamMemberModel {
   constructor(email, password, uid) {

@@ -19,10 +19,7 @@ const banInitiateObjects = (req, res, next) => {
   }
 
   // Create a new Ban object and add it to the request object
-  req.ban = new Ban(req.uid);
-
-  // Set up the response structure
-  req.resStructure = { res };
+  req.ban = new Ban(req.body.banUID);
 
   // Call the next middleware
   next();

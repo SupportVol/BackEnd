@@ -33,7 +33,7 @@ const createMessage = async (req, res) => {
 const deleteMessage = async (req, res) => {
   const { msgInstance } = req;
   const response = await msgInstance.delete();
-  return res.status(response[0] ? 200 : 500);
+  return res.json(response);
 };
 
 export { getAllMessages, createMessage, deleteMessage };

@@ -76,13 +76,12 @@ export default class Firestore {
     let collectionRef = this.collection;
     let i;
     for (i = 0; i < this.nestedPaths.length; i += 2) {
-      console.log(i);
       if (this.nestedPaths.length > i + 1) {
         collectionRef = collectionRef.doc(this.nestedPaths[i]).collection(this.nestedPaths[i + 1]);
       }
       else { collectionRef = collectionRef.doc(this.nestedPaths[i]) }
     }
-    console.log(this.uid);
+    console.log(data)
     await collectionRef.doc(this.uid).update(data);
     return [true, NaN];
   }

@@ -56,8 +56,8 @@ export default class Article {
     const record = this.read();
     return this.firestore.update(
       updateData(
-        ["title", "description", "tags", "senderUID", "orgID"],
-        [this.title, this.description, this.tags, this.senderUID, this.orgID],
+        ["title", "description", "tags", "senderUID", "formID"],
+        [this.title, this.description, this.tags, this.senderUID, this.formID],
         record
       )
     );

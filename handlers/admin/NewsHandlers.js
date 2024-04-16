@@ -33,7 +33,7 @@ const createNews = async (req, res) => {
 const updateNews = async (req, res) => {
   const { newsInitialization } = req;
   const response = await newsInitialization.update();
-  return res.status(response[0] ? 200 : 500);
+  res.json({response});
 };
 
 /**
@@ -45,7 +45,7 @@ const updateNews = async (req, res) => {
 const deleteNews = async (req, res) => {
   const { newsInitialization } = req;
   const response = await newsInitialization.delete();
-  return res.status(response[0] ? 200 : 500);
+  return res.json({response});
 };
 
 export { getNews, createNews, updateNews, deleteNews };

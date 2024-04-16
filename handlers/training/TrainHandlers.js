@@ -1,13 +1,13 @@
-const getTraining = (req, res) => {
-  res.json({ response: req.trainInstance.read() });
+const getTraining = async (req, res) => {
+  res.json({ response: await req.trainInstance.read() });
 };
-const createTraining = (req, res) => {
-  res.json({ response: req.trainInstance.create() });
+const createTraining = async (req, res) => {
+  res.json({ response: await req.trainInstance.create() });
 };
-const updateTraining = (req, res) => {
-  res.json({ response: req.trainInstance.update() });
+const updateTraining = async (req, res) => {
+  res.json({ response: await req.trainInstance.update() });
 };
-const deleteTraining = (req, res) => {
-  res.json({ response: req.trainInstance.delete() });
+const deleteTraining = async (req, res) => {
+  res.json({ response: await req.trainInstance.delete() });
 };
 export { getTraining, createTraining, updateTraining, deleteTraining };

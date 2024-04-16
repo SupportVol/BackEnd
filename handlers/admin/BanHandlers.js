@@ -4,10 +4,10 @@
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response containing the user's ban status.
  */
-const getBanStatus = (req, res) => {
+const getBanStatus = async (req, res) => {
   const { ban } = req;
   return res.json({
-    response: ban.isUserBanned(),
+    response: await ban.isUserBanned(),
   });
 };
 
@@ -20,7 +20,7 @@ const getBanStatus = (req, res) => {
 const banUser = (req, res) => {
   const { ban, uid } = req;
   return res
-    .send(`Banned User with Uid : ${uid}`)
+    .send(`Banned User with Uid : ${req.body.banUID}`)
     .json({ response: ban.banUser() });
 };
 
@@ -33,7 +33,7 @@ const banUser = (req, res) => {
 const unBanUser = (req, res) => {
   const { ban, uid } = req;
   return res
-    .send(`Unbanned User with Uid : ${uid}`)
+    .send(`Unbanned User with Uid : ${req.body.banUID}`)
     .json({ response: ban.unBanUser() });
 };
 
