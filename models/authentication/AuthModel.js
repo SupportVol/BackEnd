@@ -28,10 +28,9 @@ export default class Auth {
       email: this.email,
       password: this.password,
     };
-    // console.log(user);
     const response = await this.authRef.createUser(user);
-    // console.log(response);
-    return response;
+    const link = await this.authRef.verificationEmail(this.email);
+    return [response, link];
   }
 
   /**
@@ -40,5 +39,9 @@ export default class Auth {
    */
   async loginUser() {
     return await this.authRef.loginUser(this.email, this.password);
+  }
+
+  async resetPassword() {
+    return await this.authRef.resetPassword(this.email);
   }
 }

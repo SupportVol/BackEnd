@@ -1,4 +1,4 @@
-import isArray from "../validation/isArray";
+import isArray from "../validation/isArray.js";
 
 const updateData = (fields, data, alreadyData) => {
   const updateStructure = {};

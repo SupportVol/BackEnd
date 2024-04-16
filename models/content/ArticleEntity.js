@@ -1,5 +1,5 @@
 import { Firestore } from "firebase-admin/firestore";
-import updateData from "../../utils/firestore/updateData";
+import updateData from "../../utils/firestore/updateData.js";
 
 /**
  * Article class to handle article related operations

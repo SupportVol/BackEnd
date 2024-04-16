@@ -19,7 +19,9 @@ export class Authentication {
       return [false, error.message];
     }
   }
-
+  async verificationEmail(email) {
+    return await auth.generateEmailVerificationLink(email);
+  }
   /**
    * Logs in the user with the provided email and password.
    * @param {string} email - The user's email.
@@ -79,5 +81,22 @@ export class Authentication {
     } catch (error) {
       return [false, error.message];
     }
+  }
+
+  async createPhoneVerification(phoneNumber) {
+    const request = await auth.createSessionCookie(phoneNumber, {
+      expiresIn: 3600,
+    });
+    return request;
+  }
+
+  async verityPhoneVerification(verificationId, otp) {
+    const userCreds = await auth.verifySessionCookie(verificationId, otp);
+    return userCreds;
+  }
+
+  async resetPassword(email) {
+    const request = await auth.sendPasswordResetEmail(email);
+    return request;
   }
 }
