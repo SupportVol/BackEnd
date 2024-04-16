@@ -1,6 +1,10 @@
 // Importing necessary modules and functions
 import authInitiateObjects from "../../middlewares/auth/authInitiateObjects.js";
-import { handleLogin, handleSignup } from "../../handlers/auth/authHandlers.js";
+import {
+  handleLogin,
+  handleResetPassword,
+  handleSignup,
+} from "../../handlers/auth/authHandlers.js";
 import { Router } from "express";
 
 /**
@@ -8,6 +12,7 @@ import { Router } from "express";
  * It initializes routes for signup and login.
  */
 const authRouter = new Router();
+
 authRouter.use(authInitiateObjects);
 
 // Setup POST route for "/signup"
@@ -16,4 +21,5 @@ authRouter.post("/signup", handleSignup);
 // Setup POST route for "/login"
 authRouter.post("/login", handleLogin);
 
+authRouter.put("/reset-password", handleResetPassword);
 export default authRouter;
