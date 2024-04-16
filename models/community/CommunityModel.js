@@ -1,6 +1,6 @@
 import Firestore from "../../firebaseCP/firestore.js";
-import FirestoreAbstract from "../../utils/FirestoreAbstract.js";
-
+import FirestoreAbstract from "../../utils/firestore/FirestoreAbstract.js";
+import updateData from "../../utils/firestore/updateData.js";
 /**
  * Represents a Community object.
  * @class
@@ -38,7 +38,20 @@ export default class Community extends FirestoreAbstract {
     this.banner = banner;
     this.theme = theme;
     this.members = members;
+    this.createStructure = {
+      name: name,
+      title: title,
+      description: description,
+      photoUrl: photoUrl,
+      banner: banner,
+      theme: theme,
+      members: members
+    }
+    this.fs = new Firestore(this.collectionName, this.communityUID, []);
+    const record = this.fs.read()
+    this.updateStructure = updateData([
+      "name", "title", "description", "photoUrl", "banner", "theme", "members"
+    ], [name, title, description, photoUrl, banner, theme, members], record)
     // Initialize Firestore with the collection name and community UID
-    this.fs = new Firestore(this.collectionName, this.communityUID);
   }
 }

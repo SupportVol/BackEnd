@@ -5,7 +5,6 @@
  */
 const isValidEmail = async (email) => {
   try {
-    console.log("Validating email:", email);
     const apiUrl = `https://isitarealemail.com/api/email/validate/${email}`;
     const response = await fetch(apiUrl);
 
@@ -14,7 +13,6 @@ const isValidEmail = async (email) => {
     }
 
     const data = await response.json();
-    console.log("Response from email validation API:", data);
 
     return data.status === "valid";
   } catch (error) {

@@ -4,10 +4,10 @@
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with project data.
  */
-const readProject = (req, res) => {
+const readProject = async (req, res) => {
   const { projectInitialization } = req;
   return res.json({
-    response: projectInitialization.read(),
+    response: await projectInitialization.read(),
   });
 };
 
@@ -17,10 +17,10 @@ const readProject = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with project creation status.
  */
-const createProject = (req, res) => {
+const createProject = async (req, res) => {
   const { projectInitialization } = req;
   return res.json({
-    response: projectInitialization.create(),
+    response: await projectInitialization.create(),
   });
 };
 
@@ -30,10 +30,10 @@ const createProject = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with project update status.
  */
-const updateProject = (req, res) => {
+const updateProject = async (req, res) => {
   const { projectInitialization } = req;
   return res.json({
-    response: projectInitialization.update(),
+    response: await projectInitialization.update(),
   });
 };
 
@@ -43,10 +43,10 @@ const updateProject = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - Response status.
  */
-const deleteProject = (req, res) => {
+const deleteProject = async (req, res) => {
   const { projectInitialization } = req;
   return res.json({
-    response: projectInitialization.delete(),
+    response: await projectInitialization.delete(),
   });
 };
 

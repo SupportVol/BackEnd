@@ -7,9 +7,10 @@ const trainInitiateObjects = (req, res, next) => {
     location,
     trainer,
     participants,
+    // feedback,
     status,
     additional_notes,
-    orgID,
+    orgID, trainID
   } = req.body;
   req.trainInstance = new Training(
     name,
@@ -17,9 +18,10 @@ const trainInitiateObjects = (req, res, next) => {
     location,
     trainer,
     participants,
+    // feedback,
     status,
     additional_notes,
-    orgID
+    orgID, trainID
   );
   next();
 };

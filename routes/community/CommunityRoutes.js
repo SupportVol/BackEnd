@@ -1,5 +1,5 @@
 import extractUidAndVerification from "../../middlewares/extractUidAndVerification.js";
-import projectInitiateObjects from "../../middlewares/community/projectInitiateObjects.js";
+import initiateCommunityObjects from "../../middlewares/community/communityInitiateObjects.js";
 import { Router } from "express";
 import {
   readCommunity,
@@ -15,7 +15,7 @@ import {
  * @extends {BaseRouter}
  */
 const commRouter = Router();
-commRouter.use(extractUidAndVerification, projectInitiateObjects);
+commRouter.use(extractUidAndVerification, initiateCommunityObjects);
 
 // Define route for reading communities
 commRouter.get("/", readCommunity);

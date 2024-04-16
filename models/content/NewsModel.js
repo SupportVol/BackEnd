@@ -18,13 +18,12 @@ export default class News extends Article {
    */
   constructor(newsID, title, description, tags, senderUID, communityID) {
     // Calling the parent class constructor
-    super(title, description, tags, senderUID);
-
+    super(title, description, tags, senderUID, undefined, undefined, communityID);
     // Initializing properties
     this.newsID = newsID;
     this.type = "news";
-
+    // communityID
     // Creating a new Firestore instance
-    this.firestore = new Firestore(this.type, newsID, [communityID]);
+    this.firestore = new Firestore(this.type, newsID, []);
   }
 }

@@ -9,7 +9,12 @@ import Post from "../../models/content/PostsModel.js";
  */
 const postInitiateObjects = (req, res, next) => {
   // Destructuring the required fields from the request body
-  const { title, description, tags, orgID, senderUID, postID } = req.body;
+  const { title,
+    description,
+    tags,
+    orgID,
+    senderUID,
+    postID } = req.body;
 
   // Creating a new Post object and attaching it to the request object
   req.postInitialization = new Post(

@@ -1,4 +1,4 @@
-import { Firestore } from "firebase-admin/firestore";
+import Firestore from '../../firebaseCP/firestore.js'
 import updateData from "../../utils/firestore/updateData.js";
 
 /**
@@ -14,15 +14,16 @@ export default class Article {
    * @param {string} orgID - The ID of the organization
    * @param {string} articleID - The ID of the article
    */
-  constructor(title, description, tags, senderUID, orgID, articleID) {
+  constructor(title, description, tags, senderUID, orgID, articleID, communityID) {
     this.title = title;
     this.description = description;
     this.tags = tags;
     this.senderUID = senderUID;
-    this.orgID = orgID;
+    console.log(orgID, communityID)
+    this.formID = orgID ?? communityID;
     this.articleID = articleID;
     this.articleType = "article";
-    this.firestore = new Firestore(this.articleType, articleID, [orgID]);
+    this.firestore = new Firestore(this.articleType, articleID, []);
   }
 
   /**
@@ -35,6 +36,7 @@ export default class Article {
       description: this.description,
       tags: this.tags,
       senderUID: this.senderUID,
+      formID: this.formID
     });
   }
 
@@ -54,8 +56,8 @@ export default class Article {
     const record = this.read();
     return this.firestore.update(
       updateData(
-        ["title", "description", "tags", "senderUID"],
-        [this.title, this.description, this.tags, this.senderUID],
+        ["title", "description", "tags", "senderUID", "formID"],
+        [this.title, this.description, this.tags, this.senderUID, this.formID],
         record
       )
     );

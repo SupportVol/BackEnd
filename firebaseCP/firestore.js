@@ -1,4 +1,4 @@
-import { admin } from "../config/firebase.js";
+import { admin, auth } from "../config/firebase.js";
 import getDocumentIdByContent from "../utils/data/getDocumentIdByContent.js";
 
 /**
@@ -10,9 +10,10 @@ export default class Firestore {
    * @param {string} collectionName - The name of the Firestore collection.
    * @param {string} uid - The unique identifier for the document.
    */
-  constructor(collectionName, uid = false, nestedPaths = []) {
+  constructor(collectionName, uid, nestedPaths = []) {
     this.collectionName = collectionName;
     this.collection = admin.firestore().collection(collectionName);
+    // this.collection = firebase.firestore().collection(collectionName);
     this.uid = uid;
     this.nestedPaths = nestedPaths;
   }
@@ -23,22 +24,24 @@ export default class Firestore {
    * @returns {[boolean, string]} - An array indicating success (true/false) and the document ID.
    */
   async create(data) {
-    try {
-      let collectionRef = this.collection;
-      // Traverse through nested paths and create collection references
-      for (const path of this.nestedPaths) {
-        collectionRef = collectionRef.doc(path).collection(path);
+    let collectionRef = this.collection;
+    let i;
+    for (i = 0; i < this.nestedPaths.length; i += 2) {
+      if (this.nestedPaths.length > i + 1) {
+        collectionRef = collectionRef.doc(this.nestedPaths[i]).collection(this.nestedPaths[i + 1]);
       }
-      const docRef = this.uid
-        ? this.collection.doc(this.uid)
-        : this.collection.doc();
-      await docRef.set(data);
-      const docID = await getDocumentIdByContent(this.collection, data);
-      return [true, docID];
-    } catch (error) {
-      return [false, error.message];
+      else { collectionRef = collectionRef.doc(this.nestedPaths[i]) }
     }
+    let docRef;
+    docRef = this.uid
+      ? collectionRef.doc(this.uid)
+      : collectionRef.doc();
+    console.log(data)
+    await docRef.set(data);
+    const docID = await getDocumentIdByContent(collectionRef, data);
+    return [true, docID];
   }
+
 
   /**
    * Read a document from the Firestore collection.
@@ -48,8 +51,11 @@ export default class Firestore {
     try {
       let collectionRef = this.collection;
       // Traverse through nested paths and create collection references
-      for (const path of this.nestedPaths) {
-        collectionRef = collectionRef.doc(path).collection(path);
+      for (let i = 0; i < this.nestedPaths.length; i += 2) {
+        if (this.nestedPaths.length > i + 1) {
+          collectionRef = collectionRef.doc(this.nestedPaths[i]).collection(this.nestedPaths[i + 1]);
+        }
+        else { collectionRef = collectionRef.doc(this.nestedPaths[i]) }
       }
       const docSnapshot = await collectionRef.doc(this.uid).get();
       if (!docSnapshot.exists) {
@@ -67,17 +73,17 @@ export default class Firestore {
    * @returns {[boolean, NaN]} - An array indicating success (true/false) and NaN (no data returned).
    */
   async update(data) {
-    try {
-      let collectionRef = this.collection;
-      // Traverse through nested paths and create collection references
-      for (const path of this.nestedPaths) {
-        collectionRef = collectionRef.doc(path).collection(path);
+    let collectionRef = this.collection;
+    let i;
+    for (i = 0; i < this.nestedPaths.length; i += 2) {
+      if (this.nestedPaths.length > i + 1) {
+        collectionRef = collectionRef.doc(this.nestedPaths[i]).collection(this.nestedPaths[i + 1]);
       }
-      await collectionRef.doc(this.uid).update(data);
-      return [true, NaN];
-    } catch (error) {
-      return [false, error.message];
+      else { collectionRef = collectionRef.doc(this.nestedPaths[i]) }
     }
+    console.log(data)
+    await collectionRef.doc(this.uid).update(data);
+    return [true, NaN];
   }
 
   /**
@@ -88,8 +94,12 @@ export default class Firestore {
     try {
       let collectionRef = this.collection;
       // Traverse through nested paths and create collection references
-      for (const path of this.nestedPaths) {
-        collectionRef = collectionRef.doc(path).collection(path);
+      let counter = 1;
+      for (let i = 0; i < this.nestedPaths.length; i += 2) {
+        if (this.nestedPaths.length > i + 1) {
+          collectionRef = collectionRef.doc(this.nestedPaths[i]).collection(this.nestedPaths[i + 1]);
+        }
+        else { collectionRef = collectionRef.doc(this.nestedPaths[i]) }
       }
       await collectionRef.doc(this.uid).delete();
       return [true, NaN];
@@ -107,10 +117,12 @@ export default class Firestore {
       let collectionRef = this.collection;
 
       // Traverse through nested paths and create collection references
-      for (const path of this.nestedPaths) {
-        collectionRef = collectionRef.doc(path).collection(path);
+      for (let i = 0; i < this.nestedPaths.length; i += 2) {
+        if (this.nestedPaths.length > i + 1) {
+          collectionRef = collectionRef.doc(this.nestedPaths[i]).collection(this.nestedPaths[i + 1]);
+        }
+        else { collectionRef = collectionRef.doc(this.nestedPaths[i]) }
       }
-
       const docs = await collectionRef.listDocuments();
       const paths = docs.map((doc) => doc.path.split("/")[1]);
       return [true, paths];

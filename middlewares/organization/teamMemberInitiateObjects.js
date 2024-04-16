@@ -1,5 +1,5 @@
-import TeamMemberModel from "../../models/organization/TeamMemberModel";
-import isAuthorized from "../../utils/validation/isAuthorized";
+import TeamMemberModel from "../../models/organization/TeamMemberModel.js";
+import isAuthorized from "../../utils/validation/isAuthorized.js";
 
 const teamMemberInitiateObjects = (req, res, next) => {
   const response = isAuthorized(req.uid, ["Organization"], [0], req);

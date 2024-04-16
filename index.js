@@ -34,7 +34,6 @@ app.get("/", (_, res) => {
 // app.use(createResponse);
 app.use("/api/auth", authRouter);
 app.use(extractUidAndVerification, checkBanStatus);
-app.use("/api/usr", userDetailsRouter);
 app.use("/api/chat/msg", msgRouter);
 app.use("/api/chat/grp", grpRouter);
 app.use("/api/community", commRouter);

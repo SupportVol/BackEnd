@@ -18,22 +18,21 @@ const grpInitiateObjects = async (req, res, next) => {
     return allowedResponse[0];
   }
 
-  // Extract group ID from request body
-  req.groupID = req.body.groupid;
+  const { members, name, description, projectID, groupID } = req.body
 
   // Initialize Firestore instance with 'groups' collection
-  const fs = new Firestore("groups");
+  const fs = new Firestore("chatGroups");
 
   // Read existing groups from Firestore
-  const existingGroups = await fs.readGroup();
-
+  const allRecords = await fs.readAll()
+  const existingGroups = Object.keys(allRecords[1]);
   // If the requested group ID does not exist, return an error
-  if (!existingGroups.includes(req.groupID)) {
+  if (!existingGroups.includes(groupID) && req.method !== "POST") {
     return res.json({ response: ["The group ID is invalid", 404] });
   }
 
   // Initialize Group instance with the user ID and group ID
-  req.grpInstance = new Group(req.uid, req.groupID);
+  req.grpInstance = new Group(members, name, description, projectID, groupID);
 
   // Move to the next middleware function
   next();

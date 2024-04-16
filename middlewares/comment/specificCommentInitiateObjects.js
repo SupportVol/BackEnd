@@ -1,3 +1,4 @@
+import Comment from "../../models/communication/CommentModel.js";
 /**
  * Middleware function to initialize specific comment objects.
  * It extracts the id and message from the request body, and commentID from the request parameters.
@@ -10,16 +11,10 @@
  */
 const specificCommentInitiateObjects = (req, res, next) => {
   // Destructure id and message from request body
-  const { id, message } = req.body;
-
-  // Destructure commentID from request parameters
-  const { commentID } = req.params;
-
-  // Create a new Comment instance
-  const comment = new Comment(id, commentID, req.uid, message);
+  const { id, comment, commentID } = req.body;
 
   // Attach the Comment instance to the request object
-  req.commentInitialization = comment;
+  req.commentInitialization =  new Comment(id, commentID, req.uid, comment);
 
   // Call the next middleware function
   next();

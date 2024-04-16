@@ -4,9 +4,9 @@
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with group data.
  */
-const getGroup = (req, started_date) => {
+const getGroup = async (req, res) => {
   const { response, grpInstance } = req;
-  return response.respondJSON(grpInstance.read);
+  return await res.json({response:await grpInstance.read()});
 };
 
 /**
@@ -15,10 +15,10 @@ const getGroup = (req, started_date) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with group creation status.
  */
-const createGroup = (req, res) => {
+const createGroup = async (req, res) => {
   const { grpInstance } = req;
   return res.json({
-    response: grpInstance.create(),
+    response: await grpInstance.create(),
   });
 };
 
@@ -28,10 +28,10 @@ const createGroup = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - Response status.
  */
-const updateGroup = (req, res) => {
+const updateGroup = async (req, res) => {
   const { grpInstance } = req;
   return res.json({
-    response: grpInstance.update(),
+    response: await grpInstance.update(),
   });
 };
 
@@ -41,10 +41,10 @@ const updateGroup = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - Response status.
  */
-const deleteGroup = (req, res) => {
+const deleteGroup = async (req, res) => {
   const { grpInstance } = req;
   return res.json({
-    response: grpInstance.deleteGroup(),
+    response: await grpInstance.delete(),
   });
 };
 

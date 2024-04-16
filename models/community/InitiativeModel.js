@@ -2,11 +2,13 @@
 import Firestore from "../../firebaseCP/firestore.js";
 import updateData from "../../utils/firestore/updateData.js";
 import EndeavorEntity from "./EndeavorEntity.js";
+import { admin } from "../../config/firebase.js";
 
 /**
  * Class representing an Initiative.
  * @extends EndeavorEntity
  */
+
 export default class Initiative extends EndeavorEntity {
   /**
    * Create an Initiative.
@@ -27,15 +29,23 @@ export default class Initiative extends EndeavorEntity {
     mission,
     objectives,
     introductory_video_URL,
-    projects
+    projects,
+    communityUID,
+    initiativeUID
   ) {
     super(
-      name,
-      organizations,
-      volunteers,
-      started_date,
-      expected_completing_date,
-      initiated_organization
+    name,
+    organizations,
+    volunteers,
+    started_date,
+    expected_completing_date,
+    initiated_organization,
+    slogun,
+    mission,
+    objectives,
+    introductory_video_URL,
+    projects,
+    communityUID
     );
     this.slogun = slogun;
     this.mission = mission;
@@ -43,9 +53,11 @@ export default class Initiative extends EndeavorEntity {
     this.introductory_video_URL = introductory_video_URL;
     this.projects = projects ?? [];
     this.collectionName = "initiative";
-    this.fs = new Firestore(this.collectionName, this.initiativeID);
+    this.communityUID = communityUID
+    this.initiativeID = initiativeUID
+    this.fs = new Firestore(this.collectionName, this.initiativeID, []);
   }
-
+  
   /**
    * Create a new initiative.
    * @return {Promise} A promise that resolves with the created initiative.
@@ -63,8 +75,8 @@ export default class Initiative extends EndeavorEntity {
       objectives: this.objectives,
       introductory_video_URL: this.introductory_video_URL,
       projects: this.projects,
+      communityUID:this.communityUID
     };
-
     return this.fs.create(initiativeData);
   }
 
@@ -87,6 +99,7 @@ export default class Initiative extends EndeavorEntity {
         "objectives",
         "introductory_video_URL",
         "projects",
+        "communityUID"
       ],
       [
         this.name,
@@ -100,6 +113,7 @@ export default class Initiative extends EndeavorEntity {
         this.objectives,
         this.introductory_video_URL,
         this.projects,
+        this.communityUID
       ],
       record
     );

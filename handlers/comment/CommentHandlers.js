@@ -4,11 +4,11 @@
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with comment creation status.
  */
-const createComment = (req, res) => {
+const createComment = async (req, res) => {
   const { body, commentInitialization } = req;
   const { senderuid, commentTxt } = body;
   return res.json({
-    response: commentInitialization.createComment(senderuid, commentTxt),
+    response: await commentInitialization.create(senderuid, commentTxt),
   });
 };
 
@@ -18,10 +18,10 @@ const createComment = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with the comment data.
  */
-const getComment = (req, res) => {
+const getComment = async (req, res) => {
   const { commentInitialization } = req;
   return res.json({
-    response: commentInitialization.readComment(),
+    response: await commentInitialization.read(),
   });
 };
 
@@ -31,11 +31,11 @@ const getComment = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with comment update status.
  */
-const updateComment = (req, res) => {
+const updateComment = async (req, res) => {
   const { body, commentInitialization } = req;
   const { senderuid, commentTxt } = body;
   return res.json({
-    response: commentInitialization.updateComment(senderuid, commentTxt),
+    response: await commentInitialization.update(senderuid, commentTxt),
   });
 };
 
@@ -45,10 +45,10 @@ const updateComment = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with comment deletion status.
  */
-const deleteComment = (req, res) => {
+const deleteComment = async (req, res) => {
   const { commentInitialization } = req;
   return res.json({
-    response: commentInitialization.deleteComment(),
+    response: await commentInitialization.delete(),
   });
 };
 

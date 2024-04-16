@@ -17,9 +17,9 @@ export default class Comment extends CommunicationEntity {
   constructor(id, commentID, senderuid, commentTxt) {
     super(); // Call the parent class constructor
     this.collectionName = "comments";
-    this.nestedPath = [id]; // the id is of the event or whatever it is wage uk?
+    this.nestedPath = []; // the id is of the event or whatever it is wage uk?
     this.commentID = commentID;
-    this.firestore = new Firestore(
+    this.db = new Firestore(
       this.collectionName,
       commentID,
       this.nestedPath
@@ -28,9 +28,10 @@ export default class Comment extends CommunicationEntity {
       senderUID: senderuid,
       creationDate: Date.now(),
       comment: commentTxt,
+      id: id
     };
-    this.comment = this.firestore.read();
-    this.updateStructure = this.getUpdateStructure(senderuid, commentTxt);
+    this.comment = this.db.read();
+    this.updateStructure = this.getUpdateStructure(senderuid, commentTxt, id);
   }
 
   /**
@@ -39,10 +40,10 @@ export default class Comment extends CommunicationEntity {
    * @param {string} commentTxt - The text of the comment.
    * @returns {Object} The structure for updating a comment.
    */
-  getUpdateStructure(senderuid, commentTxt) {
+  getUpdateStructure(senderUID, commentTxt, id) {
     return updateData(
-      ["comment", "updateDate", "senderuid"],
-      [commentTxt, Date.now(), senderuid],
+      ["comment", "updateDate", "senderUID", "id"],
+      [commentTxt, Date.now(), senderUID, id],
       this.comment
     );
   }

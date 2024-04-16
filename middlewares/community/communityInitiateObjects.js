@@ -6,7 +6,7 @@
  * @returns {void}
  */
 
-import Community from "../../models/community/community.js";
+import Community from "../../models/community/CommunityModel.js";
 import isAuthorized from "../../utils/validation/isAuthorized.js";
 /**
  * Initiate community objects and attach them to the request object.
@@ -24,20 +24,32 @@ const initiateCommunityObjects = async (req, res, next) => {
     req.communityUID = req.body.communityuid;
 
     // If the user is not authorized and the request method is not GET, return the error message
-    if (Array.isArray(allowed) && req.method !== "GET") {
+    if (Array.isArray(allowed) && req.method !== "POST") {
       return res.status(403).json({ status: 403, message: allowed[0] });
     }
-
+    const { communityUID,
+      name,
+      title,
+      description,
+      photoUrl,
+      banner,
+      theme,
+      members } = req.body
     // Create a new community instance and attach it to the request object
-    req.commInstance = new Community(req.uid, req.communityUID);
-
+    req.commInstance = new Community(communityUID,
+      name,
+      title,
+      description,
+      photoUrl,
+      banner,
+      theme,
+      members);
     // Proceed to the next middleware
     next();
   } catch (error) {
     // If an error occurs, return a 500 status code with an error message
     return res.status(500).json({
-      status: 500,
-      message: "Internal server error",
+      message: error.message,
     });
   }
 };

@@ -1,5 +1,5 @@
 import Firestore from "../../firebaseCP/firestore.js";
-
+import firebaseDate from "../../utils/helper/firebaseDate.js";
 /**
  * EndeavorEntity class represents an endeavor in the community.
  * It provides methods to interact with the Firestore database.
@@ -20,14 +20,19 @@ export default class EndeavorEntity {
     volunteers = [],
     started_date,
     expected_completing_date,
-    initiated_organization
+    initiated_organization,
+    communityUID
   ) {
     this.name = name;
     this.organizations = organizations;
     this.volunteers = volunteers;
-    this.started_date = new Date(started_date);
-    this.expected_completing_date = new Date(expected_completing_date);
+    // Convert string to Date object
+    // const startedDate = new Date(Number(started_date[0]), Number(started_date[1]), Number(started_date[2]));
+    // const expectedCompletingDate = new Date(Number(expected_completing_date[0]), Number(expected_completing_date[1]), Number(expected_completing_date[2]));
+    this.started_date = started_date // firebaseDate(false, startedDate);
+    this.expected_completing_date = expected_completing_date // firebaseDate(false, expectedCompletingDate);
     this.initiated_organization = initiated_organization;
+    this.communityUID = communityUID
     this.fs = new Firestore("endeavors");
   }
 
@@ -53,9 +58,6 @@ export default class EndeavorEntity {
    */
   async read() {
     const docSnapshot = await this.fs.read();
-    if (!docSnapshot.exists) {
-      return [false, "Document does not exist"];
-    }
-    return [true, docSnapshot.data()];
+    return [true, docSnapshot];
   }
 }

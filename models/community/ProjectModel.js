@@ -15,7 +15,7 @@ export default class Project extends EndeavorEntity {
     volunteers,
     started_date,
     expected_completing_date,
-    initiated_organization
+    initiated_organization, communityUID, initiativeUID = false,projectID
   ) {
     // Call the parent constructor with required parameters
     super(
@@ -24,12 +24,14 @@ export default class Project extends EndeavorEntity {
       volunteers,
       started_date,
       expected_completing_date,
-      initiated_organization
-    );
+      initiated_organization,
+      communityUID,
 
+    );
+    this.projectID = projectID
     // Initialize instance variables
     this.description = description;
-    this.fs = new Firestore("projects", this.projectID);
+    this.fs = new Firestore("projects", this.projectID, initiativeUID ? [communityUID, initiativeUID] : [communityUID]);
   }
 
   /**
@@ -37,7 +39,8 @@ export default class Project extends EndeavorEntity {
    * @returns {Promise} - Promise representing the creation of the project
    */
   async create() {
-    return this.fs.create({
+    console.log(this);
+    const hello = await this.fs.create({
       name: this.name,
       description: this.description,
       organizations: this.organizations,
@@ -46,6 +49,8 @@ export default class Project extends EndeavorEntity {
       expected_completing_date: this.expected_completing_date,
       initiated_organization: this.initiated_organization,
     });
+    console.log(hello);
+    return hello
   }
 
   /**
@@ -54,7 +59,7 @@ export default class Project extends EndeavorEntity {
    */
   async update() {
     const record = await this.read();
-    return this.fs.update(
+    return await this.fs.update(
       updateData(
         [
           "name",

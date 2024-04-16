@@ -32,7 +32,7 @@ export default class CommunicationEntity {
    * @returns {Promise} - A promise that resolves when the entity is deleted
    */
   delete() {
-    return this.db.delete();
+    return this.db.delete(this.id);
   }
 
   /**

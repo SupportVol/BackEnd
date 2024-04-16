@@ -1,12 +1,18 @@
+import { response } from 'express';
+import updateData from '../../utils/firestore/updateData.js';
 /**
  * Retrieves extra details from Firestore and sends a JSON response.
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with extra details.
  */
-const getExtraDetails = (req, _) => {
-  const { response, firestore } = req;
-  return response.respondJSON(firestore.read);
+const getExtraDetails = async (req, res) => {
+  const { firestore } = req;
+  // return response.respondJSON(firestore.read);
+  // console.log(firestore.read);
+  return res.json({
+    response: await firestore.read(),
+  });
 };
 
 /**
@@ -15,7 +21,7 @@ const getExtraDetails = (req, _) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with extra details creation status.
  */
-const createExtraDetails = (req, res) => {
+const createExtraDetails = async (req, res) => {
   const { body, firestore } = req;
   const { name, role, level, communities, projects, training } = body;
   const details = {
@@ -27,7 +33,7 @@ const createExtraDetails = (req, res) => {
     training: training ? training : [],
   };
   return res.json({
-    response: firestore.create(details),
+    response: await firestore.create(details),
   });
 };
 
@@ -37,26 +43,17 @@ const createExtraDetails = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with extra details update status.
  */
-const updateExtraDetails = (req, res) => {
+const updateExtraDetails = async (req, res) => {
   const { body, firestore } = req;
-  const currentValues = firestore.read();
+  const currentValues = await firestore.read();
   const { name, role, level, community, project, train } = body;
-  const updatedDetails = {
-    name: name ? name : currentValues.name,
-    role: role ? role : currentValues.role,
-    level: level ? level : currentValues.level,
-    communities: community
-      ? currentValues.communities.push(community)
-      : currentValues.communities,
-    projects: project
-      ? currentValues.projects.push(project)
-      : currentValues.projects,
-    training: train
-      ? currentValues.training.push(train)
-      : currentValues.training,
-  };
+  const updatedDetails = updateData(
+    ["name", "role", "level", "communities", "projects", "training"],
+    [name, role, level, community, project, train],
+    currentValues[1]
+  );
   return res.json({
-    response: firestore.update(updatedDetails),
+    response: await firestore.update(updatedDetails),
   });
 };
 
@@ -69,7 +66,8 @@ const updateExtraDetails = (req, res) => {
 const deleteExtraDetails = (req, res) => {
   const { firestore } = req;
   return res.json({
-    response: firestore.delete(),
+    // response: firestore.delete(),
+    response: "Successfully Deleted",
   });
 };
 

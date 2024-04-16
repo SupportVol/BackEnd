@@ -4,10 +4,10 @@
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with all messages.
  */
-const getAllMessages = (req, res) => {
+const getAllMessages = async (req, res) => {
   const { msgInstance } = req;
   return res.json({
-    response: msgInstance.readAllMessages(),
+    response: await msgInstance.read(),
   });
 };
 
@@ -17,10 +17,10 @@ const getAllMessages = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - JSON response with message creation status.
  */
-const createMessage = (req, res) => {
+const createMessage = async (req, res) => {
   const { msgInstance } = req;
   return res.json({
-    response: msgInstance.createMessage(),
+    response: await msgInstance.create(),
   });
 };
 
@@ -30,10 +30,10 @@ const createMessage = (req, res) => {
  * @param {Object} res - The response object.
  * @returns {Object} - Response status.
  */
-const deleteMessage = (req, res) => {
+const deleteMessage = async (req, res) => {
   const { msgInstance } = req;
-  const response = msgInstance.deleteMessage();
-  return res.status(response[0] ? 200 : 500);
+  const response = await msgInstance.delete();
+  return res.json(response);
 };
 
 export { getAllMessages, createMessage, deleteMessage };
