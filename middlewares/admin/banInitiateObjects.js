@@ -13,8 +13,9 @@ import isAuthorized from "../../utils/validation/isAuthorized.js";
  */
 const banInitiateObjects = (req, res, next) => {
   // Check if the user is authorized
-  if (!isAuthorized(req.uid, ["Admin"], [1], req)) {
-    return req.responseError("Not authorized", 401);
+  const response = isAuthorized(req.uid, ["Admin"], [1]);
+  if (Array.isArray(response)) {
+    return res.json({ response: response });
   }
 
   // Create a new Ban object and add it to the request object

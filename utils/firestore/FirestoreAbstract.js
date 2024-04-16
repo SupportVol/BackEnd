@@ -16,7 +16,7 @@ export default class FirestoreAbstract {
    * @returns {Promise} The promise that resolves with the result of the read operation.
    */
   read() {
-    return this.fs.readAll();
+    return this.fs.read();
   }
 
   /**

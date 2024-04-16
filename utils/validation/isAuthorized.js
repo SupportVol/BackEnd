@@ -12,14 +12,13 @@ const isAuthorized = async (
   uid,
   roles = ["Admin", "Organization", "Volunteer"],
   level = [],
-  req
 ) => {
   try {
     const authFS = new Firestore("users", uid);
     const userData = await authFS.read()[1];
     const allowed =
       roles.includes(userData.role) && level.includes(userData.level);
-    return allowed ? true : [req.responseError("Not authorized", 401)];
+    return allowed ? true : ["Not authorized", 401];
   } catch (error) {
     console.error("Error checking user authorization:", error.message);
     return false;
