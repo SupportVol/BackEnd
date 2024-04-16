@@ -9,7 +9,7 @@ export class Authentication {
    * @param {object} userData - The user data to create the user.
    * @returns {Promise<[boolean, string]>} - A tuple indicating success status and the user ID.
    */
-  async createUser(userData) {
+  static async createUser(userData) {
     try {
       const userRecord = await auth.createUser(userData);
       return [true, userRecord.uid];
@@ -18,14 +18,16 @@ export class Authentication {
       return [false, error.message];
     }
   }
-
+  static verificationEmail(email) {
+    return auth.generateEmailVerificationLink(email);
+  }
   /**
    * Logs in the user with the provided email and password.
    * @param {string} email - The user's email.
    * @param {string} password - The user's password.
    * @returns {Promise<[boolean, string]>} - A tuple indicating success status and the user ID.
    */
-  async loginUser(email, password) {
+  static async loginUser(email, password) {
     try {
       const userRecord = await firebase
         .auth()
@@ -42,7 +44,7 @@ export class Authentication {
    * @param {object} updateUserData - The data to update the user with.
    * @returns {Promise<[boolean, object]>} - A tuple indicating success status and the updated user data.
    */
-  async updateUser(uid, updateUserData) {
+  static async updateUser(uid, updateUserData) {
     try {
       const userRecord = await auth.updateUser(uid, updateUserData);
       return [true, userRecord.toJSON()];
@@ -56,7 +58,7 @@ export class Authentication {
    * @param {string} uid - The user ID to retrieve.
    * @returns {Promise<[boolean, object]>} - A tuple indicating success status and the retrieved user data.
    */
-  async getUser(uid) {
+  static async getUser(uid) {
     try {
       const user = await auth.getUser(uid);
       return [true, user];
@@ -70,12 +72,29 @@ export class Authentication {
    * @param {string} uid - The user ID to delete.
    * @returns {Promise<[boolean, string]>} - A tuple indicating success status and the deleted user ID.
    */
-  async deleteUser(uid) {
+  static async deleteUser(uid) {
     try {
       await auth.deleteUser(uid);
       return [true, uid];
     } catch (error) {
       return [false, error.message];
     }
+  }
+
+  static async createPhoneVerification(phoneNumber) {
+    const request = await auth.createSessionCookie(phoneNumber, {
+      expiresIn: 3600,
+    });
+    return request;
+  }
+
+  static async verityPhoneVerification(verificationId, otp) {
+    const userCreds = await auth.verifySessionCookie(verificationId, otp);
+    return userCreds;
+  }
+
+  static async resetPassword(email) {
+    const request = await auth.sendPasswordResetEmail(email);
+    return request;
   }
 }

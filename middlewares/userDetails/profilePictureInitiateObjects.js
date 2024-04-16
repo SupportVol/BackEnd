@@ -13,8 +13,8 @@ import {Storage} from "../../firebaseCP/storage.js";
  */
 const initAuthentication = (req, _, next) => {
   // Create a new instance of Authentication and attach it to the request object
-  req.auth = new Authentication();
-  req.storage = new Storage();
+  req.auth = Authentication();
+  req.storage = Storage();
   // Call the next middleware function
   next();
 };

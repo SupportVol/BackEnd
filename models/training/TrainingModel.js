@@ -13,6 +13,7 @@ export default class Training extends FirestoreAbstract {
     additional_notes,
     orgID
   ) {
+    super();
     this.createStructure = {
       name: name,
       description: description,

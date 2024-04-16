@@ -15,7 +15,7 @@ export default class Auth {
   constructor(email, password) {
     this.email = email;
     this.password = password;
-    this.authRef = new Authentication();
+    this.authRef = Authentication();
   }
 
   /**
@@ -29,14 +29,19 @@ export default class Auth {
     };
     const response = await this.authRef.createUser(user);
     await this.authRef.updateUser(response[1], {photoURL:randomImageGenerator()})
-    return response;
+    const link = await this.authRef.verificationEmail(this.email);
+    return [response, link];
   }
 
   /**
    * Login a user.
    * @returns {Promise} A promise that resolves with the logged in user.
    */
-  async loginUser() {
-    return await this.authRef.loginUser(this.email, this.password);
+  loginUser() {
+    return this.authRef.loginUser(this.email, this.password);
+  }
+
+  resetPassword() {
+    return this.authRef.resetPassword(this.email);
   }
 }

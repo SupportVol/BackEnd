@@ -62,8 +62,7 @@ export default class Initiative extends EndeavorEntity {
    * Create a new initiative.
    * @return {Promise} A promise that resolves with the created initiative.
    */
-  async create() {
-    // console.log(this);
+  create() {
     const initiativeData = {
       name: this.name,
       organizations: this.organizations,
@@ -78,16 +77,16 @@ export default class Initiative extends EndeavorEntity {
       projects: this.projects,
       communityUID:this.communityUID
     };
-    return await this.fs.create(initiativeData);
+    return this.fs.create(initiativeData);
   }
 
   /**
    * Update an existing initiative.
    * @return {Promise} A promise that resolves with the updated initiative.
    */
-  async update() {
-    const record = await this.read();
-    const updatedData =  updateData(
+  update() {
+    const record = this.read();
+    const updatedData = updateData(
       [
         "name",
         "organizations",
@@ -118,7 +117,6 @@ export default class Initiative extends EndeavorEntity {
       ],
       record
     );
-    console.log(updatedData)
-    return await this.fs.update(updatedData);
+    return this.fs.update(updatedData);
   }
 }

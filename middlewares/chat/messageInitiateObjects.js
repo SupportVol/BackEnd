@@ -1,6 +1,6 @@
 // Importing required modules
 import Message from "../../models/communication/MessageModel.js";
-import isAuthorized from "../../utils/validation/isAuthorized.js";
+// import isAuthorized from "../../utils/validation/isAuthorized.js";
 
 /**
  * Middleware function to initialize a Message instance for handling chat messages.
@@ -8,7 +8,7 @@ import isAuthorized from "../../utils/validation/isAuthorized.js";
  * @param {Object} res - The response object. Not used in this middleware.
  * @param {Function} next - The next middleware function.
  */
-const messageInitiateObjects = (req, res, next) => {
+const messageInitiateObjects = (req, _, next) => {
   // Destructuring required properties from request body
   const { message, groupID, messageID } = req.body;
 

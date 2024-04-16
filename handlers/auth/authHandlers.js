@@ -17,3 +17,7 @@ export const handleLogin = async (req, res) => {
   const returnedVal = await req.auth.loginUser();
   res.json({ response: returnedVal });
 };
+export const handleResetPassword = (req, res) => {
+  const response = req.auth.resetPassword();
+  return res.json({  response });
+};
