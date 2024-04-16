@@ -20,6 +20,7 @@ import profilePictureRouter from "./routes/user/profilePicture.js";
 import extractUidAndVerification from "./middlewares/extractUidAndVerification.js";
 import trainRouter from "./routes/training/trainingRoutes.js";
 import phoneAuthRouter from "./routes/auth/PhoneAuthRoutes.js";
+import teamMemberRouter from "./routes/organizations/teamMemberRouter.js";
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.use("/api/usr/extradetails", extraDetailsRouter);
 app.use("/api/usr/photo", profilePictureRouter);
 app.use("/api/training", trainRouter);
 app.use("/api/auth", phoneAuthRouter);
+app.use("/api/org/teamMember", teamMemberRouter);
 app.use((err, _, res, __) => {
   console.error(err.stack);
   res.status(500).send("Internal Server Error");
