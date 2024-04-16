@@ -10,7 +10,7 @@ export default class Firestore {
    * @param {string} collectionName - The name of the Firestore collection.
    * @param {string} uid - The unique identifier for the document.
    */
-  constructor(collectionName, uid, nestedPaths = []) {
+  constructor(collectionName, uid = false, nestedPaths = []) {
     this.collectionName = collectionName;
     this.collection = admin.firestore().collection(collectionName);
     this.uid = uid;

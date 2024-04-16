@@ -16,15 +16,15 @@ export default class News extends Article {
    * @param {string} senderUID - The UID of the sender.
    * @param {string} orgID - The ID of the organization.
    */
-  constructor(newsID, title, description, tags, senderUID, orgID) {
+  constructor(newsID, title, description, tags, senderUID, communityID) {
     // Calling the parent class constructor
-    super(title, description, tags, senderUID, orgID);
+    super(title, description, tags, senderUID);
 
     // Initializing properties
     this.newsID = newsID;
     this.type = "news";
 
     // Creating a new Firestore instance
-    this.firestore = new Firestore(this.type, newsID, [orgID]);
+    this.firestore = new Firestore(this.type, newsID, [communityID]);
   }
 }

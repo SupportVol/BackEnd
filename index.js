@@ -18,6 +18,7 @@ import phoneNumberRouter from "./routes/user/phoneNumber.js";
 import extraDetailsRouter from "./routes/user/extraDetails.js";
 import profilePictureRouter from "./routes/user/profilePicture.js";
 import extractUidAndVerification from "./middlewares/extractUidAndVerification.js";
+import trainRouter from "./routes/training/trainingRoutes.js";
 // import createResponse from "./middlewares/createResponse.js";
 
 const app = express();
@@ -46,11 +47,10 @@ app.use("/api/news", NewsRouter);
 app.use("/api/usr/phonenumber", phoneNumberRouter);
 app.use("/api/usr/extradetails", extraDetailsRouter);
 app.use("/api/usr/photo", profilePictureRouter);
-
-app.use((err, req, res, __) => {
+app.use("/api/training", trainRouter);
+app.use((err, _, res, __) => {
   console.error(err.stack);
-  req.response.respondError("Internal Server Error", 500) ??
-    res.status(500).send("Internal Server Error");
+  res.status(500).send("Internal Server Error");
 });
 
 // Start the server

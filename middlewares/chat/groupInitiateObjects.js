@@ -29,7 +29,7 @@ const grpInitiateObjects = async (req, res, next) => {
 
   // If the requested group ID does not exist, return an error
   if (!existingGroups.includes(req.groupID)) {
-    return req.response.responseError("The group ID is invalid", 404);
+    return res.json({ response: ["The group ID is invalid", 404] });
   }
 
   // Initialize Group instance with the user ID and group ID
