@@ -11,7 +11,6 @@ import Ban from "../../models/authentication/BanModel.js";
 const checkBanStatus = async (req, res, next) => {
   // Create a new instance of Ban
   const ban = new Ban(req.uid);
-  console.log(req.uid); // Check if the user is banned
   const isBanned = await ban.isUserBanned();
 
   // If the user is banned, send a 403 response

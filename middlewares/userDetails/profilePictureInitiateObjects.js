@@ -1,4 +1,5 @@
 import { Authentication } from "../../firebaseCP/authentication.js";
+import {Storage} from "../../firebaseCP/storage.js";
 // Importing the Authentication class from firebaseCP
 
 /**

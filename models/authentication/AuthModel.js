@@ -23,14 +23,12 @@ export default class Auth {
    * @returns {Promise} A promise that resolves with the created user.
    */
   async createUser() {
-    console.log(this.email, this.password);
     const user = {
       email: this.email,
       password: this.password,
     };
-    // console.log(user);
     const response = await this.authRef.createUser(user);
-    // console.log(response);
+    await this.authRef.updateUser(response[1], {photoURL:"https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png"})
     return response;
   }
 

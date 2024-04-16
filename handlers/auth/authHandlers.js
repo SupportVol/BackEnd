@@ -15,6 +15,5 @@ export const handleSignup = async (req, res) => {
  */
 export const handleLogin = async (req, res) => {
   const returnedVal = await req.auth.loginUser();
-  console.log(returnedVal);
   res.json({ response: returnedVal });
 };
