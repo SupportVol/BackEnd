@@ -1,12 +1,12 @@
 import { Router } from "express";
-import trainInitiateObjects from "../../middlewares/training/trainInitiateObjects";
-import trainAuthorization from "../../middlewares/training/trainAuthorization";
+import trainInitiateObjects from "../../middlewares/training/trainInitiateObjects.js";
+import trainAuthorization from "../../middlewares/training/trainAuthorization.js";
 import {
   createTraining,
   deleteTraining,
   getTraining,
   updateTraining,
-} from "../../handlers/training/TrainHandlers";
+} from "../../handlers/training/TrainHandlers.js";
 
 const trainRouter = Router();
 

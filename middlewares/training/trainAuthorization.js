@@ -1,4 +1,4 @@
-import isAuthorized from "../../utils/validation/isAuthorized";
+import isAuthorized from "../../utils/validation/isAuthorized.js";
 
 const trainAuthorization = (req, res, next) => {
   const response = isAuthorized(

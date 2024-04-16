@@ -1,4 +1,4 @@
-import Training from "../../models/training/TrainingModel";
+import Training from "../../models/training/TrainingModel.js";
 
 const trainInitiateObjects = (req, res, next) => {
   const {
