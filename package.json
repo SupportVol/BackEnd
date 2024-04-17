@@ -1,6 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "This repository manages data storage, authentication, and business logic for efficient volunteer coordination.",
   "main": "index.js",
   "dependencies": {
@@ -120,6 +121,5 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.0"
-  },
-  "type": "module"
+  }
 }
