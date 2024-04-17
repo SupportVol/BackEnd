@@ -1,1 +1,3 @@
 runtime: nodejs20
+env: standard
+service_account: support-vol@appspot.gserviceaccount.com
