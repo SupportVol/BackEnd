@@ -7,11 +7,11 @@ const getMembershipRequests = (req, res) => {
 };
 const approveMembershipRequest = (req, res) => {
   const response = req.membershipInstance.approve();
-  res.sendStatus(200).json({ response: response });
+  res.sendStatus(200).json({ response });
 };
 const declineMembershipRequest = (req, res) => {
   const response = req.membershipInstance.decline();
-  res.sendStatus(200).json({ response: response });
+  res.sendStatus(200).json({ response });
 };
 export {
   getMembershipRequests,

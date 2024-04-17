@@ -16,14 +16,14 @@ export default class Training extends FirestoreAbstract {
   ) {
     super();
     this.createStructure = {
-      name: name,
-      description: description,
-      location: location,
-      trainer: trainer,
-      participants: participants,
-      // feedback: feedback,
-      status: status,
-      additional_notes: additional_notes,
+      name,
+      description,
+      location,
+      trainer,
+      participants,
+      //  feedback,
+      status,
+      additional_notes,
       creationDate: Date.now(),
     };
     this.fs = new Firestore("training", trainID, []);
@@ -38,7 +38,7 @@ export default class Training extends FirestoreAbstract {
         "status",
         "additional_notes",
         "creationDate",
-        "orgID"
+        "orgID",
       ],
       [
         name,
@@ -49,7 +49,7 @@ export default class Training extends FirestoreAbstract {
         status,
         additional_notes,
         Date.now(),
-        orgID
+        orgID,
       ],
       currentRecord
     );

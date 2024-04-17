@@ -15,13 +15,13 @@ export default class MembershipRequestModel extends FirestoreAbstract {
   ) {
     super();
     this.createStructure = {
-      name: name,
-      description: description,
-      email: email,
-      password: password,
-      registrationCertificateUrl: registrationCertificateUrl,
-      annualReportUrl: annualReportUrl,
-      legalDocumentsUrl: legalDocumentsUrl,
+      name,
+      description,
+      email,
+      password,
+      registrationCertificateUrl,
+      annualReportUrl,
+      legalDocumentsUrl,
       creationDate: Date.now(),
     };
     const currentRecord = this.read();
@@ -62,7 +62,7 @@ export default class MembershipRequestModel extends FirestoreAbstract {
     this.auth.createUser({ email: record.email, password: record.password });
     this.authFS = new Firestore("users", orgID);
     this.authFS.create({
-      orgID: orgID,
+      orgID,
       role: "Organization",
       level: 0,
     });
