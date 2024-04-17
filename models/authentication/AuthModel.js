@@ -1,4 +1,5 @@
 import { Authentication } from "../../firebaseCP/authentication.js";
+import randomImageGenerator from "../../utils/helper/randomImageGenerator.js";
 
 /**
  * Class representing authentication operations.
@@ -15,7 +16,7 @@ export default class Auth {
   constructor(email, password) {
     this.email = email;
     this.password = password;
-    this.authRef = Authentication();
+    this.authRef = new Authentication();
   }
 
   /**
@@ -28,7 +29,9 @@ export default class Auth {
       password: this.password,
     };
     const response = await this.authRef.createUser(user);
-    await this.authRef.updateUser(response[1], {photoURL:randomImageGenerator()})
+    await this.authRef.updateUser(response[1], {
+      photoURL: randomImageGenerator(),
+    });
     const link = await this.authRef.verificationEmail(this.email);
     return [response, link];
   }

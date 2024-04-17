@@ -19,7 +19,6 @@ export default class Article {
     this.description = description;
     this.tags = tags;
     this.senderUID = senderUID;
-    console.log(orgID, communityID)
     this.formID = orgID ?? communityID;
     this.articleID = articleID;
     this.articleType = "article";

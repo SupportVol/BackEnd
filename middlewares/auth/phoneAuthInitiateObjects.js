@@ -1,7 +1,7 @@
 import { Authentication } from "../../firebaseCP/authentication.js";
 
 const phoneAuthInitiateObjects = (req, _, next) => {
-  req.auth = Authentication();
+  req.auth = new Authentication();
   next();
 };
 

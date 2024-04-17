@@ -8,8 +8,6 @@ import updateData from '../../utils/firestore/updateData.js';
  */
 const getExtraDetails = async (req, res) => {
   const { firestore } = req;
-  // return response.respondJSON(firestore.read);
-  // console.log(firestore.read);
   return res.json({
     response: await firestore.read(),
   });

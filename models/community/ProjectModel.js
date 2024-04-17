@@ -39,7 +39,6 @@ export default class Project extends EndeavorEntity {
    * @returns {Promise} - Promise representing the creation of the project
    */
   async create() {
-    console.log(this);
     const hello = await this.fs.create({
       name: this.name,
       description: this.description,
@@ -49,7 +48,6 @@ export default class Project extends EndeavorEntity {
       expected_completing_date: this.expected_completing_date,
       initiated_organization: this.initiated_organization,
     });
-    console.log(hello);
     return hello
   }
 

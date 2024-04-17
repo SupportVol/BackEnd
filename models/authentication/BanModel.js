@@ -31,7 +31,6 @@ export default class Ban {
    * @returns {boolean} - A boolean indicating if the user is banned
    */
   async isUserBanned() {
-    // console.log(this.uid);
     const user = await auth.getUser(this.uid);
     return user.customClaims?.banned || false;
   }

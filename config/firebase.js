@@ -87,4 +87,3 @@ export {
   getDownloadURL,
   deleteObject,
 };
-

@@ -1,23 +1,29 @@
-/**
- * Handles user signup.
- * @param {Object} req - Express request object.
- * @param {Object} res - Express response object.
- */
 export const handleSignup = async (req, res) => {
-  const returnedVal = await req.auth.createUser();
-  res.json({ response: returnedVal });
+  try {
+    const returnedVal = await req.auth.createUser();
+    res.json({ response: returnedVal });
+  } catch (error) {
+    console.error("Signup Error:", error);
+    res.status(500).send("Signup failed");
+  }
 };
 
-/**
- * Handles user login.
- * @param {Object} req - Express request object.
- * @param {Object} res - Express response object.
- */
 export const handleLogin = async (req, res) => {
-  const returnedVal = await req.auth.loginUser();
-  res.json({ response: returnedVal });
+  try {
+    console.log("Attempting to login:", req.auth);
+    const returnedVal = await req.auth.loginUser();
+    res.json({ response: returnedVal });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
-export const handleResetPassword = (req, res) => {
-  const response = req.auth.resetPassword();
-  return res.json({  response });
+
+export const handleResetPassword = async (req, res) => {
+  try {
+    const response = await req.auth.resetPassword();
+    res.json({ response });
+  } catch (error) {
+    console.error("Reset Password Error:", error);
+    res.status(500).send("Password reset failed");
+  }
 };

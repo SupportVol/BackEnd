@@ -20,11 +20,6 @@ const authInitiateObjects = (req, _, next) => {
     return;
   }
 
-  // TODO: Validate email
-  // if (!isValidEmail(email)) {
-  //   return req.response.responseError("Invalid email", 401);
-  // }
-  // console.log(email, password);
   // Create an Auth object with the parameters and attach it to the request object
   req.auth = new Auth(email, password);
 

@@ -11,7 +11,7 @@ import { Authentication } from "../../firebaseCP/authentication.js";
 const pfpInitiateObjects = (req, _, next) => {
   // Initialize Storage and Authentication objects
   req.storage = new Storage();
-  req.auth = Authentication();
+  req.auth = new Authentication();
   next();
 };
 

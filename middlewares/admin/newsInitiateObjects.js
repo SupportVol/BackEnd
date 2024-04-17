@@ -29,9 +29,6 @@ const newsInitiateObjects = (req, res, next) => {
   req.newsInitialization = new News(
     newsID, title, description, tags, senderUID, communityID
   );
-
-
-  console.log("It went through")
   // Proceed to the next middleware
   next();
 };

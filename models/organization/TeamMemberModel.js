@@ -6,7 +6,7 @@ export default class TeamMemberModel {
     this.email = email;
     this.password = password;
     this.uid = uid;
-    this.auth = Authentication();
+    this.auth = new Authentication();
     this.firestore = new Firestore("users", uid);
   }
   createMember() {

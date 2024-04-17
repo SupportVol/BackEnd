@@ -67,7 +67,7 @@ export class Storage {
    * @param {string} path - The path of the file to delete.
    * @returns {Promise<[boolean, string | Error]>} A promise containing deletion status and download URL (if successful).
    */
-  static async deleteFile(path) {
+  async deleteFile(path) {
     try {
       const storageRef = ref(storage, path);
       await deleteObject(storageRef);
