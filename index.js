@@ -29,7 +29,9 @@ app.use(bodyParser.json());
 app.get("/", (_, res) => {
   res.send("Hello World!");
 });
-
+app.get("/test", (_, res) => {
+  res.send("This is testing update :)");
+});
 // Use routers
 // app.use(createResponse);
 app.use("/api/auth", authRouter);
