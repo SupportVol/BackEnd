@@ -1,7 +1,7 @@
-import { Authentication } from "../../firebaseCP/authentication";
-import Firestore from "../../firebaseCP/firestore";
-import FirestoreAbstract from "../../utils/firestore/FirestoreAbstract";
-import updateData from "../../utils/firestore/updateData";
+import { Authentication } from "../../firebaseCP/authentication.js";
+import Firestore from "../../firebaseCP/firestore.js";
+import FirestoreAbstract from "../../utils/firestore/FirestoreAbstract.js";
+import updateData from "../../utils/firestore/updateData.js";
 
 export default class MembershipRequestModel extends FirestoreAbstract {
   constructor(
@@ -11,7 +11,8 @@ export default class MembershipRequestModel extends FirestoreAbstract {
     name,
     email,
     password,
-    description
+    description,
+    requestID = false
   ) {
     super();
     this.createStructure = {
@@ -50,13 +51,14 @@ export default class MembershipRequestModel extends FirestoreAbstract {
       ],
       currentRecord
     );
-    this.fs = new Firestore("organizationsRequests", false);
+    this.requestID = requestID;
+    this.fs = new Firestore("organizationsRequests", this.requestID);
   }
 
   approve() {
     const record = this.fs.read();
     this.fs.delete();
-    this.fs = new Firestore("organizations", false);
+    this.fs = new Firestore("organizations", this.requestID);
     const orgID = this.fs.create(record)[1];
     this.auth = new Authentication();
     this.auth.createUser({ email: record.email, password: record.password });

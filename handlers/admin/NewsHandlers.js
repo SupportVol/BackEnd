@@ -6,8 +6,15 @@
  */
 const getNews = async (req, res) => {
   const { newsInitialization } = req;
+  let response;
+  if (req.body.all) {
+    response = await newsInitialization.readAll();
+  } else {
+    response = await newsInitialization.read();
+  }
+
   return res.json({
-    response: await newsInitialization.read(),
+    response,
   });
 };
 
@@ -33,7 +40,7 @@ const createNews = async (req, res) => {
 const updateNews = async (req, res) => {
   const { newsInitialization } = req;
   const response = await newsInitialization.update();
-  res.json({response});
+  res.json({ response });
 };
 
 /**
@@ -45,7 +52,7 @@ const updateNews = async (req, res) => {
 const deleteNews = async (req, res) => {
   const { newsInitialization } = req;
   const response = await newsInitialization.delete();
-  return res.json({response});
+  return res.json({ response });
 };
 
 export { getNews, createNews, updateNews, deleteNews };

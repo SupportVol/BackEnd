@@ -22,12 +22,20 @@ const newsInitiateObjects = (req, res, next) => {
   // Destructure the request body
   const { newsID, title, description, tags, senderUID, communityID } = req.body;
   // Check if all required fields are present
-  if ((!title && !description && !tags && !communityID && !senderUID) || !newsID) {
+  if (
+    (!title && !description && !tags && !communityID && !senderUID) ||
+    !newsID
+  ) {
     res.status(400);
   }
   // Initialize the news object
   req.newsInitialization = new News(
-    newsID, title, description, tags, senderUID, communityID
+    newsID,
+    title,
+    description,
+    tags,
+    senderUID,
+    communityID
   );
   // Proceed to the next middleware
   next();

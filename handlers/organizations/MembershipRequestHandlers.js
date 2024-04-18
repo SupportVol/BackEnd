@@ -1,5 +1,11 @@
-const getMembershipRequests = (req, res) => {
-  const response = req.membershipInstance.readAll();
+const getMembershipRequests = async (req, res) => {
+  const showAll = req.body.all ?? false;
+  let response;
+  if (showAll) {
+    response = await req.membershipInstance.read();
+  } else {
+    response = await req.membershipInstance.readAll();
+  }
   res
     .sendStatus(200)
     .statusMessage("Successfully fetched all membership requests")

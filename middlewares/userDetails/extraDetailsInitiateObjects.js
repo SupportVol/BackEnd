@@ -20,6 +20,7 @@ import Firestore from "../../firebaseCP/firestore.js";
 const extraDetailsInitiateObjects = (req, _, next) => {
   // Create a new Firestore instance with the "users" collection and the user's uid
   // Attach this instance to the request object
+  console.log(req.uid);
   req.firestore = new Firestore("users", req.uid);
 
   // Call the next middleware function

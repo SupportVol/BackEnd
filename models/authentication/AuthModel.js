@@ -47,4 +47,7 @@ export default class Auth {
   resetPassword() {
     return this.authRef.resetPassword(this.email);
   }
+  getAll() {
+    return this.authRef.getUsers();
+  }
 }

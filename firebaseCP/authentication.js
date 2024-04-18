@@ -1,4 +1,5 @@
 import { auth, firebase } from "../config/firebase.js";
+import Firestore from "./firestore.js";
 
 /**
  * Class representing authentication functionalities.
@@ -96,5 +97,26 @@ export class Authentication {
   async resetPassword(email) {
     const request = await auth.sendPasswordResetEmail(email);
     return request;
+  }
+
+  async getUsers() {
+    const listUsersResult = await auth.listUsers();
+    const users = await Promise.all(
+      listUsersResult.users.map(async (userRecord) => {
+        // Additional async operation to read user data from Firestore
+        let userData;
+        try {
+          const fs = await Firestore("users", userRecord.uid);
+          userData = fs.read();
+        } catch {
+          userData = { false: "No user data found" };
+        }
+        return {
+          ...userRecord, // Include default user data
+          ...userData, // Include additional user data from Firestore
+        };
+      })
+    );
+    return users;
   }
 }

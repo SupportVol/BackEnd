@@ -5,9 +5,16 @@
  * @returns {Object} - JSON response with community data.
  */
 const readCommunity = async (req, res) => {
+  const showAll = req.body.all ?? false;
   const { commInstance } = req;
+  let response;
+  if (showAll) {
+    response = await commInstance.read();
+  } else {
+    response = await commInstance.readAll();
+  }
   return res.json({
-    response: await commInstance.read(),
+    response,
   });
 };
 

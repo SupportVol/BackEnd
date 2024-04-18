@@ -4,6 +4,7 @@ import {
   handleLogin,
   handleResetPassword,
   handleSignup,
+  handleUsers,
 } from "../../handlers/auth/authHandlers.js";
 import { Router } from "express";
 
@@ -22,4 +23,6 @@ authRouter.post("/signup", handleSignup);
 authRouter.post("/login", handleLogin);
 
 authRouter.put("/reset-password", handleResetPassword);
+
+authRouter.get("/all", handleUsers);
 export default authRouter;

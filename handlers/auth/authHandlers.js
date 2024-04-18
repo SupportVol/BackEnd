@@ -27,3 +27,14 @@ export const handleResetPassword = async (req, res) => {
     res.status(500).send("Password reset failed");
   }
 };
+
+export const handleUsers = async (req, res) => {
+  try {
+    const response = await req.auth.getAll();
+    console.log(response);
+    res.json({ response });
+  } catch (error) {
+    console.error("Reset Password Error:", error);
+    res.status(500).send("Password reset failed");
+  }
+};

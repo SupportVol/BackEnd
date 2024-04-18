@@ -1,9 +1,15 @@
-const getApiKeys = (req, res) => {
-  const allApiKeys = req.apiInstance.readAll();
+const getApiKeys = async (req, res) => {
+  let allApiKeys;
+  console.log(req.all);
+  if (req.all) {
+    allApiKeys = await req.apiInstance.readAll();
+  } else {
+    allApiKeys = await req.apiInstance.read();
+  }
   res.status(200).json({ response: allApiKeys });
 };
-const createApiKey = (req, res) => {
-  const newApiKey = req.apiInstance.create();
+const createApiKey = async (req, res) => {
+  const newApiKey = await req.apiInstance.create();
   res.status(200).json({ response: newApiKey });
 };
 const updateApiKey = (req, res) => {

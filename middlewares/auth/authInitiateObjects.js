@@ -14,12 +14,6 @@ const authInitiateObjects = (req, _, next) => {
   // Extract email and password from request body
   const { email, password } = req.body;
 
-  // If email or password is not provided, return a 400 status
-  if (!email || !password) {
-    req.responseStats(400);
-    return;
-  }
-
   // Create an Auth object with the parameters and attach it to the request object
   req.auth = new Auth(email, password);
 

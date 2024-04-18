@@ -10,7 +10,6 @@ import {
 
 const apiKeyRouter = Router();
 apiKeyRouter.use(apiKeyInitiateObjects);
-
 apiKeyRouter
   .route("/")
   .get(getApiKeys)

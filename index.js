@@ -22,6 +22,7 @@ import phoneAuthRouter from "./routes/auth/PhoneAuthRoutes.js";
 import teamMemberRouter from "./routes/organizations/teamMemberRouter.js";
 import apiKeyVerification from "./middlewares/apiKeyVertification.js";
 import apiKeyRouter from "./routes/admin/ApiKeyRoutes.js";
+import membershipRouter from "./routes/organizations/memebershipRequestRouter.js";
 
 const app = express();
 
@@ -54,6 +55,7 @@ app.use("/api/training", trainRouter);
 app.use("/api/auth", phoneAuthRouter);
 app.use("/api/org/teamMember", teamMemberRouter);
 app.use("/api/keys", apiKeyRouter);
+app.use("/api/organizations/requests", membershipRouter);
 app.use((err, _, res, __) => {
   console.error(err.stack);
   res.status(500).send("Internal Server Error");

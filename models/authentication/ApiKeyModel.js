@@ -10,12 +10,12 @@ export default class ApiKey extends FirestoreAbstract {
       uid: ownerUid,
       creationDate: Date.now(),
     };
+    this.fs = new Firestore("keys", apiKey);
     const currentRecord = this.read();
     this.updateStructure = updateData(
       ["ownerName", "uid", "email", "creationDate", "updateDate"],
       [ownerName, ownerUid, ownerEmail, undefined, Date.now()],
       currentRecord
     );
-    this.fs = new Firestore("keys", apiKey);
   }
 }

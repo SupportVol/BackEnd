@@ -28,5 +28,6 @@ commRouter.put("/", updateCommunity);
 
 // Define route for deleting communities
 commRouter.delete("/", deleteCommunity);
+
 // Export the commRouter class as a module
 export default commRouter;

@@ -1,11 +1,13 @@
 import Firestore from "../firebaseCP/firestore.js";
 
-const apiKeyVerification = (req, res, next) => {
-  req.apiKey = req.headers.apiKey;
+const apiKeyVerification = async (req, res, next) => {
+  req.apiKey = req.body.apiKey;
+  console.log(req.apiKey);
   const fs = new Firestore("keys", req.apiKey);
-  const [success, response] = fs.read();
-  if (!success || response.uid === req.uid) {
-    return res.status(401).json({ response, message: "Unauthorized" });
+  const [success, response] = await fs.read();
+  console.log(req.uid, response.uid, success);
+  if (!success || response.uid !== req.uid) {
+    res.status(401).json({ response, message: "Unauthorized" });
   }
   next();
 };
