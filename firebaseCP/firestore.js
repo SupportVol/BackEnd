@@ -1,4 +1,4 @@
-import { admin, auth } from "../config/firebase.js";
+import { admin } from "../config/firebase.js";
 import getDocumentIdByContent from "../utils/data/getDocumentIdByContent.js";
 
 /**
