@@ -110,7 +110,7 @@
   "scripts": {
     "start": "node index.js",
     "devStart": "nodemon node index.js",
-    "build": "node index.js --experimental-modules",
+    "build": "echo \"Build Complete\"",
     "test": "echo \"Error: no test specified\""
   },
   "directories": {
