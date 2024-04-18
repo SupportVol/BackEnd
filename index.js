@@ -20,6 +20,8 @@ import extractUidAndVerification from "./middlewares/extractUidAndVerification.j
 import trainRouter from "./routes/training/trainingRoutes.js";
 import phoneAuthRouter from "./routes/auth/PhoneAuthRoutes.js";
 import teamMemberRouter from "./routes/organizations/teamMemberRouter.js";
+import apiKeyVerification from "./middlewares/apiKeyVertification.js";
+import apiKeyRouter from "./routes/admin/ApiKeyRoutes.js";
 
 const app = express();
 
@@ -35,7 +37,7 @@ app.get("/test", (_, res) => {
 // Use routers
 // app.use(createResponse);
 app.use("/api/auth", authRouter);
-app.use(extractUidAndVerification, checkBanStatus);
+app.use(extractUidAndVerification, apiKeyVerification, checkBanStatus);
 app.use("/api/chat/msg", msgRouter);
 app.use("/api/chat/grp", grpRouter);
 app.use("/api/community", commRouter);
@@ -51,6 +53,7 @@ app.use("/api/usr/photo", profilePictureRouter);
 app.use("/api/training", trainRouter);
 app.use("/api/auth", phoneAuthRouter);
 app.use("/api/org/teamMember", teamMemberRouter);
+app.use("/api/keys", apiKeyRouter);
 app.use((err, _, res, __) => {
   console.error(err.stack);
   res.status(500).send("Internal Server Error");
