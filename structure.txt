@@ -1,0 +1,121 @@
+/
+├── .env
+├── .gitignore
+├── .gcloudignore
+├── .deepsource.toml
+├── .firebaserc
+├── README.md
+├── app.yaml
+├── config/
+│   ├── app.js
+│   ├── cryptography.js
+│   └── firebase.js
+├── database.rules.json
+├── docs/
+│   └── API Specification Spport Vol U.pdf
+├── firebase-debug.log
+├── firebase.json
+├── firestore.indexes.json
+├── firestore.rules
+├── firebaseCP/
+│   ├── authentication.js
+│   ├── firestore.js
+│   ├── realtime.js
+│   └── storage.js
+├── handlers/
+│   ├── admin/
+│   │   ├── ApiKeyHandlers.js
+│   │   ├── BanHandlers.js
+│   │   ├── NewsHandlers.js
+│   ├── auth/
+│   │   ├── AuthHandlers.js
+│   │   ├── PhoneNumberAuthHandlers.js
+│   ├── chat/
+│   │   ├── GroupHandlers.js
+│   │   ├── MessageHandlers.js
+│   ├── comment/
+│   │   └── CommentHandlers.js
+│   ├── community/
+│   │   ├── CommunityHandlers.js
+│   │   ├── ProjectHandlers.js
+│   │   └── initiatives/
+│   │       └── InitiativeHandlers.js
+│   ├── organizations/
+│   │   ├── MembershipRequestHandlers.js
+│   │   ├── PostsHandlers.js
+│   │   ├── TeamMemberHandlers.js
+│   ├── training/
+│   │   └── TrainHandlers.js
+│   └── user/
+│       ├── ExtraDetailsHandlers.js
+│       ├── PhoneNumberHandlers.js
+│       ├── ProfilePictureHandlers.js
+├── index.js
+├── models/
+│   ├── authentication/
+│   │   ├── ApiKeyModel.js
+│   │   ├── AuthModel.js
+│   │   ├── BanModel.js
+│   ├── community/
+│   │   ├── CommunityModel.js
+│   │   ├── EndeavorEntity.js
+│   │   ├── InitiativeModel.js
+│   │   ├── ProjectModel.js
+│   ├── communication/
+│   │   ├── CommentModel.js
+│   │   ├── CommunicationEntity.js
+│   │   ├── GroupModel.js
+│   │   └── MessageModel.js
+│   └── organization/
+│       ├── MemebershipRequestModel.js
+│       ├── TeamMemberModel.js
+├── package-lock.json
+├── package.json
+├── routes/
+│   ├── admin/
+│   │   ├── ApiKeyRoutes.js
+│   │   ├── BanRoutes.js
+│   │   ├── NewsRoutes.js
+│   ├── auth/
+│   │   ├── AuthRoutes.js
+│   │   ├── PhoneAuthRoutes.js
+│   ├── chat/
+│   │   ├── GroupRoutes.js
+│   │   └── MessageRoutes.js
+│   ├── comment/
+│   │   └── CommentRoutes.js
+│   ├── community/
+│   │   ├── CommunityRoutes.js
+│   │   ├── initiatives/
+│   │   │   └── InitiativeRoutes.js
+│   │   └── projects/
+│   │       └── ProjectRoutes.js
+│   ├── organizations/
+│   │   ├── memebershipRequestRouter.js
+│   │   ├── postsRoutes.js
+│   │   ├── teamMemberRouter.js
+│   ├── training/
+│   │   └── trainingRoutes.js
+│   └── user/
+│       ├── ExtraDetailsHandlers.js
+│       ├── PhoneNumberHandlers.js
+│       ├── ProfilePictureHandlers.js
+├── storage.rules
+├── tests/
+│   └── uploadByte8Array/
+│       ├── example.jpeg
+│       └── pfp.py
+├── utils/
+│   ├── cryptography/
+│   │   ├── Decryption.js
+│   │   └── Encryption.js
+│   ├── data/
+│   │   ├── getDocumentIdByContent.js
+│   │   └── getProjectMembers.js
+│   ├── firestore/
+│   │   ├── FirestoreAbstract.js
+│   │   └── updateData.js
+│   ├── helper/
+│   │   ├── firebaseDate.js
+│   │   ├── randomImageGenerator.js
+│   │   └── removeUsersFirebaseAuth.js
