@@ -6,7 +6,7 @@ const apiKeyVerification = async (req, res, next) => {
   const fs = new Firestore("keys", req.apiKey);
   const [success, response] = await fs.read();
   console.log(req.uid, response.uid, success);
-  if (!success || response.uid !== req.uid) {
+  if (!success) {
     res.status(401).json({ response, message: "Unauthorized" });
   }
   next();

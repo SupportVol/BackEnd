@@ -6,9 +6,9 @@ const apiKeyInitiateObjects = (req, res, next) => {
   if (Array.isArray(response)) {
     return res.json({ response });
   }
-  const { ownerName, ownerUid, ownerEmail, apiKey } = req.body;
+  const { ownerName, ownerUid, ownerEmail, ownerApiKey } = req.body;
   // Create a new Ban object and add it to the request object
-  req.apiInstance = new ApiKey(ownerName, ownerUid, ownerEmail, apiKey);
+  req.apiInstance = new ApiKey(ownerName, ownerUid, ownerEmail, ownerApiKey);
   req.all = req.body.all ?? true;
   // Call the next middleware
   next();

@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import cors from "cors";
 import PORT from "./config/app.js";
 import authRouter from "./routes/auth/AuthRoutes.js";
 import msgRouter from "./routes/chat/MessageRoutes.js";
@@ -24,7 +25,16 @@ import apiKeyVerification from "./middlewares/apiKeyVertification.js";
 import apiKeyRouter from "./routes/admin/ApiKeyRoutes.js";
 import membershipRouter from "./routes/organizations/memebershipRequestRouter.js";
 
+
+
 const app = express();
+
+app.use(
+  cors({
+    origin:"*",
+  })
+);
+
 
 dotenv.config();
 app.use(bodyParser.json());
@@ -38,7 +48,7 @@ app.get("/test", (_, res) => {
 // Use routers
 // app.use(createResponse);
 app.use("/api/auth", authRouter);
-app.use(extractUidAndVerification, apiKeyVerification, checkBanStatus);
+app.use(extractUidAndVerification, checkBanStatus); // apiKeyVerification
 app.use("/api/chat/msg", msgRouter);
 app.use("/api/chat/grp", grpRouter);
 app.use("/api/community", commRouter);
