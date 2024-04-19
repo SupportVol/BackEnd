@@ -1,5 +1,5 @@
-import { response } from 'express';
-import updateData from '../../utils/firestore/updateData.js';
+import { response } from 'express'
+import updateData from '../../utils/firestore/updateData.js'
 /**
  * Retrieves extra details from Firestore and sends a JSON response.
  * @param {Object} req - The request object.
@@ -7,11 +7,11 @@ import updateData from '../../utils/firestore/updateData.js';
  * @returns {Object} - JSON response with extra details.
  */
 const getExtraDetails = async (req, res) => {
-  const { firestore } = req;
+  const { firestore } = req
   return res.json({
-    response: await firestore.read(),
-  });
-};
+    response: await firestore.read()
+  })
+}
 
 /**
  * Creates extra details in Firestore and sends a JSON response.
@@ -20,20 +20,20 @@ const getExtraDetails = async (req, res) => {
  * @returns {Object} - JSON response with extra details creation status.
  */
 const createExtraDetails = async (req, res) => {
-  const { body, firestore } = req;
-  const { name, role, level, communities, projects, training } = body;
+  const { body, firestore } = req
+  const { name, role, level, communities, projects, training } = body
   const details = {
     name,
     role,
-    level: level ? level : NaN,
-    communities: communities ? communities : [],
-    projects: projects ? projects : [],
-    training: training ? training : [],
-  };
+    level: level || NaN,
+    communities: communities || [],
+    projects: projects || [],
+    training: training || []
+  }
   return res.json({
-    response: await firestore.create(details),
-  });
-};
+    response: await firestore.create(details)
+  })
+}
 
 /**
  * Updates extra details in Firestore and sends a JSON response.
@@ -42,18 +42,18 @@ const createExtraDetails = async (req, res) => {
  * @returns {Object} - JSON response with extra details update status.
  */
 const updateExtraDetails = async (req, res) => {
-  const { body, firestore } = req;
-  const currentValues = await firestore.read();
-  const { name, role, level, community, project, train } = body;
+  const { body, firestore } = req
+  const currentValues = await firestore.read()
+  const { name, role, level, community, project, train } = body
   const updatedDetails = updateData(
-    ["name", "role", "level", "communities", "projects", "training"],
+    ['name', 'role', 'level', 'communities', 'projects', 'training'],
     [name, role, level, community, project, train],
     currentValues[1]
-  );
+  )
   return res.json({
-    response: await firestore.update(updatedDetails),
-  });
-};
+    response: await firestore.update(updatedDetails)
+  })
+}
 
 /**
  * Deletes extra details from Firestore and sends a JSON response.
@@ -62,16 +62,16 @@ const updateExtraDetails = async (req, res) => {
  * @returns {Object} - JSON response with extra details deletion status.
  */
 const deleteExtraDetails = (req, res) => {
-  const { firestore } = req;
+  const { firestore } = req
   return res.json({
     // response: firestore.delete(),
-    response: "Successfully Deleted",
-  });
-};
+    response: 'Successfully Deleted'
+  })
+}
 
 export {
   getExtraDetails,
   createExtraDetails,
   updateExtraDetails,
-  deleteExtraDetails,
-};
+  deleteExtraDetails
+}

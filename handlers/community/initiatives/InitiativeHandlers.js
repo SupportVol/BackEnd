@@ -5,11 +5,11 @@
  * @returns {Object} - JSON response with all initiatives.
  */
 const readAllInitiatives = async (req, res) => {
-  const { iInstance } = req;
+  const { iInstance } = req
   return res.json({
-    response: await iInstance.readAll(),
-  });
-};
+    response: await iInstance.readAll()
+  })
+}
 
 /**
  * Creates an initiative and sends a JSON response.
@@ -18,11 +18,11 @@ const readAllInitiatives = async (req, res) => {
  * @returns {Object} - JSON response with initiative creation status.
  */
 const createInitiative = async (req, res) => {
-  const { iInstance } = req;
+  const { iInstance } = req
   return res.json({
-    response: await iInstance.create(),
-  });
-};
+    response: await iInstance.create()
+  })
+}
 
 /**
  * Updates an initiative and sends a JSON response.
@@ -31,11 +31,11 @@ const createInitiative = async (req, res) => {
  * @returns {Object} - JSON response with initiative update status.
  */
 const updateInitiative = async (req, res) => {
-  const { iInstance } = req;
+  const { iInstance } = req
   return res.json({
-    response: await iInstance.update(),
-  });
-};
+    response: await iInstance.update()
+  })
+}
 
 /**
  * Deletes an initiative and sends a status response.
@@ -44,15 +44,15 @@ const updateInitiative = async (req, res) => {
  * @returns {Object} - Response status.
  */
 const deleteInitiative = async (req, res) => {
-  const { iInstance } = req;
+  const { iInstance } = req
   return res.json({
-    response: await iInstance.delete(),
-  });
-};
+    response: await iInstance.delete()
+  })
+}
 
 export {
   readAllInitiatives,
   createInitiative,
   updateInitiative,
-  deleteInitiative,
-};
+  deleteInitiative
+}

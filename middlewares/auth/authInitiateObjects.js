@@ -1,4 +1,4 @@
-import Auth from "../../models/authentication/AuthModel.js";
+import Auth from '../../models/authentication/AuthModel.js'
 // import isValidEmail from "../../utils/validation/isValidEmail.js";
 
 /**
@@ -12,13 +12,13 @@ import Auth from "../../models/authentication/AuthModel.js";
 
 const authInitiateObjects = (req, _, next) => {
   // Extract email and password from request body
-  const { email, password } = req.body;
+  const { email, password } = req.body
 
   // Create an Auth object with the parameters and attach it to the request object
-  req.auth = new Auth(email, password);
+  req.auth = new Auth(email, password)
 
   // Proceed to the next middleware function
-  next();
-};
+  next()
+}
 
-export default authInitiateObjects;
+export default authInitiateObjects

@@ -1,6 +1,6 @@
 // Importing necessary modules
-import Ban from "../../models/authentication/BanModel.js";
-import isAuthorized from "../../utils/validation/isAuthorized.js";
+import Ban from '../../models/authentication/BanModel.js'
+import isAuthorized from '../../utils/validation/isAuthorized.js'
 
 /**
  * Middleware to initiate ban objects.
@@ -13,17 +13,17 @@ import isAuthorized from "../../utils/validation/isAuthorized.js";
  */
 const banInitiateObjects = (req, res, next) => {
   // Check if the user is authorized
-  const response = isAuthorized(req.uid, ["Admin"], [1]);
+  const response = isAuthorized(req.uid, ['Admin'], [1])
   if (Array.isArray(response)) {
-    return res.json({ response });
+    return res.json({ response })
   }
 
   // Create a new Ban object and add it to the request object
-  req.ban = new Ban(req.body.banUID);
+  req.ban = new Ban(req.body.banUID)
 
   // Call the next middleware
-  next();
-};
+  next()
+}
 
 // Export the middleware
-export default banInitiateObjects;
+export default banInitiateObjects

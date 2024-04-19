@@ -1,5 +1,5 @@
 // Importing the Post model
-import Post from "../../models/content/PostsModel.js";
+import Post from '../../models/content/PostsModel.js'
 
 /**
  * Middleware function to initiate a new Post object.
@@ -9,12 +9,7 @@ import Post from "../../models/content/PostsModel.js";
  */
 const postInitiateObjects = (req, res, next) => {
   // Destructuring the required fields from the request body
-  const { title,
-    description,
-    tags,
-    orgID,
-    senderUID,
-    postID } = req.body;
+  const { title, description, tags, orgID, senderUID, postID } = req.body
 
   // Creating a new Post object and attaching it to the request object
   req.postInitialization = new Post(
@@ -24,11 +19,11 @@ const postInitiateObjects = (req, res, next) => {
     orgID,
     senderUID,
     postID
-  );
+  )
 
   // Proceeding to the next middleware function
-  next();
-};
+  next()
+}
 
 // Exporting the middleware function
-export default postInitiateObjects;
+export default postInitiateObjects

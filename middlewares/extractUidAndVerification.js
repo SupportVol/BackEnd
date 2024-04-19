@@ -10,18 +10,18 @@
  */
 const extractUidAndVerification = (req, res, next) => {
   // Destructure uid from request parameters
-  const { uid } = req.headers;
+  const { uid } = req.headers
 
   // If uid is not present, send an error response
   if (!uid) {
-    return res.status(400).json({ error: "No UID in Headers" });
+    return res.status(400).json({ error: 'No UID in Headers' })
   }
 
   // Attach uid to the request object
-  req.uid = uid;
+  req.uid = uid
 
   // Call the next middleware function
-  next();
-};
+  next()
+}
 
-export default extractUidAndVerification;
+export default extractUidAndVerification

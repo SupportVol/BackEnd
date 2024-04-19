@@ -1,8 +1,8 @@
-import Firestore from "../../firebaseCP/firestore.js";
+import Firestore from '../../firebaseCP/firestore.js'
 /**
  * This module exports a middleware function that attaches a Firestore instance to the request object.
  * This Firestore instance is specifically for accessing user data.
- * 
+ *
  * @module extraDetailsInitiateObjects
 
 import Firestore from "../../firebaseCP/firestore.js";
@@ -20,12 +20,12 @@ import Firestore from "../../firebaseCP/firestore.js";
 const extraDetailsInitiateObjects = (req, _, next) => {
   // Create a new Firestore instance with the "users" collection and the user's uid
   // Attach this instance to the request object
-  console.log(req.uid);
-  req.firestore = new Firestore("users", req.uid);
+  console.log(req.uid)
+  req.firestore = new Firestore('users', req.uid)
 
   // Call the next middleware function
-  next();
-};
+  next()
+}
 
 // Export the middleware function
-export default extraDetailsInitiateObjects;
+export default extraDetailsInitiateObjects

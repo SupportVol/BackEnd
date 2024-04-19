@@ -1,5 +1,5 @@
-import News from "../../models/content/NewsModel.js";
-import isAuthorized from "../../utils/validation/isAuthorized.js";
+import News from '../../models/content/NewsModel.js'
+import isAuthorized from '../../utils/validation/isAuthorized.js'
 
 /**
  * Middleware to initialize news objects.
@@ -12,21 +12,21 @@ import isAuthorized from "../../utils/validation/isAuthorized.js";
  */
 const newsInitiateObjects = (req, res, next) => {
   // Check if the user is authorized
-  const allowedResponse = isAuthorized(req.uid, ["Admin"], [1, 0], req);
+  const allowedResponse = isAuthorized(req.uid, ['Admin'], [1, 0], req)
 
   // If the response is an array, return the first element
   if (Array.isArray(allowedResponse)) {
-    return allowedResponse[0];
+    return allowedResponse[0]
   }
 
   // Destructure the request body
-  const { newsID, title, description, tags, senderUID, communityID } = req.body;
+  const { newsID, title, description, tags, senderUID, communityID } = req.body
   // Check if all required fields are present
   if (
     (!title && !description && !tags && !communityID && !senderUID) ||
     !newsID
   ) {
-    res.status(400);
+    res.status(400)
   }
   // Initialize the news object
   req.newsInitialization = new News(
@@ -36,9 +36,9 @@ const newsInitiateObjects = (req, res, next) => {
     tags,
     senderUID,
     communityID
-  );
+  )
   // Proceed to the next middleware
-  next();
-};
+  next()
+}
 
-export default newsInitiateObjects;
+export default newsInitiateObjects

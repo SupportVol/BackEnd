@@ -5,14 +5,14 @@
  * @returns {Array} - The initialized array or the original array with the added variable.
  */
 const isArray = (checkVar, init) => {
-  if (typeof checkVar === "object") {
-    return checkVar;
+  if (typeof checkVar === 'object') {
+    return checkVar
   } else if (!isNaN(checkVar)) {
-    init.push(checkVar);
-    return init;
+    init.push(checkVar)
+    return init
   } else {
-    return init;
+    return init
   }
-};
+}
 
-export default isArray;
+export default isArray

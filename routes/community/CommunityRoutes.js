@@ -1,12 +1,12 @@
-import extractUidAndVerification from "../../middlewares/extractUidAndVerification.js";
-import initiateCommunityObjects from "../../middlewares/community/communityInitiateObjects.js";
-import { Router } from "express";
+import extractUidAndVerification from '../../middlewares/extractUidAndVerification.js'
+import initiateCommunityObjects from '../../middlewares/community/communityInitiateObjects.js'
+import { Router } from 'express'
 import {
   readCommunity,
   createCommunity,
   updateCommunity,
-  deleteCommunity,
-} from "../../handlers/community/CommunityHandlers.js";
+  deleteCommunity
+} from '../../handlers/community/CommunityHandlers.js'
 /**
  * This class extends the BaseRouter to handle community related routes.
  * It uses middleware to extract user id and verification status, and to initiate project objects.
@@ -14,20 +14,20 @@ import {
  * @class commRouter
  * @extends {BaseRouter}
  */
-const commRouter = Router();
-commRouter.use(extractUidAndVerification, initiateCommunityObjects);
+const commRouter = Router()
+commRouter.use(extractUidAndVerification, initiateCommunityObjects)
 
 // Define route for reading communities
-commRouter.get("/", readCommunity);
+commRouter.get('/', readCommunity)
 
 // Define route for creating communities
-commRouter.post("/", createCommunity);
+commRouter.post('/', createCommunity)
 
 // Define route for updating communities
-commRouter.put("/", updateCommunity);
+commRouter.put('/', updateCommunity)
 
 // Define route for deleting communities
-commRouter.delete("/", deleteCommunity);
+commRouter.delete('/', deleteCommunity)
 
 // Export the commRouter class as a module
-export default commRouter;
+export default commRouter

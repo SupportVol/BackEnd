@@ -1,19 +1,19 @@
-import { Router } from "express";
+import { Router } from 'express'
 import {
   createTeamMember,
   deleteTeamMember,
   getTeamMember,
-  updateTeamMember,
-} from "../../handlers/organizations/TeamMemberHandlers.js";
-import teamMemberInitiateObjects from "../../middlewares/organization/teamMemberInitiateObjects.js";
+  updateTeamMember
+} from '../../handlers/organizations/TeamMemberHandlers.js'
+import teamMemberInitiateObjects from '../../middlewares/organization/teamMemberInitiateObjects.js'
 
-const teamMemberRouter = Router();
+const teamMemberRouter = Router()
 
-teamMemberRouter.use(teamMemberInitiateObjects);
+teamMemberRouter.use(teamMemberInitiateObjects)
 teamMemberRouter
-  .route("/")
+  .route('/')
   .get(getTeamMember)
   .post(createTeamMember)
   .put(updateTeamMember)
-  .delete(deleteTeamMember);
-export default teamMemberRouter;
+  .delete(deleteTeamMember)
+export default teamMemberRouter

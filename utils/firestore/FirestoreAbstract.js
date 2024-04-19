@@ -7,39 +7,39 @@ export default class FirestoreAbstract {
    * Create a new document in Firestore.
    * @returns {Promise} The promise that resolves with the result of the create operation.
    */
-  async create() {
-    return await this.fs.create(this.createStructure);
+  async create () {
+    return await this.fs.create(this.createStructure)
   }
 
   /**
    * Read all documents from Firestore.
    * @returns {Promise} The promise that resolves with the result of the read operation.
    */
-  read() {
-    return this.fs.read();
+  read () {
+    return this.fs.read()
   }
 
   /**
    * Update a document in Firestore.
    * @returns {Promise} The promise that resolves with the result of the update operation.
    */
-  update() {
-    return this.fs.update(this.updateStructure);
+  update () {
+    return this.fs.update(this.updateStructure)
   }
 
   /**
    * Delete a document from Firestore.
    * @returns {Promise} The promise that resolves with the result of the delete operation.
    */
-  delete() {
-    return this.fs.delete();
+  delete () {
+    return this.fs.delete()
   }
 
   /**
    * Read all documents from Firestore.
    * @returns {Promise} The promise that resolves with the result of the readAll operation.
    */
-  readAll() {
-    return this.fs.readAll();
+  readAll () {
+    return this.fs.readAll()
   }
 }

@@ -1,4 +1,4 @@
-import Ban from "../../models/authentication/BanModel.js";
+import Ban from '../../models/authentication/BanModel.js'
 /**
  * Middleware function to check if a user is banned.
  * If the user is banned, it sends a 403 response with a message.
@@ -10,16 +10,16 @@ import Ban from "../../models/authentication/BanModel.js";
  */
 const checkBanStatus = async (req, res, next) => {
   // Create a new instance of Ban
-  const ban = new Ban(req.uid);
-  const isBanned = await ban.isUserBanned();
+  const ban = new Ban(req.uid)
+  const isBanned = await ban.isUserBanned()
 
   // If the user is banned, send a 403 response
   if (isBanned) {
-    return res.status(403).send("You are banned from accessing this resource.");
+    return res.status(403).send('You are banned from accessing this resource.')
   }
 
   // If the user is not banned, call the next middleware function
-  next();
-};
+  next()
+}
 
-export default checkBanStatus;
+export default checkBanStatus

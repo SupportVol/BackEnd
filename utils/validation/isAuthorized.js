@@ -1,4 +1,4 @@
-import Firestore from "../../firebaseCP/firestore.js";
+import Firestore from '../../firebaseCP/firestore.js'
 
 /**
  * Checks if the user is authorized based on their role and level.
@@ -10,20 +10,20 @@ import Firestore from "../../firebaseCP/firestore.js";
  */
 const isAuthorized = async (
   uid,
-  roles = ["Admin", "Organization", "Volunteer"],
-  level = [],
+  roles = ['Admin', 'Organization', 'Volunteer'],
+  level = []
 ) => {
   try {
-    const authFS = new Firestore("users", uid);
-    let userData = await authFS.read();
-    userData = userData[1];
+    const authFS = new Firestore('users', uid)
+    let userData = await authFS.read()
+    userData = userData[1]
     const allowed =
-      roles.includes(userData.role) && level.includes(userData.level);
-    return allowed ? true : ["Not authorized", 401];
+      roles.includes(userData.role) && level.includes(userData.level)
+    return allowed ? true : ['Not authorized', 401]
   } catch (error) {
-    console.error("Error checking user authorization:", error.message);
-    return false;
+    console.error('Error checking user authorization:', error.message)
+    return false
   }
-};
+}
 
-export default isAuthorized;
+export default isAuthorized

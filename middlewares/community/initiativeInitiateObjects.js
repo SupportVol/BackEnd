@@ -1,5 +1,5 @@
-import Initiative from "../../models/community/InitiativeModel.js";
-import isAuthorized from "../../utils/validation/isAuthorized.js";
+import Initiative from '../../models/community/InitiativeModel.js'
+import isAuthorized from '../../utils/validation/isAuthorized.js'
 
 /**
  * Middleware to initiate the creation of an Initiative object based on request body.
@@ -12,14 +12,14 @@ const iInitiateObjects = async (req, res, next) => {
   // Check if the user is authorized
   const allowed = await isAuthorized(
     req.uid,
-    ["Admin", "Organization"],
+    ['Admin', 'Organization'],
     [0, 1],
     req
-  );
+  )
 
   // If the user is not authorized, return the error message
   if (Array.isArray(allowed)) {
-    return res.status(403).json({ error: allowed[0] });
+    return res.status(403).json({ error: allowed[0] })
   }
 
   // Destructure the request body
@@ -37,7 +37,7 @@ const iInitiateObjects = async (req, res, next) => {
     projects,
     communityUID,
     initiativeUID
-  } = req.body;
+  } = req.body
 
   // Create a new Initiative object and attach it to the request object
   req.iInstance = new Initiative(
@@ -54,10 +54,10 @@ const iInitiateObjects = async (req, res, next) => {
     projects,
     communityUID,
     initiativeUID
-  );
+  )
 
   // Proceed to the next middleware
-  next();
-};
+  next()
+}
 
-export default iInitiateObjects;
+export default iInitiateObjects
