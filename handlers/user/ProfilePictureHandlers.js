@@ -1,4 +1,4 @@
-import randomImageGenerator from '../../utils/helper/randomImageGenerator.js';
+import randomImageGenerator from "../../utils/helper/randomImageGenerator.js";
 /**
  * Retrieves the profile picture URL for the current user and sends a JSON response.
  * @param {Object} req - The request object.
@@ -13,7 +13,7 @@ const getProfilePicture = async (req, res) => {
     url = await auth.getUser(uid);
   }
   return res.json({
-    response: url[1].photoURL,
+    response: url[1],
   });
 };
 
@@ -48,7 +48,7 @@ const deleteProfilePicture = async (req, res) => {
   let del = NaN;
   del = await storage.deleteFile(`pfp/${uid}`);
   if (del[0] === false) {
-    del = await auth.updateUser(uid, { photoURL: randomImageGenerator() })
+    del = await auth.updateUser(uid, { photoURL: randomImageGenerator() });
   }
   // "https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png"
   return res.json({
@@ -57,4 +57,4 @@ const deleteProfilePicture = async (req, res) => {
 };
 
 export { getProfilePicture, uploadProfilePicture, deleteProfilePicture };
-randomImageGenerator
+randomImageGenerator;
