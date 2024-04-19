@@ -25,6 +25,7 @@ export default class MembershipRequestModel extends FirestoreAbstract {
       legalDocumentsUrl,
       creationDate: Date.now(),
     };
+    this.fs = new Firestore("organizationsRequests", this.requestID);
     const currentRecord = this.read();
     this.updateStructure = updateData(
       [
@@ -52,7 +53,6 @@ export default class MembershipRequestModel extends FirestoreAbstract {
       currentRecord
     );
     this.requestID = requestID;
-    this.fs = new Firestore("organizationsRequests", this.requestID);
   }
 
   approve() {
