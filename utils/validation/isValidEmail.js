@@ -5,20 +5,20 @@
  */
 const isValidEmail = async (email) => {
   try {
-    const apiUrl = `https://isitarealemail.com/api/email/validate/${email}`;
-    const response = await fetch(apiUrl);
+    const apiUrl = `https://isitarealemail.com/api/email/validate/${email}`
+    const response = await fetch(apiUrl)
 
     if (!response.ok) {
-      throw new Error(`Email validation failed: ${response.statusText}`);
+      throw new Error(`Email validation failed: ${response.statusText}`)
     }
 
-    const data = await response.json();
+    const data = await response.json()
 
-    return data.status === "valid";
+    return data.status === 'valid'
   } catch (error) {
-    console.error("Error validating email:", error);
-    return false; // Return false if there's an error
+    console.error('Error validating email:', error)
+    return false // Return false if there's an error
   }
-};
+}
 
-export default isValidEmail;
+export default isValidEmail

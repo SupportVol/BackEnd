@@ -5,11 +5,11 @@
  * @returns {Object} - JSON response with post data.
  */
 const readPost = async (req, res) => {
-  const { postInitialization } = req;
+  const { postInitialization } = req
   return res.json({
-    response: await postInitialization.read(),
-  });
-};
+    response: await postInitialization.read()
+  })
+}
 
 /**
  * Creates a post and sends a JSON response.
@@ -18,11 +18,11 @@ const readPost = async (req, res) => {
  * @returns {Object} - JSON response with post creation status.
  */
 const createPost = async (req, res) => {
-  const { postInitialization } = req;
+  const { postInitialization } = req
   return res.json({
-    response:await  postInitialization.create(),
-  });
-};
+    response: await postInitialization.create()
+  })
+}
 
 /**
  * Updates a post and sends a status response.
@@ -31,11 +31,11 @@ const createPost = async (req, res) => {
  * @returns {Object} - Response status.
  */
 const updatePost = async (req, res) => {
-  const { postInitialization } = req;
+  const { postInitialization } = req
   return res.json({
-    response: await postInitialization.update(),
-  });
-};
+    response: await postInitialization.update()
+  })
+}
 
 /**
  * Deletes a post and sends a status response.
@@ -44,10 +44,10 @@ const updatePost = async (req, res) => {
  * @returns {Object} - Response status.
  */
 const deletePost = async (req, res) => {
-  const { postInitialization } = req;
+  const { postInitialization } = req
   return res.json({
-    response: await postInitialization.delete(),
-  });
-};
+    response: await postInitialization.delete()
+  })
+}
 
-export { readPost, createPost, updatePost, deletePost };
+export { readPost, createPost, updatePost, deletePost }

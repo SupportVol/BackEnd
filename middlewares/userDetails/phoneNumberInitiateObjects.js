@@ -1,6 +1,6 @@
 // Importing necessary modules
-import Storage from "../../firebaseCP/storage.js";
-import { Authentication } from "../../firebaseCP/authentication.js";
+import Storage from '../../firebaseCP/storage.js'
+import { Authentication } from '../../firebaseCP/authentication.js'
 
 /**
  * Initializes user-related objects and paths for profile picture.
@@ -10,10 +10,10 @@ import { Authentication } from "../../firebaseCP/authentication.js";
  */
 const pfpInitiateObjects = (req, _, next) => {
   // Initialize Storage and Authentication objects
-  req.storage = new Storage();
-  req.auth = new Authentication();
-  next();
-};
+  req.storage = new Storage()
+  req.auth = new Authentication()
+  next()
+}
 
 // Exporting the function
-export default pfpInitiateObjects;
+export default pfpInitiateObjects

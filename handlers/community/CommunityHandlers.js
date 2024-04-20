@@ -5,18 +5,18 @@
  * @returns {Object} - JSON response with community data.
  */
 const readCommunity = async (req, res) => {
-  const showAll = req.body.all ?? false;
-  const { commInstance } = req;
-  let response;
+  const showAll = req.body.all ?? false
+  const { commInstance } = req
+  let response
   if (showAll) {
-    response = await commInstance.read();
+    response = await commInstance.read()
   } else {
-    response = await commInstance.readAll();
+    response = await commInstance.readAll()
   }
   return res.json({
-    response,
-  });
-};
+    response
+  })
+}
 
 /**
  * Creates a community and sends a JSON response.
@@ -25,12 +25,12 @@ const readCommunity = async (req, res) => {
  * @returns {Object} - JSON response with community creation status.
  */
 const createCommunity = async (req, res) => {
-  const { commInstance } = req;
-  const instance1 = await commInstance.create();
+  const { commInstance } = req
+  const instance1 = await commInstance.create()
   return res.json({
-    response: instance1,
-  });
-};
+    response: instance1
+  })
+}
 
 /**
  * Updates a community and sends a JSON response.
@@ -39,12 +39,12 @@ const createCommunity = async (req, res) => {
  * @returns {Object} - JSON response with community update status.
  */
 const updateCommunity = async (req, res) => {
-  const { commInstance } = req;
-  const instance2 = await commInstance.update();
+  const { commInstance } = req
+  const instance2 = await commInstance.update()
   return res.json({
-    response: instance2,
-  });
-};
+    response: instance2
+  })
+}
 
 /**
  * Deletes a community and sends a status response.
@@ -53,10 +53,10 @@ const updateCommunity = async (req, res) => {
  * @returns {Object} - Response status.
  */
 const deleteCommunity = async (req, res) => {
-  const { commInstance } = req;
+  const { commInstance } = req
   return res.json({
-    response: await commInstance.delete(),
-  });
-};
+    response: await commInstance.delete()
+  })
+}
 
-export { readCommunity, createCommunity, updateCommunity, deleteCommunity };
+export { readCommunity, createCommunity, updateCommunity, deleteCommunity }

@@ -1,8 +1,8 @@
-import FirestoreAbstract from "../../utils/firestore/FirestoreAbstract.js";
-import Firestore from "../../firebaseCP/firestore.js";
-import updateData from "../../utils/firestore/updateData.js";
+import FirestoreAbstract from '../../utils/firestore/FirestoreAbstract.js'
+import Firestore from '../../firebaseCP/firestore.js'
+import updateData from '../../utils/firestore/updateData.js'
 export default class Training extends FirestoreAbstract {
-  constructor(
+  constructor (
     name,
     description,
     location,
@@ -14,7 +14,7 @@ export default class Training extends FirestoreAbstract {
     orgID,
     trainID
   ) {
-    super();
+    super()
     this.createStructure = {
       name,
       description,
@@ -24,21 +24,21 @@ export default class Training extends FirestoreAbstract {
       //  feedback,
       status,
       additional_notes,
-      creationDate: Date.now(),
-    };
-    this.fs = new Firestore("training", trainID, []);
-    const currentRecord = this.read();
+      creationDate: Date.now()
+    }
+    this.fs = new Firestore('training', trainID, [])
+    const currentRecord = this.read()
     this.updateStructure = updateData(
       [
-        "name",
-        "description",
-        "location",
-        "trainer",
-        "participants",
-        "status",
-        "additional_notes",
-        "creationDate",
-        "orgID",
+        'name',
+        'description',
+        'location',
+        'trainer',
+        'participants',
+        'status',
+        'additional_notes',
+        'creationDate',
+        'orgID'
       ],
       [
         name,
@@ -49,9 +49,9 @@ export default class Training extends FirestoreAbstract {
         status,
         additional_notes,
         Date.now(),
-        orgID,
+        orgID
       ],
       currentRecord
-    );
+    )
   }
 }

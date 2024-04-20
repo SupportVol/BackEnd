@@ -1,6 +1,6 @@
-import Firestore from "../../firebaseCP/firestore.js";
-import updateData from "../../utils/firestore/updateData.js";
-import CommunicationEntity from "./CommunicationEntity.js";
+import Firestore from '../../firebaseCP/firestore.js'
+import updateData from '../../utils/firestore/updateData.js'
+import CommunicationEntity from './CommunicationEntity.js'
 
 /**
  * Comment class that extends the CommunicationEntity class.
@@ -14,24 +14,20 @@ export default class Comment extends CommunicationEntity {
    * @param {string} senderuid - The UID of the sender.
    * @param {string} commentTxt - The text of the comment.
    */
-  constructor(id, commentID, senderuid, commentTxt) {
-    super(); // Call the parent class constructor
-    this.collectionName = "comments";
-    this.nestedPath = []; // the id is of the event or whatever it is wage uk?
-    this.commentID = commentID;
-    this.db = new Firestore(
-      this.collectionName,
-      commentID,
-      this.nestedPath
-    );
+  constructor (id, commentID, senderuid, commentTxt) {
+    super() // Call the parent class constructor
+    this.collectionName = 'comments'
+    this.nestedPath = [] // the id is of the event or whatever it is wage uk?
+    this.commentID = commentID
+    this.db = new Firestore(this.collectionName, commentID, this.nestedPath)
     this.createStructure = {
       senderUID: senderuid,
       creationDate: Date.now(),
       comment: commentTxt,
-      id: id
-    };
-    this.comment = this.db.read();
-    this.updateStructure = this.getUpdateStructure(senderuid, commentTxt, id);
+      id
+    }
+    this.comment = this.db.read()
+    this.updateStructure = this.getUpdateStructure(senderuid, commentTxt, id)
   }
 
   /**
@@ -40,11 +36,11 @@ export default class Comment extends CommunicationEntity {
    * @param {string} commentTxt - The text of the comment.
    * @returns {Object} The structure for updating a comment.
    */
-  getUpdateStructure(senderUID, commentTxt, id) {
+  getUpdateStructure (senderUID, commentTxt, id) {
     return updateData(
-      ["comment", "updateDate", "senderUID", "id"],
+      ['comment', 'updateDate', 'senderUID', 'id'],
       [commentTxt, Date.now(), senderUID, id],
       this.comment
-    );
+    )
   }
 }

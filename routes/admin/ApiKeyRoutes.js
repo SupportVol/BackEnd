@@ -1,20 +1,20 @@
 // Importing necessary modules
-import { Router } from "express";
-import apiKeyInitiateObjects from "../../middlewares/admin/apiKeyInitiateObjects.js";
+import { Router } from 'express'
+import apiKeyInitiateObjects from '../../middlewares/admin/apiKeyInitiateObjects.js'
 import {
   createApiKey,
   deleteApiKey,
   getApiKeys,
-  updateApiKey,
-} from "../../handlers/admin/ApiKeyHandlers.js";
+  updateApiKey
+} from '../../handlers/admin/ApiKeyHandlers.js'
 
-const apiKeyRouter = Router();
-apiKeyRouter.use(apiKeyInitiateObjects);
+const apiKeyRouter = Router()
+apiKeyRouter.use(apiKeyInitiateObjects)
 apiKeyRouter
-  .route("/")
+  .route('/')
   .get(getApiKeys)
   .post(createApiKey)
   .put(updateApiKey)
-  .delete(deleteApiKey);
+  .delete(deleteApiKey)
 // Export banRouter class
-export default apiKeyRouter;
+export default apiKeyRouter

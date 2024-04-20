@@ -5,11 +5,11 @@
  * @returns {Object} - JSON response with project data.
  */
 const readProject = async (req, res) => {
-  const { projectInitialization } = req;
+  const { projectInitialization } = req
   return res.json({
-    response: await projectInitialization.read(),
-  });
-};
+    response: await projectInitialization.read()
+  })
+}
 
 /**
  * Creates a project and sends a JSON response.
@@ -18,11 +18,11 @@ const readProject = async (req, res) => {
  * @returns {Object} - JSON response with project creation status.
  */
 const createProject = async (req, res) => {
-  const { projectInitialization } = req;
+  const { projectInitialization } = req
   return res.json({
-    response: await projectInitialization.create(),
-  });
-};
+    response: await projectInitialization.create()
+  })
+}
 
 /**
  * Updates a project and sends a JSON response.
@@ -31,11 +31,11 @@ const createProject = async (req, res) => {
  * @returns {Object} - JSON response with project update status.
  */
 const updateProject = async (req, res) => {
-  const { projectInitialization } = req;
+  const { projectInitialization } = req
   return res.json({
-    response: await projectInitialization.update(),
-  });
-};
+    response: await projectInitialization.update()
+  })
+}
 
 /**
  * Deletes a project and sends a status response.
@@ -44,10 +44,10 @@ const updateProject = async (req, res) => {
  * @returns {Object} - Response status.
  */
 const deleteProject = async (req, res) => {
-  const { projectInitialization } = req;
+  const { projectInitialization } = req
   return res.json({
-    response: await projectInitialization.delete(),
-  });
-};
+    response: await projectInitialization.delete()
+  })
+}
 
-export { readProject, createProject, updateProject, deleteProject };
+export { readProject, createProject, updateProject, deleteProject }

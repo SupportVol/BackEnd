@@ -1,10 +1,10 @@
-import MembershipRequestModel from "../../models/organization/MemebershipRequestModel.js";
-import isAuthorized from "../../utils/validation/isAuthorized.js";
+import MembershipRequestModel from '../../models/organization/MemebershipRequestModel.js'
+import isAuthorized from '../../utils/validation/isAuthorized.js'
 
 const membershipInitiateObjects = (req, res, next) => {
-  const response = isAuthorized(req.uid, ["Admin"], [1, 0], req);
+  const response = isAuthorized(req.uid, ['Admin'], [1, 0], req)
   if (Array.isArray(response)) {
-    res.json({ response });
+    res.json({ response })
   }
   const {
     registrationCertificateUrl,
@@ -14,8 +14,8 @@ const membershipInitiateObjects = (req, res, next) => {
     email,
     password,
     description,
-    requestID,
-  } = req.body;
+    requestID
+  } = req.body
   req.membershipInstance = new MembershipRequestModel(
     registrationCertificateUrl,
     annualReportUrl,
@@ -25,8 +25,8 @@ const membershipInitiateObjects = (req, res, next) => {
     password,
     description,
     requestID
-  );
-  next();
-};
+  )
+  next()
+}
 
-export default membershipInitiateObjects;
+export default membershipInitiateObjects
