@@ -1,21 +1,24 @@
 // Importing required modules
-import Firestore from "../../firebaseCP/firestore.js";
-import updateData from "../../utils/firestore/updateData.js";
-import EndeavorEntity from "./EndeavorEntity.js";
+import Firestore from '../../firebaseCP/firestore.js'
+import updateData from '../../utils/firestore/updateData.js'
+import EndeavorEntity from './EndeavorEntity.js'
 
 /**
  * Project class extends EndeavorEntity
  * @param {string} description - Description of the project
  */
 export default class Project extends EndeavorEntity {
-  constructor(
+  constructor (
     description,
     name,
     organizations,
     volunteers,
     started_date,
     expected_completing_date,
-    initiated_organization, communityUID, initiativeUID = false,projectID
+    initiated_organization,
+    communityUID,
+    initiativeUID = false,
+    projectID
   ) {
     // Call the parent constructor with required parameters
     super(
@@ -25,20 +28,23 @@ export default class Project extends EndeavorEntity {
       started_date,
       expected_completing_date,
       initiated_organization,
-      communityUID,
-
-    );
+      communityUID
+    )
     this.projectID = projectID
     // Initialize instance variables
-    this.description = description;
-    this.fs = new Firestore("projects", this.projectID, initiativeUID ? [communityUID, initiativeUID] : [communityUID]);
+    this.description = description
+    this.fs = new Firestore(
+      'projects',
+      this.projectID,
+      initiativeUID ? [communityUID, initiativeUID] : [communityUID]
+    )
   }
 
   /**
    * Create a new project
    * @returns {Promise} - Promise representing the creation of the project
    */
-  async create() {
+  async create () {
     const hello = await this.fs.create({
       name: this.name,
       description: this.description,
@@ -46,8 +52,8 @@ export default class Project extends EndeavorEntity {
       volunteers: this.volunteers,
       started_date: this.started_date,
       expected_completing_date: this.expected_completing_date,
-      initiated_organization: this.initiated_organization,
-    });
+      initiated_organization: this.initiated_organization
+    })
     return hello
   }
 
@@ -55,18 +61,18 @@ export default class Project extends EndeavorEntity {
    * Update an existing project
    * @returns {Promise} - Promise representing the update of the project
    */
-  async update() {
-    const record = await this.read();
+  async update () {
+    const record = await this.read()
     return await this.fs.update(
       updateData(
         [
-          "name",
-          "description",
-          "organizations",
-          "volunteers",
-          "started_date",
-          "expected_completing_date",
-          "initiated_organization",
+          'name',
+          'description',
+          'organizations',
+          'volunteers',
+          'started_date',
+          'expected_completing_date',
+          'initiated_organization'
         ],
         [
           this.name,
@@ -75,10 +81,10 @@ export default class Project extends EndeavorEntity {
           this.volunteers,
           this.started_date,
           this.expected_completing_date,
-          this.initiated_organization,
+          this.initiated_organization
         ],
         record
       )
-    );
+    )
   }
 }

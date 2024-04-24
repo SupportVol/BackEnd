@@ -1,4 +1,4 @@
-import Training from "../../models/training/TrainingModel.js";
+import Training from '../../models/training/TrainingModel.js'
 
 const trainInitiateObjects = (req, res, next) => {
   const {
@@ -10,8 +10,9 @@ const trainInitiateObjects = (req, res, next) => {
     // feedback,
     status,
     additional_notes,
-    orgID, trainID
-  } = req.body;
+    orgID,
+    trainID
+  } = req.body
   req.trainInstance = new Training(
     name,
     description,
@@ -21,8 +22,9 @@ const trainInitiateObjects = (req, res, next) => {
     // feedback,
     status,
     additional_notes,
-    orgID, trainID
-  );
-  next();
-};
-export default trainInitiateObjects;
+    orgID,
+    trainID
+  )
+  next()
+}
+export default trainInitiateObjects

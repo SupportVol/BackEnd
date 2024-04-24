@@ -6,36 +6,36 @@
  * @returns {void|object} - Returns nothing if successful, or an error object if an error occurs.
  */
 
-import Firestore from "../../firebaseCP/firestore.js";
-import isAuthorized from "../../utils/validation/isAuthorized.js";
-import Group from "../../models/communication/GroupModel.js";
+import Firestore from '../../firebaseCP/firestore.js'
+import isAuthorized from '../../utils/validation/isAuthorized.js'
+import Group from '../../models/communication/GroupModel.js'
 const grpInitiateObjects = async (req, res, next) => {
   // Check if the user is authorized
-  const allowedResponse = isAuthorized(req.uid, ["Organization"], [], req);
+  const allowedResponse = isAuthorized(req.uid, ['Organization'], [], req)
 
   // If the user is not authorized and the request method is not GET, return the first error message
-  if (Array.isArray(allowedResponse) && req.method !== "GET") {
-    return allowedResponse[0];
+  if (Array.isArray(allowedResponse) && req.method !== 'GET') {
+    return allowedResponse[0]
   }
 
   const { members, name, description, projectID, groupID } = req.body
 
   // Initialize Firestore instance with 'groups' collection
-  const fs = new Firestore("chatGroups");
+  const fs = new Firestore('chatGroups')
 
   // Read existing groups from Firestore
   const allRecords = await fs.readAll()
-  const existingGroups = Object.keys(allRecords[1]);
+  const existingGroups = Object.keys(allRecords[1])
   // If the requested group ID does not exist, return an error
-  if (!existingGroups.includes(groupID) && req.method !== "POST") {
-    return res.json({ response: ["The group ID is invalid", 404] });
+  if (!existingGroups.includes(groupID) && req.method !== 'POST') {
+    return res.json({ response: ['The group ID is invalid', 404] })
   }
 
   // Initialize Group instance with the user ID and group ID
-  req.grpInstance = new Group(members, name, description, projectID, groupID);
+  req.grpInstance = new Group(members, name, description, projectID, groupID)
 
   // Move to the next middleware function
-  next();
-};
+  next()
+}
 
-export default grpInitiateObjects;
+export default grpInitiateObjects

@@ -1,82 +1,82 @@
 export default class Response {
-  constructor(req, res) {
-    this.req = req;
-    this.res = res;
+  constructor (req, res) {
+    this.req = req
+    this.res = res
     this.resStructure = {
       successful: true,
       messageAdd: false,
-      jsonAdd: false,
-    };
+      jsonAdd: false
+    }
   }
 
-  response(options) {
+  response (options) {
     const {
       successful = true,
       messageAdd = false,
-      message = "Default Message",
+      message = 'Default Message',
       jsonAdd = false,
       json = {},
-      code = NaN,
-    } = options;
+      code = NaN
+    } = options
 
-    const statusCode = code || (successful ? 200 : 401);
-    let respondCombination = this.res.status(statusCode);
+    const statusCode = code || (successful ? 200 : 401)
+    let respondCombination = this.res.status(statusCode)
 
     if (messageAdd) {
-      respondCombination = respondCombination.send(message);
+      respondCombination = respondCombination.send(message)
     }
     if (jsonAdd) {
-      respondCombination = respondCombination.json(json);
+      respondCombination = respondCombination.json(json)
     }
 
-    return respondCombination;
+    return respondCombination
   }
 
-  errorStructure(error) {
+  errorStructure (error) {
     return {
       ...this.resStructure,
       successful: false,
       messageAdd: true,
-      message: error.message || error,
-    };
-  }
-
-  async respondStatus(code) {
-    try {
-      this.resStructure.successful = true;
-      this.resStructure.code = code;
-    } catch (error) {
-      this.resStructure = this.errorStructure(error);
+      message: error.message || error
     }
-    return this.response(this.resStructure);
   }
 
-  async respondJSON(actionResponse) {
+  async respondStatus (code) {
+    try {
+      this.resStructure.successful = true
+      this.resStructure.code = code
+    } catch (error) {
+      this.resStructure = this.errorStructure(error)
+    }
+    return this.response(this.resStructure)
+  }
+
+  async respondJSON (actionResponse) {
     try {
       this.resStructure = {
         ...this.resStructure,
         ...actionResponse,
-        jsonAdd: true,
-      };
+        jsonAdd: true
+      }
     } catch (error) {
-      console.error("Error in respondJSON:", error);
-      this.resStructure = this.errorStructure(error);
+      console.error('Error in respondJSON:', error)
+      this.resStructure = this.errorStructure(error)
     }
-    return this.response(this.resStructure);
+    return this.response(this.resStructure)
   }
 
-  async respondJSONandMessage(actionResponse, message) {
+  async respondJSONandMessage (actionResponse, message) {
     try {
       this.resStructure = {
         ...this.resStructure,
         ...actionResponse,
         messageAdd: true,
-        message,
-      };
+        message
+      }
     } catch (error) {
-      this.resStructure = this.errorStructure(error);
+      this.resStructure = this.errorStructure(error)
     }
-    return this.response(this.resStructure);
+    return this.response(this.resStructure)
   }
 
   // async actionResponse(action, parameters = [], containJSON = true) {

@@ -5,11 +5,11 @@
  * @returns {Object} - JSON response with all messages.
  */
 const getAllMessages = async (req, res) => {
-  const { msgInstance } = req;
+  const { msgInstance } = req
   return res.json({
-    response: await msgInstance.read(),
-  });
-};
+    response: await msgInstance.read()
+  })
+}
 
 /**
  * Creates a message and sends a JSON response.
@@ -18,11 +18,11 @@ const getAllMessages = async (req, res) => {
  * @returns {Object} - JSON response with message creation status.
  */
 const createMessage = async (req, res) => {
-  const { msgInstance } = req;
+  const { msgInstance } = req
   return res.json({
-    response: await msgInstance.create(),
-  });
-};
+    response: await msgInstance.create()
+  })
+}
 
 /**
  * Deletes a message and sends a status response.
@@ -31,9 +31,9 @@ const createMessage = async (req, res) => {
  * @returns {Object} - Response status.
  */
 const deleteMessage = async (req, res) => {
-  const { msgInstance } = req;
-  const response = await msgInstance.delete();
-  return res.json(response);
-};
+  const { msgInstance } = req
+  const response = await msgInstance.delete()
+  return res.json(response)
+}
 
-export { getAllMessages, createMessage, deleteMessage };
+export { getAllMessages, createMessage, deleteMessage }

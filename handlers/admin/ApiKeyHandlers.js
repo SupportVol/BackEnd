@@ -1,23 +1,23 @@
 const getApiKeys = async (req, res) => {
-  let allApiKeys;
-  console.log(req.all);
+  let allApiKeys
+  console.log(req.all)
   if (req.all) {
-    allApiKeys = await req.apiInstance.readAll();
+    allApiKeys = await req.apiInstance.readAll()
   } else {
-    allApiKeys = await req.apiInstance.read();
+    allApiKeys = await req.apiInstance.read()
   }
-  res.status(200).json({ response: allApiKeys });
-};
+  res.status(200).json({ response: allApiKeys })
+}
 const createApiKey = async (req, res) => {
-  const newApiKey = await req.apiInstance.create();
-  res.status(200).json({ response: newApiKey });
-};
+  const newApiKey = await req.apiInstance.create()
+  res.status(200).json({ response: newApiKey })
+}
 const updateApiKey = (req, res) => {
-  req.apiInstance.update();
-  res.status(200);
-};
+  req.apiInstance.update()
+  res.status(200)
+}
 const deleteApiKey = (req, res) => {
-  req.apiInstance.delete();
-  res.status(200);
-};
-export { getApiKeys, createApiKey, updateApiKey, deleteApiKey };
+  req.apiInstance.delete()
+  res.status(200)
+}
+export { getApiKeys, createApiKey, updateApiKey, deleteApiKey }

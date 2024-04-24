@@ -6,14 +6,14 @@
  */
 const getBanStatus = async (req, res) => {
   try {
-    const { ban } = req;
-    const isBanned = await ban.isUserBanned();
-    res.json({ response: isBanned });
+    const { ban } = req
+    const isBanned = await ban.isUserBanned()
+    res.json({ response: isBanned })
   } catch (error) {
-    console.error("Error getting ban status:", error);
-    res.status(500).json({ error: "Failed to get ban status" });
+    console.error('Error getting ban status:', error)
+    res.status(500).json({ error: 'Failed to get ban status' })
   }
-};
+}
 
 /**
  * Bans a user and sends a JSON response with a message.
@@ -23,14 +23,14 @@ const getBanStatus = async (req, res) => {
  */
 const banUser = async (req, res) => {
   try {
-    const { ban, uid } = req;
-    const response = await ban.banUser();
-    res.json({ response });
+    const { ban, uid } = req
+    const response = await ban.banUser()
+    res.json({ response })
   } catch (error) {
-    console.error("Error banning user:", error);
-    res.status(500).json({ error: "Failed to ban user" });
+    console.error('Error banning user:', error)
+    res.status(500).json({ error: 'Failed to ban user' })
   }
-};
+}
 
 /**
  * Unbans a user and sends a JSON response with a message.
@@ -40,13 +40,13 @@ const banUser = async (req, res) => {
  */
 const unBanUser = async (req, res) => {
   try {
-    const { ban, uid } = req;
-    const response = await ban.unBanUser();
-    res.json({ response });
+    const { ban, uid } = req
+    const response = await ban.unBanUser()
+    res.json({ response })
   } catch (error) {
-    console.error("Error unbanning user:", error);
-    res.status(500).json({ error: "Failed to unban user" });
+    console.error('Error unbanning user:', error)
+    res.status(500).json({ error: 'Failed to unban user' })
   }
-};
+}
 
-export { getBanStatus, banUser, unBanUser };
+export { getBanStatus, banUser, unBanUser }

@@ -1,6 +1,6 @@
 // Importing necessary modules
-import Firestore from "../../firebaseCP/firestore.js";
-import Article from "./ArticleEntity.js";
+import Firestore from '../../firebaseCP/firestore.js'
+import Article from './ArticleEntity.js'
 
 /**
  * Post class that extends the Article class.
@@ -18,15 +18,15 @@ export default class Post extends Article {
    * @param {string} orgID - The ID of the organization.
 
    */
-  constructor(title, description, tags, senderUID, orgID, postID) {
+  constructor (title, description, tags, senderUID, orgID, postID) {
     // Call the parent constructor
-    super(title, description, tags, senderUID, orgID);
+    super(title, description, tags, senderUID, orgID)
 
     // Initialize properties
-    this.postID = postID;
-    this.type = "posts";
+    this.postID = postID
+    this.type = 'posts'
 
     // Create a new Firestore instance
-    this.firestore = new Firestore(this.type, postID, []);
+    this.firestore = new Firestore(this.type, postID, [])
   }
 }

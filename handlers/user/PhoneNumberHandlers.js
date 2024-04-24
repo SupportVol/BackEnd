@@ -5,11 +5,11 @@
  * @returns {Object} - JSON response with the user's phone number.
  */
 const getPhoneNumber = (req, res) => {
-  const { auth } = req;
+  const { auth } = req
   return res.json({
-    response: auth.getUser(req.uid),
-  });
-};
+    response: auth.getUser(req.uid)
+  })
+}
 
 /**
  * Updates the phone number for the current user and sends a JSON response.
@@ -18,13 +18,13 @@ const getPhoneNumber = (req, res) => {
  * @returns {Object} - JSON response with the updated phone number status.
  */
 const updatePhoneNumber = async (req, res) => {
-  const { body, auth } = req;
-  const { phoneNumber } = body;
-  const response = await auth.updateUser(req.uid, { phoneNumber });
+  const { body, auth } = req
+  const { phoneNumber } = body
+  const response = await auth.updateUser(req.uid, { phoneNumber })
   return res.json({
-    response,
-  });
-};
+    response
+  })
+}
 
 /**
  * Deletes the phone number for the current user and sends a JSON response.
@@ -33,10 +33,10 @@ const updatePhoneNumber = async (req, res) => {
  * @returns {Object} - JSON response with the phone number deletion status.
  */
 const deletePhoneNumber = (req, res) => {
-  const { auth } = req;
+  const { auth } = req
   return res.json({
-    response: auth.deleteUser(req.uid),
-  });
-};
+    response: auth.deleteUser(req.uid)
+  })
+}
 
-export { getPhoneNumber, updatePhoneNumber, deletePhoneNumber };
+export { getPhoneNumber, updatePhoneNumber, deletePhoneNumber }

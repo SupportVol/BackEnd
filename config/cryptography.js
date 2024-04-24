@@ -1,3 +1,3 @@
-const saltRounds = process.env.saltRounds || 5;
+const saltRounds = process.env.saltRounds || 5
 
-module.exports = saltRounds;
+module.exports = saltRounds

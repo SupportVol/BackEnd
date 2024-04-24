@@ -1,6 +1,6 @@
 // Importing the required modules
-import bcrypt from "bcrypt";
-import saltRounds from "../../config/cryptography.js";
+import bcrypt from 'bcrypt'
+import saltRounds from '../../config/cryptography.js'
 
 /**
  * This class provides methods for encrypting text using bcrypt.
@@ -10,8 +10,8 @@ export default class Encryption {
    * Constructor for the Encryption class.
    * @param {string} txt - The text to be encrypted.
    */
-  constructor(txt) {
-    this.txt = txt;
+  constructor (txt) {
+    this.txt = txt
   }
 
   /**
@@ -20,15 +20,15 @@ export default class Encryption {
    * The first element indicates success (true) or failure (false),
    * and the second element is the resulting hash or error.
    */
-  async encrypt() {
+  async encrypt () {
     try {
       // Hashing the text
-      const hash = await bcrypt.hash(this.txt, saltRounds);
+      const hash = await bcrypt.hash(this.txt, saltRounds)
       // If successful, return true and the hash
-      return [true, hash];
+      return [true, hash]
     } catch (err) {
       // If an error occurs, return false and the error
-      return [false, err];
+      return [false, err]
     }
   }
 }

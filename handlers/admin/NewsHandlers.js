@@ -5,18 +5,18 @@
  * @returns {Object} - JSON response with news data.
  */
 const getNews = async (req, res) => {
-  const { newsInitialization } = req;
-  let response;
+  const { newsInitialization } = req
+  let response
   if (req.body.all) {
-    response = await newsInitialization.readAll();
+    response = await newsInitialization.readAll()
   } else {
-    response = await newsInitialization.read();
+    response = await newsInitialization.read()
   }
 
   return res.json({
-    response,
-  });
-};
+    response
+  })
+}
 
 /**
  * Creates news and sends a JSON response.
@@ -25,11 +25,11 @@ const getNews = async (req, res) => {
  * @returns {Object} - JSON response with news creation status.
  */
 const createNews = async (req, res) => {
-  const { newsInitialization } = req;
+  const { newsInitialization } = req
   return res.json({
-    response: await newsInitialization.create(),
-  });
-};
+    response: await newsInitialization.create()
+  })
+}
 
 /**
  * Updates news and sends a status response.
@@ -38,10 +38,10 @@ const createNews = async (req, res) => {
  * @returns {Object} - Response status.
  */
 const updateNews = async (req, res) => {
-  const { newsInitialization } = req;
-  const response = await newsInitialization.update();
-  res.json({ response });
-};
+  const { newsInitialization } = req
+  const response = await newsInitialization.update()
+  res.json({ response })
+}
 
 /**
  * Deletes news and sends a status response.
@@ -50,9 +50,9 @@ const updateNews = async (req, res) => {
  * @returns {Object} - Response status.
  */
 const deleteNews = async (req, res) => {
-  const { newsInitialization } = req;
-  const response = await newsInitialization.delete();
-  return res.json({ response });
-};
+  const { newsInitialization } = req
+  const response = await newsInitialization.delete()
+  return res.json({ response })
+}
 
-export { getNews, createNews, updateNews, deleteNews };
+export { getNews, createNews, updateNews, deleteNews }

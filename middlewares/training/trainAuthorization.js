@@ -1,16 +1,16 @@
-import isAuthorized from "../../utils/validation/isAuthorized.js";
+import isAuthorized from '../../utils/validation/isAuthorized.js'
 
 const trainAuthorization = (req, res, next) => {
   const response = isAuthorized(
     req.uid,
-    ["Admin", "Organization"],
+    ['Admin', 'Organization'],
     [1, 0],
     req
-  );
+  )
   if (Array.isArray(response)) {
-    res.json({ response });
+    res.json({ response })
   }
-  next();
-};
+  next()
+}
 
-export default trainAuthorization;
+export default trainAuthorization
