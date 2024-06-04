@@ -1,15 +1,15 @@
-import isArray from '../validation/isArray.js'
+import isArray from "../validation/isArray.js";
 
 const updateData = (fields, data, alreadyData) => {
-  const updateStructure = {}
+  const updateStructure = {};
   fields.forEach((field, index) => {
-    console.log(updateStructure)
+    console.log(updateStructure);
     if (Array.isArray(alreadyData[field])) {
-      updateStructure[field] = isArray(data[index], alreadyData[field])
+      updateStructure[field] = isArray(data[index], alreadyData[field]);
     }
-    updateStructure[field] = data[index] ?? alreadyData[field]
-    console.log(updateStructure)
-  })
-  return updateStructure
-}
-export default updateData
+    updateStructure[field] = data[index] ?? alreadyData[field];
+    console.log(updateStructure);
+  });
+  return updateStructure;
+};
+export default updateData;

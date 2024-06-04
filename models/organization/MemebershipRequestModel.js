@@ -1,10 +1,10 @@
-import { Authentication } from '../../firebaseCP/authentication.js'
-import Firestore from '../../firebaseCP/firestore.js'
-import FirestoreAbstract from '../../utils/firestore/FirestoreAbstract.js'
-import updateData from '../../utils/firestore/updateData.js'
+import { Authentication } from "../../firebaseCP/authentication.js";
+import Firestore from "../../firebaseCP/firestore.js";
+import FirestoreAbstract from "../../utils/firestore/FirestoreAbstract.js";
+import updateData from "../../utils/firestore/updateData.js";
 
 export default class MembershipRequestModel extends FirestoreAbstract {
-  constructor (
+  constructor(
     registrationCertificateUrl,
     annualReportUrl,
     legalDocumentsUrl,
@@ -12,9 +12,9 @@ export default class MembershipRequestModel extends FirestoreAbstract {
     email,
     password,
     description,
-    requestID = false
+    requestID = false,
   ) {
-    super()
+    super();
     this.createStructure = {
       name,
       description,
@@ -23,21 +23,21 @@ export default class MembershipRequestModel extends FirestoreAbstract {
       registrationCertificateUrl,
       annualReportUrl,
       legalDocumentsUrl,
-      creationDate: Date.now()
-    }
-    this.fs = new Firestore('organizationsRequests', this.requestID)
-    const currentRecord = this.read()
+      creationDate: Date.now(),
+    };
+    this.fs = new Firestore("organizationsRequests", this.requestID);
+    const currentRecord = this.read();
     this.updateStructure = updateData(
       [
-        'name',
-        'description',
-        'email',
-        'password',
-        'registrationCertificateUrl',
-        'annualReportUrl',
-        'legalDocumentsUrl',
-        'creationDate',
-        'accepted'
+        "name",
+        "description",
+        "email",
+        "password",
+        "registrationCertificateUrl",
+        "annualReportUrl",
+        "legalDocumentsUrl",
+        "creationDate",
+        "accepted",
       ],
       [
         name,
@@ -48,31 +48,31 @@ export default class MembershipRequestModel extends FirestoreAbstract {
         annualReportUrl,
         legalDocumentsUrl,
         Date.now(),
-        false
+        false,
       ],
-      currentRecord
-    )
-    this.requestID = requestID
+      currentRecord,
+    );
+    this.requestID = requestID;
   }
 
-  approve () {
-    const record = this.fs.read()
-    this.fs.delete()
-    this.fs = new Firestore('organizations', this.requestID)
-    const orgID = this.fs.create(record)[1]
-    this.auth = new Authentication()
-    this.auth.createUser({ email: record.email, password: record.password })
-    this.authFS = new Firestore('users', orgID)
+  approve() {
+    const record = this.fs.read();
+    this.fs.delete();
+    this.fs = new Firestore("organizations", this.requestID);
+    const orgID = this.fs.create(record)[1];
+    this.auth = new Authentication();
+    this.auth.createUser({ email: record.email, password: record.password });
+    this.authFS = new Firestore("users", orgID);
     this.authFS.create({
       orgID,
-      role: 'Organization',
-      level: 0
-    })
-    return orgID
+      role: "Organization",
+      level: 0,
+    });
+    return orgID;
   }
 
-  decline () {
-    this.fs.delete()
-    return true
+  decline() {
+    this.fs.delete();
+    return true;
   }
 }
